@@ -11,7 +11,7 @@
 
 The most recent report is always live at:
 
-**👉 [https://yourusername.github.io/aivibe-security/](https://yourusername.github.io/aivibe-security/)**
+**👉 [https://bitmousekatze.github.io/AISecurityDaily/](https://bitmousekatze.github.io/AISecurityDaily/)**
 
 `index.html` in the root of this repo is updated each day with the newest issue. GitHub Pages serves it automatically — just bookmark the link above and check back daily.
 
