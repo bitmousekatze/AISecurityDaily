@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Vibe Coding Security — Issue #4 | May 5, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cyan: #00e5ff;
+    --purple: #b66eff;
+    --dark: #080b14;
+    --card: #0d1220;
+    --card2: #0f1628;
+    --border: rgba(0,229,255,0.15);
+    --border-purple: rgba(182,110,255,0.2);
+    --text: #c8d8e8;
+    --muted: #5a7080;
+    --red: #ff4466;
+    --green: #00ffaa;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .orb-1 { width: 600px; height: 600px; background: rgba(0,100,180,0.12); top: -200px; left: -200px; }
+  .orb-2 { width: 500px; height: 500px; background: rgba(100,30,200,0.1); bottom: 0; right: -150px; }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 32px 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .logo-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #fff;
+  }
+  .logo-text span { color: var(--cyan); }
+
+  .issue-meta { text-align: right; }
+
+  .issue-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--cyan);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .issue-date {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    margin-top: 4px;
+  }
+
+  .hero {
+    padding: 52px 0 40px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 20px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--cyan);
+  }
+
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(42px, 8vw, 72px);
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: #fff;
+  }
+
+  .hero h1 span {
+    color: var(--cyan);
+    display: block;
+  }
+
+  .hero-sub {
+    margin-top: 20px;
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 560px;
+    font-weight: 400;
+  }
+
+  .threat-bar {
+    margin-top: 32px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .threat-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 3px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid;
+  }
+
+  .threat-pill.critical { border-color: var(--red); color: var(--red); background: rgba(255,68,102,0.07); }
+  .threat-pill.high { border-color: #ff9900; color: #ff9900; background: rgba(255,153,0,0.07); }
+  .threat-pill.watch { border-color: var(--purple); color: var(--purple); background: rgba(182,110,255,0.07); }
+
+  .threat-pill .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: blink 1.4s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  .section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 48px 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .article-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--cyan);
+    padding: 32px;
+    margin-bottom: 24px;
+    position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .article-card:hover {
+    border-color: rgba(0,229,255,0.4);
+    border-left-color: var(--cyan);
+    transform: translateX(3px);
+  }
+
+  .article-card.purple { border-left-color: var(--purple); }
+  .article-card.purple:hover { border-left-color: var(--purple); border-color: var(--border-purple); }
+  .article-card.orange { border-left-color: #ff9900; }
+  .article-card.red { border-left-color: var(--red); }
+  .article-card.red:hover { border-left-color: var(--red); border-color: rgba(255,68,102,0.3); }
+
+  .article-num {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 52px;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    user-select: none;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+
+  .badge.critical { background: rgba(255,68,102,0.15); color: var(--red); border: 1px solid rgba(255,68,102,0.3); }
+  .badge.patch-wave { background: rgba(0,229,255,0.1); color: var(--cyan); border: 1px solid rgba(0,229,255,0.25); }
+  .badge.vuln { background: rgba(255,153,0,0.12); color: #ff9900; border: 1px solid rgba(255,153,0,0.3); }
+  .badge.breach { background: rgba(182,110,255,0.12); color: var(--purple); border: 1px solid rgba(182,110,255,0.3); }
+  .badge.policy { background: rgba(0,255,170,0.08); color: var(--green); border: 1px solid rgba(0,255,170,0.2); }
+
+  .article-source {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .article-source a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .article-source a:hover { color: var(--cyan); border-bottom-color: var(--cyan); }
+
+  .article-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    letter-spacing: 0.01em;
+  }
+
+  .article-body {
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 24px;
+    line-height: 1.75;
+  }
+
+  .matters-block {
+    background: rgba(0,229,255,0.04);
+    border: 1px solid rgba(0,229,255,0.1);
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+
+  .purple .matters-block {
+    background: rgba(182,110,255,0.04);
+    border-color: rgba(182,110,255,0.12);
+  }
+
+  .orange .matters-block {
+    background: rgba(255,153,0,0.04);
+    border-color: rgba(255,153,0,0.12);
+  }
+
+  .red .matters-block {
+    background: rgba(255,68,102,0.04);
+    border-color: rgba(255,68,102,0.12);
+  }
+
+  .matters-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 10px;
+  }
+
+  .purple .matters-label { color: var(--purple); }
+  .orange .matters-label { color: #ff9900; }
+  .red .matters-label { color: var(--red); }
+
+  .matters-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .actions-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .action-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .action-list li {
+    font-size: 13.5px;
+    color: var(--text);
+    display: flex;
+    gap: 12px;
+    line-height: 1.6;
+  }
+
+  .action-list li::before {
+    content: '▸';
+    color: var(--cyan);
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 12px;
+  }
+
+  .purple .action-list li::before { color: var(--purple); }
+  .orange .action-list li::before { color: #ff9900; }
+  .red .action-list li::before { color: var(--red); }
+
+  code {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    background: rgba(0,229,255,0.08);
+    color: var(--cyan);
+    padding: 1px 6px;
+    border-radius: 2px;
+  }
+
+  .cve-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--red);
+    background: rgba(255,68,102,0.1);
+    border: 1px solid rgba(255,68,102,0.25);
+    padding: 1px 7px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  .cvss-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: #ff9900;
+    background: rgba(255,153,0,0.1);
+    border: 1px solid rgba(255,153,0,0.25);
+    padding: 1px 7px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-left: 6px;
+  }
+
+  .quick-hits {
+    background: var(--card2);
+    border: 1px solid var(--border-purple);
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+
+  .quick-hits h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--purple);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .quick-hits h3::before {
+    content: '◈';
+    font-size: 14px;
+  }
+
+  .quick-hit-item {
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.75;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .quick-hit-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .quick-hit-item:first-of-type { padding-top: 0; }
+
+  .qh-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--purple);
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  .prompt-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .prompt-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .prompt-topic {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .prompt-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .prompt-icon.cyan { background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.2); color: var(--cyan); }
+  .prompt-icon.orange { background: rgba(255,153,0,0.1); border: 1px solid rgba(255,153,0,0.2); color: #ff9900; }
+  .prompt-icon.purple { background: rgba(182,110,255,0.1); border: 1px solid rgba(182,110,255,0.2); color: var(--purple); }
+
+  .prompt-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: #fff;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  .prompt-subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 3px;
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .copy-btn {
+    background: rgba(0,229,255,0.07);
+    border: 1px solid rgba(0,229,255,0.2);
+    color: var(--cyan);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    border-radius: 2px;
+  }
+
+  .copy-btn:hover { background: rgba(0,229,255,0.15); border-color: rgba(0,229,255,0.4); }
+  .copy-btn.copied { color: var(--green); border-color: rgba(0,255,170,0.3); background: rgba(0,255,170,0.07); }
+
+  .prompt-box {
+    background: #060a12;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-left: 2px solid var(--cyan);
+    padding: 18px 20px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12.5px;
+    color: #a0c4d0;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    word-break: break-word;
+    position: relative;
+  }
+
+  .prompt-card:nth-child(2) .prompt-box { border-left-color: #ff9900; }
+  .prompt-card:nth-child(3) .prompt-box { border-left-color: var(--purple); }
+
+  .prompt-box .hl-cyan { color: var(--cyan); }
+  .prompt-box .hl-green { color: var(--green); }
+  .prompt-box .hl-orange { color: #ff9900; }
+  .prompt-box .hl-purple { color: var(--purple); }
+  .prompt-box .hl-muted { color: var(--muted); }
+
+  .scanlines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0 0;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-brand span { color: var(--cyan); }
+
+  .footer-copy {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-align: right;
+  }
+
+  @media (max-width: 600px) {
+    header { flex-direction: column; align-items: flex-start; }
+    .issue-meta { text-align: left; }
+    .article-card { padding: 24px 20px; }
+    .article-num { display: none; }
+    .prompt-card { padding: 20px; }
+    .quick-hits { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-text">AI<span>Security</span>Daily</div>
+    <div class="issue-meta">
+      <div class="issue-label">Issue #4</div>
+      <div class="issue-date">May 5, 2026</div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">Breaking Intel</div>
+    <h1>Grok Wallet<span>Drained by Prompt Injection</span></h1>
+    <p class="hero-sub">Yesterday an attacker used a Morse-coded prompt injection — delivered via an NFT gift — to drain $150K–$202K in DRB tokens from a Grok-associated wallet on Base. The second attack in days proves that once an AI agent can read, reason, and act, prompt injection becomes a remote-controlled exploit vector.</p>
+    <div class="threat-bar">
+      <div class="threat-pill critical"><span class="dot"></span> Prompt Injection · Agentic AI</div>
+      <div class="threat-pill high"><span class="dot"></span> Wallet Drain · $200K</div>
+      <div class="threat-pill watch"><span class="dot"></span> Encoded Attacks</div>
+    </div>
+  </section>
+
+  <!-- MAIN STORIES -->
+  <div class="section-label">Top Stories</div>
+
+  <!-- STORY 1: GROK WALLET DRAIN -->
+  <article class="article-card red">
+    <div class="article-num">01</div>
+    <div class="article-meta">
+      <span class="badge critical">Critical · Actively Exploited</span>
+      <span class="article-source">Via X / Community Reports</span>
+    </div>
+    <h2 class="article-title">Grok/Bankr Wallet Drain – Prompt Injection Attack Steals $150K–$202K in DRB Tokens</h2>
+    <div class="article-body">
+      <p>Yesterday (May 4, 2026), an attacker drained roughly <strong>$150K–$202K</strong> worth of DRB tokens (≈3 billion tokens) from a Grok-associated wallet on Base. The attack was not a smart-contract exploit or private-key theft — it was a sophisticated <strong>prompt injection</strong> delivered through social engineering and encoded instructions.</p>
+      <br>
+      <p>The attacker gifted a <strong>Bankr Club Membership NFT</strong> to the wallet, unlocking advanced transfer permissions. They then posted a reply containing Morse code (or similar encoding) that, when parsed by Grok, instructed a full token transfer. Grok decoded and output the command publicly, inadvertently tagging <code>@bankrbot</code>. The bot treated it as a legitimate tool call and executed the transfer instantly — with no strong secondary validation or human confirmation.</p>
+      <br>
+      <p>Approximately 80% of the funds were later returned, but this marks the <strong>second similar attack</strong> on the same setup. The incident perfectly demonstrates the core risk of agentic AI: once a model can read external input, reason over it, and call real-world tools (wallets, APIs, code execution), prompt injection turns the agent into an unwitting remote-controlled exploit vector.</p>
+    </div>
+    <div class="matters-block">
+      <div class="matters-label">Why It Matters for Vibe Coders</div>
+      <div class="matters-text">This wasn’t a “hack” in the traditional sense. It was input manipulation that bypassed safety layers because the model understood intent while simple filters saw only “gibberish.” Encoded payloads (Morse, Base64, ROT13, etc.) evade keyword guards. NFT/social engineering + AI execution = a brand-new hybrid attack surface. If you ship agents with tool access, you are now a high-value target.</div>
+    </div>
+    <div class="actions-label">Action Items</div>
+    <ul class="action-list">
+      <li>Audit every tool your agents can call — enforce least privilege and read-only where possible.</li>
+      <li>Add strict output validation and sanitization <strong>before</strong> any tool execution (especially transfers or mutations).</li>
+      <li>Require human-in-the-loop confirmation for all high-impact actions (financial, destructive, external calls).</li>
+      <li>Deploy runtime scanners for encoded prompt injection (see Quick Hits below).</li>
+      <li>Monitor agent behavior with canary tokens and anomaly detection.</li>
+    </ul>
+  </article>
+
+  <!-- QUICK HITS -->
+  <div class="section-label">Quick Hits</div>
+
+  <div class="quick-hits">
+    <h3>Agent Hardening Toolkit</h3>
+    <div class="quick-hit-item">
+      <div class="qh-dot"></div>
+      <div><strong style="color:#fff">1. NVIDIA/garak</strong> — Gold-standard LLM vulnerability scanner with 200+ probes, including Morse/Base64 encoding exploits and agent tool-calling attacks. Run it in CI/CD for automated red-teaming.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px">→ github.com/NVIDIA/garak</span></div>
+    </div>
+    <div class="quick-hit-item">
+      <div class="qh-dot"></div>
+      <div><strong style="color:#fff">2. protectai/llm-guard</strong> — Production-ready input/output scanner with dedicated PromptInjection detector. Drop it into your pipeline for real-time blocking of malicious prompts and tool calls.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px">→ github.com/protectai/llm-guard</span></div>
+    </div>
+    <div class="quick-hit-item">
+      <div class="qh-dot"></div>
+      <div><strong style="color:#fff">3. StackOneHQ/defender</strong> — Lightweight (22MB, CPU-only, &lt;10ms) guard built specifically for tool-calling agents (MCP/CLI/function calling). Excellent against indirect/encoded injections.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px">→ github.com/StackOneHQ/defender</span></div>
+    </div>
+    <div class="quick-hit-item">
+      <div class="qh-dot"></div>
+      <div><strong style="color:#fff">Start here:</strong> Run <strong>garak</strong> for testing, then layer <strong>llm-guard</strong> or <strong>defender</strong> at runtime. Combine with strict tool permissions and human gates. The era of “set it and forget it” agents is over.</div>
+    </div>
+  </div>
+
+  <!-- SKILL PROMPTS -->
+  <div class="section-label">Security Skill Prompts</div>
+  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, GPT-4o, Cursor, or your preferred coding assistant. Tuned for today’s agentic AI threat landscape.</p>
+
+  <div class="prompts-section">
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-topic">
+          <div class="prompt-icon cyan">🛡️</div>
+          <div>
+            <div class="prompt-title">Agent Tool-Calling Security Audit</div>
+            <div class="prompt-subtitle">Prompt injection · tool permissions · output validation</div>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <div class="prompt-box">
+<span class="hl-cyan">Review the following AI agent code for tool-calling vulnerabilities.</span>
+
+<span class="hl-muted">Focus specifically on:</span>
+<span class="hl-green">1.</span> External inputs (NFT metadata, social replies, files, API responses) passed raw into agent context
+<span class="hl-green">2.</span> Lack of decoding/sanitization before reasoning (Morse, Base64, ROT13, etc.)
+<span class="hl-green">3.</span> No output validation before executing tools (transfers, writes, API calls)
+<span class="hl-green">4.</span> Overly broad tool permissions (no least-privilege scoping)
+<span class="hl-green">5.</span> Missing human-in-the-loop gate for high-impact actions
+
+<span class="hl-muted">For each issue found:</span>
+- Show the vulnerable line(s)
+- Explain the attack scenario (include encoded payload example)
+- Provide a corrected, hardened implementation
+
+<span class="hl-orange">[PASTE YOUR AGENT CODE / TOOL DEFINITIONS / SYSTEM PROMPT HERE]</span></div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-topic">
+          <div class="prompt-icon orange">🔍</div>
+          <div>
+            <div class="prompt-title">Encoded Prompt Injection Defense Review</div>
+            <div class="prompt-subtitle">Morse / Base64 / obfuscated attacks · social + NFT vectors</div>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <div class="prompt-box">
+<span class="hl-orange">Audit this agent implementation against encoded prompt injection attacks.</span>
+
+<span class="hl-muted">Check for:</span>
+<span class="hl-green">1.</span> Ability to receive and decode hidden commands from external sources (replies, NFT metadata, READMEs, etc.)
+<span class="hl-green">2.</span> No pre-processing layer to detect / block Morse, Base64, ROT13, or other obfuscation before model reasoning
+<span class="hl-green">3.</span> Tool-calling logic that trusts model output without secondary validation
+<span class="hl-green">4.</span> Absence of canary tokens or behavior monitoring
+
+<span class="hl-muted">Output:</span>
+- List every potential injection path
+- Provide a complete input sanitization + decoding guard layer
+- Suggest runtime scanner integration (garak / llm-guard / defender)
+
+<span class="hl-orange">[PASTE YOUR AGENT CODE OR INPUT PIPELINE HERE]</span></div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-topic">
+          <div class="prompt-icon purple">🚦</div>
+          <div>
+            <div class="prompt-title">Human-in-the-Loop + Output Validation for Agents</div>
+            <div class="prompt-subtitle">High-impact actions · wallet / API / code execution</div>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <div class="prompt-box">
+<span class="hl-purple">Design or review human-in-the-loop safeguards for this agentic system.</span>
+
+<span class="hl-muted">Evaluate and improve:</span>
+<span class="hl-green">1.</span> Which actions require explicit human confirmation before execution?
+<span class="hl-green">2.</span> Output validation pipeline — parse proposed tool call, show human-readable summary, require approval
+<span class="hl-green">3.</span> Timeout / fallback if human doesn’t respond
+<span class="hl-green">4.</span> Logging + audit trail of every proposed vs. executed action
+<span class="hl-green">5.</span> Integration with the 3 hardening tools (garak, llm-guard, defender)
+
+<span class="hl-muted">Deliver:</span>
+- Updated system prompt / guard code
+- Example confirmation UI / flow
+- Risk matrix for tool actions
+
+<span class="hl-orange">[PASTE YOUR CURRENT AGENT IMPLEMENTATION HERE]</span></div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">AI<span>Security</span>Daily</div>
+    <div class="footer-copy">
+      Issue #4 · May 5, 2026<br>
+      For vibe coders who ship secure.
+    </div>
+  </footer>
+
+</div>
+
+<script>
+function copyPrompt(btn) {
+  const box = btn.closest('.prompt-card').querySelector('.prompt-box');
+  const text = box.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
