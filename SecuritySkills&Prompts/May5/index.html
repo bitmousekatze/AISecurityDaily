@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Vibe Coding Security — Issue #5 | May 6, 2026</title>
+<title>AI Vibe Coding Security — Issue #4 | May 5, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -619,80 +619,52 @@
   <header>
     <div class="logo-text">AI<span>Security</span>Daily</div>
     <div class="issue-meta">
-      <div class="issue-label">Issue #5</div>
-      <div class="issue-date">May 6, 2026</div>
+      <div class="issue-label">Issue #4</div>
+      <div class="issue-date">May 5, 2026</div>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-tag">Breaking Intel</div>
-    <h1>1 Million AI Services<span>Exposed. Security Is Cooked.</span></h1>
-    <p class="hero-sub">Intruder just scanned ~1 million exposed AI services (Ollama, self-hosted LLMs, agent platforms, MCP servers). Result? The worst security posture they've ever measured. No auth by default, leaked creds, wide-open APIs — right as agentic systems go mainstream.</p>
+    <h1>Grok Wallet<span>Drained by Prompt Injection</span></h1>
+    <p class="hero-sub">Yesterday an attacker used a Morse-coded prompt injection — delivered via an NFT gift — to drain $150K–$202K in DRB tokens from a Grok-associated wallet on Base. The second attack in days proves that once an AI agent can read, reason, and act, prompt injection becomes a remote-controlled exploit vector.</p>
     <div class="threat-bar">
-      <div class="threat-pill critical"><span class="dot"></span> Exposed AI Infra · No Auth</div>
-      <div class="threat-pill high"><span class="dot"></span> MCP Servers · Env Injection</div>
-      <div class="threat-pill watch"><span class="dot"></span> Indirect Prompt Injection</div>
+      <div class="threat-pill critical"><span class="dot"></span> Prompt Injection · Agentic AI</div>
+      <div class="threat-pill high"><span class="dot"></span> Wallet Drain · $200K</div>
+      <div class="threat-pill watch"><span class="dot"></span> Encoded Attacks</div>
     </div>
   </section>
 
   <!-- MAIN STORIES -->
   <div class="section-label">Top Stories</div>
 
-  <!-- STORY 1: AI INFRA SCAN -->
+  <!-- STORY 1: GROK WALLET DRAIN -->
   <article class="article-card red">
     <div class="article-num">01</div>
     <div class="article-meta">
-      <span class="badge critical">Critical Exposure</span>
-      <span class="article-source">Via <a href="https://thehackernews.com" target="_blank">The Hacker News</a> / Intruder Research</span>
+      <span class="badge critical">Critical · Actively Exploited</span>
+      <span class="article-source">Via X / Community Reports</span>
     </div>
-    <h2 class="article-title">We Scanned 1 Million Exposed AI Services — The Security Nightmare Is Worse Than Anyone Expected</h2>
+    <h2 class="article-title">Grok/Bankr Wallet Drain – Prompt Injection Attack Steals $150K–$202K in DRB Tokens</h2>
     <div class="article-body">
-      <p>In the wake of the ClawdBot fiasco (averaging 2.6 CVEs per day), Intruder used certificate transparency logs to scan over 1 million AI-related services. The findings are brutal: AI infrastructure is more vulnerable, exposed, and misconfigured than any category they've ever tested.</p>
+      <p>Yesterday (May 4, 2026), an attacker drained roughly <strong>$150K–$202K</strong> worth of DRB tokens (≈3 billion tokens) from a Grok-associated wallet on Base. The attack was not a smart-contract exploit or private-key theft — it was a sophisticated <strong>prompt injection</strong> delivered through social engineering and encoded instructions.</p>
       <br>
-      <p>Key red flags: 31% of exposed Ollama APIs responded to unauthenticated prompts. No default authentication on LLM gateways, agent platforms leaking credentials, chatbots exposing conversation history, and self-hosted setups with wide-open APIs. The rush to deploy AI is completely outpacing basic security hygiene.</p>
+      <p>The attacker gifted a <strong>Bankr Club Membership NFT</strong> to the wallet, unlocking advanced transfer permissions. They then posted a reply containing Morse code (or similar encoding) that, when parsed by Grok, instructed a full token transfer. Grok decoded and output the command publicly, inadvertently tagging <code>@bankrbot</code>. The bot treated it as a legitimate tool call and executed the transfer instantly — with no strong secondary validation or human confirmation.</p>
       <br>
-      <p>This isn't theoretical — these are live, internet-facing services powering real agentic workflows. Attackers don't need zero-days when the front door is unlocked.</p>
+      <p>Approximately 80% of the funds were later returned, but this marks the <strong>second similar attack</strong> on the same setup. The incident perfectly demonstrates the core risk of agentic AI: once a model can read external input, reason over it, and call real-world tools (wallets, APIs, code execution), prompt injection turns the agent into an unwitting remote-controlled exploit vector.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">If you're self-hosting Ollama, LangChain, local agents, MCP servers, or any AI tooling in production (or even dev), you are now part of the visible attack surface. "It works on my machine" no longer cuts it when your AI infra is public. The window between deployment and exploitation has collapsed.</div>
+      <div class="matters-text">This wasn’t a “hack” in the traditional sense. It was input manipulation that bypassed safety layers because the model understood intent while simple filters saw only “gibberish.” Encoded payloads (Morse, Base64, ROT13, etc.) evade keyword guards. NFT/social engineering + AI execution = a brand-new hybrid attack surface. If you ship agents with tool access, you are now a high-value target.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Inventory every exposed AI endpoint (Ollama, vLLM, LM Studio, custom agents) with <code>curl</code> or Intruder-style scanning.</li>
-      <li>Enforce API keys + mTLS / network-level isolation immediately — no unauthenticated LLM calls.</li>
-      <li>Run automated external scans on your own infra (garak + custom probes).</li>
-      <li>Implement strict auth + rate limiting on all MCP / tool-calling endpoints.</li>
-      <li>Assume every self-hosted AI service is public until proven otherwise.</li>
-    </ul>
-  </article>
-
-  <!-- STORY 2: MCP CVE -->
-  <article class="article-card orange">
-    <div class="article-num">02</div>
-    <div class="article-meta">
-      <span class="badge vuln">MCP · High</span>
-      <span class="article-source">Via X / GitHub Advisories</span>
-    </div>
-    <h2 class="article-title">eBay API MCP Server CVE-2026-27203: Environment Variable Injection = Instant RCE</h2>
-    <div class="article-body">
-      <p><span class="cve-tag">CVE-2026-27203</span><span class="cvss-tag">CVSS ~8.3</span></p>
-      <br>
-      <p>The open-source eBay API MCP Server (used by AI agents for real-time marketplace actions) is vulnerable to environment variable injection via the <code>ebay_set_user_tokens</code> tool. The <code>updateEnvFile</code> function blindly writes attacker-controlled values into <code>.env</code> — enabling full RCE and credential theft.</p>
-      <br>
-      <p>This is the latest in a growing wave of MCP/protocol-level flaws that turn agent tool-calling into remote code execution. If your agents touch external APIs via MCP, this class of bug is now table stakes.</p>
-    </div>
-    <div class="matters-block">
-      <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">Agentic AI doesn't just read data — it mutates real systems. Any tool that writes config/files without strict validation becomes a backdoor. MCP servers are the new "cloud metadata service" for attackers.</div>
-    </div>
-    <div class="actions-label">Action Items</div>
-    <ul class="action-list">
-      <li>Patch or fork any MCP servers you run (especially eBay, Shopify, etc.).</li>
-      <li>Sandbox tool execution — never let agents write to <code>.env</code>, config files, or host filesystem directly.</li>
-      <li>Validate + sanitize every parameter before it touches the shell or filesystem.</li>
-      <li>Use read-only tool scopes wherever possible.</li>
+      <li>Audit every tool your agents can call — enforce least privilege and read-only where possible.</li>
+      <li>Add strict output validation and sanitization <strong>before</strong> any tool execution (especially transfers or mutations).</li>
+      <li>Require human-in-the-loop confirmation for all high-impact actions (financial, destructive, external calls).</li>
+      <li>Deploy runtime scanners for encoded prompt injection (see Quick Hits below).</li>
+      <li>Monitor agent behavior with canary tokens and anomaly detection.</li>
     </ul>
   </article>
 
@@ -700,110 +672,115 @@
   <div class="section-label">Quick Hits</div>
 
   <div class="quick-hits">
-    <h3>Signals &amp; Intel</h3>
+    <h3>Agent Hardening Toolkit</h3>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">Prompt Injection Still #1 LLM Risk in 2026</strong> — OWASP Top 10, NCSC, and researchers confirm it's not going away. Indirect attacks via files, RAG, and agent context are now routine. Google NotebookLM just paid out a high-value VRP bounty for indirect prompt injection data exfil.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px">various reports</span></div>
+      <div><strong style="color:#fff">1. NVIDIA/garak</strong> — Gold-standard LLM vulnerability scanner with 200+ probes, including Morse/Base64 encoding exploits and agent tool-calling attacks. Run it in CI/CD for automated red-teaming.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px">→ github.com/NVIDIA/garak</span></div>
     </div>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">New AI/ML Pentesting Roadmap Drops</strong> — Covers prompt injection, agentic AI red-teaming, and MCP exploitation. Perfect for vibe coders who want to test their own agents.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px">github.com/anmolksachan/AI-ML-Free-Resources-for-Security-and-Prompt-Injection</span></div>
+      <div><strong style="color:#fff">2. protectai/llm-guard</strong> — Production-ready input/output scanner with dedicated PromptInjection detector. Drop it into your pipeline for real-time blocking of malicious prompts and tool calls.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px">→ github.com/protectai/llm-guard</span></div>
     </div>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">CISA / Five Eyes Continue Agentic AI Warnings</strong> — Latest joint guidance stresses human-in-the-loop and strict tool scoping as self-hosted AI explodes.</div>
+      <div><strong style="color:#fff">3. StackOneHQ/defender</strong> — Lightweight (22MB, CPU-only, &lt;10ms) guard built specifically for tool-calling agents (MCP/CLI/function calling). Excellent against indirect/encoded injections.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px">→ github.com/StackOneHQ/defender</span></div>
+    </div>
+    <div class="quick-hit-item">
+      <div class="qh-dot"></div>
+      <div><strong style="color:#fff">Start here:</strong> Run <strong>garak</strong> for testing, then layer <strong>llm-guard</strong> or <strong>defender</strong> at runtime. Combine with strict tool permissions and human gates. The era of “set it and forget it” agents is over.</div>
     </div>
   </div>
 
   <!-- SKILL PROMPTS -->
   <div class="section-label">Security Skill Prompts</div>
-  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, GPT-4o, Cursor, or your preferred coding assistant. Tuned for today's self-hosted AI + agentic reality.</p>
+  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, GPT-4o, Cursor, or your preferred coding assistant. Tuned for today’s agentic AI threat landscape.</p>
 
   <div class="prompts-section">
 
     <div class="prompt-card">
       <div class="prompt-card-header">
         <div class="prompt-topic">
-          <div class="prompt-icon cyan">🔍</div>
+          <div class="prompt-icon cyan">🛡️</div>
           <div>
-            <div class="prompt-title">Self-Hosted AI Infra Security Audit</div>
-            <div class="prompt-subtitle">Ollama / vLLM / MCP exposure · no-auth APIs</div>
+            <div class="prompt-title">Agent Tool-Calling Security Audit</div>
+            <div class="prompt-subtitle">Prompt injection · tool permissions · output validation</div>
           </div>
         </div>
         <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
       <div class="prompt-box">
-<span class="hl-cyan">Audit this self-hosted AI deployment (Docker Compose, Kubernetes manifest, or server config) for exposure risks.</span>
+<span class="hl-cyan">Review the following AI agent code for tool-calling vulnerabilities.</span>
 
-<span class="hl-muted">Focus on:</span>
-<span class="hl-green">1.</span> Unauthenticated LLM / API endpoints (Ollama, LangChain, MCP servers)
-<span class="hl-green">2.</span> Exposed ports, missing auth middleware, default credentials
-<span class="hl-green">3.</span> Environment variables / secrets in logs or config
-<span class="hl-green">4.</span> Agent tool-calling surfaces that can reach host filesystem or network
-<span class="hl-green">5.</span> Lack of network policies, mTLS, or WAF protection
+<span class="hl-muted">Focus specifically on:</span>
+<span class="hl-green">1.</span> External inputs (NFT metadata, social replies, files, API responses) passed raw into agent context
+<span class="hl-green">2.</span> Lack of decoding/sanitization before reasoning (Morse, Base64, ROT13, etc.)
+<span class="hl-green">3.</span> No output validation before executing tools (transfers, writes, API calls)
+<span class="hl-green">4.</span> Overly broad tool permissions (no least-privilege scoping)
+<span class="hl-green">5.</span> Missing human-in-the-loop gate for high-impact actions
 
-<span class="hl-muted">For each issue:</span>
-- Show the vulnerable config
-- Explain real-world attack path
-- Provide hardened fix + best-practice equivalent
+<span class="hl-muted">For each issue found:</span>
+- Show the vulnerable line(s)
+- Explain the attack scenario (include encoded payload example)
+- Provide a corrected, hardened implementation
 
-<span class="hl-orange">[PASTE YOUR DOCKER-COMPOSE.YML / K8S YAML / SERVER CONFIG HERE]</span></div>
+<span class="hl-orange">[PASTE YOUR AGENT CODE / TOOL DEFINITIONS / SYSTEM PROMPT HERE]</span></div>
     </div>
 
     <div class="prompt-card">
       <div class="prompt-card-header">
         <div class="prompt-topic">
-          <div class="prompt-icon orange">🛡️</div>
+          <div class="prompt-icon orange">🔍</div>
           <div>
-            <div class="prompt-title">MCP / Tool-Calling Hardening Review</div>
-            <div class="prompt-subtitle">Env injection · CVE-2026-27203 class bugs</div>
+            <div class="prompt-title">Encoded Prompt Injection Defense Review</div>
+            <div class="prompt-subtitle">Morse / Base64 / obfuscated attacks · social + NFT vectors</div>
           </div>
         </div>
         <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
       <div class="prompt-box">
-<span class="hl-orange">Review this MCP server or agent tool implementation for environment/config injection risks.</span>
+<span class="hl-orange">Audit this agent implementation against encoded prompt injection attacks.</span>
 
 <span class="hl-muted">Check for:</span>
-<span class="hl-green">1.</span> Any function that writes user-controlled data to .env, config files, or shell
-<span class="hl-green">2.</span> Lack of input sanitization (newlines, quotes, shell metachars)
-<span class="hl-green">3.</span> Tools that can modify their own runtime environment
-<span class="hl-green">4.</span> Missing sandboxing or read-only mode for external API tools
+<span class="hl-green">1.</span> Ability to receive and decode hidden commands from external sources (replies, NFT metadata, READMEs, etc.)
+<span class="hl-green">2.</span> No pre-processing layer to detect / block Morse, Base64, ROT13, or other obfuscation before model reasoning
+<span class="hl-green">3.</span> Tool-calling logic that trusts model output without secondary validation
+<span class="hl-green">4.</span> Absence of canary tokens or behavior monitoring
 
-<span class="hl-muted">Deliver:</span>
-- List every injection vector
-- Hardened version of the vulnerable code
-- Recommended runtime guard (e.g. llm-guard + custom validator)
+<span class="hl-muted">Output:</span>
+- List every potential injection path
+- Provide a complete input sanitization + decoding guard layer
+- Suggest runtime scanner integration (garak / llm-guard / defender)
 
-<span class="hl-orange">[PASTE YOUR TOOL / MCP CODE HERE]</span></div>
+<span class="hl-orange">[PASTE YOUR AGENT CODE OR INPUT PIPELINE HERE]</span></div>
     </div>
 
     <div class="prompt-card">
       <div class="prompt-card-header">
         <div class="prompt-topic">
-          <div class="prompt-icon purple">📄</div>
+          <div class="prompt-icon purple">🚦</div>
           <div>
-            <div class="prompt-title">Indirect Prompt Injection Defense (RAG + Agents)</div>
-            <div class="prompt-subtitle">NotebookLM-style file/context attacks</div>
+            <div class="prompt-title">Human-in-the-Loop + Output Validation for Agents</div>
+            <div class="prompt-subtitle">High-impact actions · wallet / API / code execution</div>
           </div>
         </div>
         <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
       <div class="prompt-box">
-<span class="hl-purple">Harden this RAG / agent system against indirect prompt injection from untrusted documents or external data.</span>
+<span class="hl-purple">Design or review human-in-the-loop safeguards for this agentic system.</span>
 
-<span class="hl-muted">Evaluate:</span>
-<span class="hl-green">1.</span> Raw file contents / API responses fed directly into LLM context
-<span class="hl-green">2.</span> No pre-processing or sanitization layer
-<span class="hl-green">3.</span> Agent can be instructed to exfiltrate data or call destructive tools
-<span class="hl-green">4.</span> Missing output validation before tool execution
+<span class="hl-muted">Evaluate and improve:</span>
+<span class="hl-green">1.</span> Which actions require explicit human confirmation before execution?
+<span class="hl-green">2.</span> Output validation pipeline — parse proposed tool call, show human-readable summary, require approval
+<span class="hl-green">3.</span> Timeout / fallback if human doesn’t respond
+<span class="hl-green">4.</span> Logging + audit trail of every proposed vs. executed action
+<span class="hl-green">5.</span> Integration with the 3 hardening tools (garak, llm-guard, defender)
 
-<span class="hl-muted">Output:</span>
-- Complete input sanitization + decoding guard pipeline
-- Updated system prompt with anti-injection instructions
-- Example of a safe vs. vulnerable context builder
+<span class="hl-muted">Deliver:</span>
+- Updated system prompt / guard code
+- Example confirmation UI / flow
+- Risk matrix for tool actions
 
-<span class="hl-orange">[PASTE YOUR RAG PIPELINE OR AGENT CODE HERE]</span></div>
+<span class="hl-orange">[PASTE YOUR CURRENT AGENT IMPLEMENTATION HERE]</span></div>
     </div>
 
   </div>
@@ -812,7 +789,7 @@
   <footer>
     <div class="footer-brand">AI<span>Security</span>Daily</div>
     <div class="footer-copy">
-      Issue #5 · May 6, 2026<br>
+      Issue #4 · May 5, 2026<br>
       For vibe coders who ship secure.
     </div>
   </footer>
