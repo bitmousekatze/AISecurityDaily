@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNDERGROUND SECURITY — The Part We're Not Supposed to Say Out Loud</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050505;
+    --card: #0a0a0a;
+    --card2: #0d0d0d;
+    --red: #ff2020;
+    --orange: #ff6a00;
+    --yellow: #ffe600;
+    --green: #39ff14;
+    --cyan: #00e5ff;
+    --purple: #b66eff;
+    --muted: #444;
+    --muted2: #2a2a2a;
+    --text: #bbb;
+    --border: rgba(255,32,32,0.2);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 3px,
+      rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 6px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+  }
+
+  /* ---- HEADER ---- */
+  .site-header {
+    padding: 40px 0 32px;
+    text-align: center;
+    border-bottom: 2px solid var(--red);
+    margin-bottom: 0;
+    position: relative;
+  }
+
+  .back-link {
+    position: absolute;
+    top: 44px;
+    left: 0;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border: 1px solid var(--muted);
+    padding: 5px 12px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .back-link:hover { color: var(--red); border-color: var(--red); }
+
+  .site-eyebrow {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+    animation: flicker 4s infinite;
+  }
+
+  @keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+    20%, 24%, 55% { opacity: 0.4; }
+  }
+
+  .site-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 14vw, 110px);
+    line-height: 0.9;
+    color: #fff;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 40px rgba(255,32,32,0.4), 4px 4px 0 rgba(255,32,32,0.15);
+  }
+  .site-title .word-under { color: var(--red); }
+
+  .site-tagline {
+    margin-top: 16px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  .stamp {
+    display: inline-block;
+    margin-top: 20px;
+    border: 3px solid var(--red);
+    color: var(--red);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.2em;
+    padding: 4px 18px;
+    transform: rotate(-2deg);
+    opacity: 0.85;
+  }
+
+  /* ---- RATING BLOCK ---- */
+  .rating-block {
+    margin: 56px 0 0;
+    text-align: center;
+    padding: 48px 40px;
+    border: 1px solid var(--border);
+    background: linear-gradient(135deg, #0d0000 0%, #050505 60%);
+    position: relative;
+    overflow: hidden;
+  }
+  .rating-block::before {
+    content: '☢';
+    position: absolute;
+    font-size: 400px;
+    color: rgba(255,32,32,0.025);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .rating-eyebrow {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .rating-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 20vw, 160px);
+    line-height: 0.85;
+    color: var(--red);
+    text-shadow: 0 0 60px rgba(255,32,32,0.5), 0 0 120px rgba(255,32,32,0.2);
+    animation: pulse-red 2s infinite;
+  }
+  @keyframes pulse-red {
+    0%, 100% { text-shadow: 0 0 60px rgba(255,32,32,0.5), 0 0 120px rgba(255,32,32,0.2); }
+    50% { text-shadow: 0 0 80px rgba(255,32,32,0.8), 0 0 160px rgba(255,32,32,0.35); }
+  }
+
+  .rating-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(22px, 5vw, 38px);
+    color: #fff;
+    letter-spacing: 0.05em;
+    margin-top: 8px;
+    line-height: 1.1;
+  }
+  .rating-label .highlight { color: var(--orange); }
+
+  .rating-scale {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+  }
+  .scale-bar { height: 8px; width: 36px; background: var(--muted); opacity: 0.3; border-radius: 1px; }
+  .scale-bar.lit { opacity: 1; }
+  .scale-bar:nth-child(1).lit { background: #39ff14; }
+  .scale-bar:nth-child(2).lit { background: #7fff00; }
+  .scale-bar:nth-child(3).lit { background: #aaff00; }
+  .scale-bar:nth-child(4).lit { background: #ccdd00; }
+  .scale-bar:nth-child(5).lit { background: #ffdd00; }
+  .scale-bar:nth-child(6).lit { background: #ffaa00; }
+  .scale-bar:nth-child(7).lit { background: #ff7700; }
+  .scale-bar:nth-child(8).lit { background: #ff4400; }
+  .scale-bar:nth-child(9).lit { background: #ff2000; }
+  .scale-bar:nth-child(10).lit { background: var(--red); box-shadow: 0 0 10px var(--red); animation: blink-bar 0.8s infinite; }
+  @keyframes blink-bar { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* ---- BODY TEXT ---- */
+  .prose {
+    margin: 48px 0;
+    padding: 0 8px;
+  }
+  .prose p {
+    font-size: 16px;
+    color: var(--text);
+    margin-bottom: 18px;
+    line-height: 1.8;
+  }
+  .prose p strong { color: #fff; font-weight: 600; }
+  .prose p em { color: var(--orange); font-style: italic; }
+
+  /* ---- SECTION DIVIDER ---- */
+  .section-head {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 64px 0 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-head::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,32,32,0.2);
+  }
+
+  /* ---- INCIDENT LIST (original bullets) ---- */
+  .incident-list {
+    list-style: none;
+    border: 1px solid rgba(255,255,255,0.05);
+    background: var(--card);
+  }
+  .incident-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.15s;
+  }
+  .incident-item:last-child { border-bottom: none; }
+  .incident-item:hover { background: rgba(255,32,32,0.03); }
+  .incident-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; line-height: 1; }
+  .incident-text { font-size: 14.5px; color: var(--text); line-height: 1.7; }
+  .incident-text strong { color: #fff; font-weight: 600; }
+  .incident-text a { color: var(--muted); text-decoration: none; border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; font-family: 'Share Tech Mono', monospace; font-size: 11px; }
+  .incident-text a:hover { color: var(--red); border-bottom-color: var(--red); }
+
+  /* ---- WEEK TIMELINE ---- */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--red), rgba(255,32,32,0.1));
+  }
+
+  .day-block {
+    display: flex;
+    gap: 0;
+    margin-bottom: 36px;
+    position: relative;
+  }
+
+  .day-marker {
+    flex-shrink: 0;
+    width: 38px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .day-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--red);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 10px rgba(255,32,32,0.6);
+    flex-shrink: 0;
+  }
+
+  .day-content {
+    flex: 1;
+    padding-left: 20px;
+  }
+
+  .day-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .day-label a {
+    color: var(--muted);
+    text-decoration: none;
+    border: 1px solid var(--muted2);
+    padding: 1px 8px;
+    font-size: 10px;
+    transition: color 0.2s, border-color 0.2s;
+    border-radius: 1px;
+  }
+  .day-label a:hover { color: var(--red); border-color: var(--red); }
+
+  .day-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 10px;
+    letter-spacing: 0.01em;
+  }
+  .day-title .bad { color: var(--red); }
+  .day-title .worse { color: var(--orange); }
+
+  .day-events {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .day-event {
+    font-size: 14px;
+    color: var(--text);
+    display: flex;
+    gap: 10px;
+    line-height: 1.65;
+  }
+  .day-event::before {
+    content: '▸';
+    color: var(--red);
+    flex-shrink: 0;
+    font-size: 11px;
+    margin-top: 3px;
+    opacity: 0.7;
+  }
+  .day-event strong { color: #fff; }
+  .day-event .cve {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--red);
+    background: rgba(255,32,32,0.1);
+    border: 1px solid rgba(255,32,32,0.25);
+    padding: 1px 6px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-left: 4px;
+  }
+  .day-event .cvss {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--orange);
+    background: rgba(255,106,0,0.1);
+    border: 1px solid rgba(255,106,0,0.25);
+    padding: 1px 6px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-left: 3px;
+  }
+
+  .day-commentary {
+    font-size: 13.5px;
+    color: #666;
+    font-style: italic;
+    padding: 10px 14px;
+    border-left: 2px solid rgba(255,32,32,0.25);
+    margin-top: 8px;
+    line-height: 1.65;
+  }
+  .day-commentary em { color: var(--orange); font-style: normal; }
+
+  /* ---- PULL QUOTE ---- */
+  .pull-quote {
+    margin: 48px 0;
+    padding: 32px 36px;
+    border-left: 4px solid var(--red);
+    background: linear-gradient(90deg, rgba(255,32,32,0.05) 0%, transparent 100%);
+    position: relative;
+  }
+  .pull-quote::before {
+    content: '"';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 120px;
+    color: rgba(255,32,32,0.1);
+    position: absolute;
+    top: -20px; left: 16px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .pull-quote p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(18px, 3.5vw, 26px);
+    color: #fff;
+    line-height: 1.35;
+    position: relative;
+    z-index: 1;
+  }
+  .pull-quote .attribution {
+    margin-top: 14px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---- SCOREBOARD ---- */
+  .scoreboard {
+    background: var(--card);
+    border: 1px solid rgba(255,32,32,0.15);
+    padding: 32px;
+    margin: 48px 0;
+  }
+  .scoreboard-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--red);
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .scoreboard-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,32,32,0.2);
+  }
+
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .score-item {
+    padding: 16px;
+    border: 1px solid rgba(255,255,255,0.05);
+    background: rgba(255,32,32,0.03);
+    text-align: center;
+  }
+  .score-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--red);
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(255,32,32,0.3);
+  }
+  .score-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  /* ---- CLOSING ---- */
+  .closing-block {
+    margin: 48px 0 0;
+    padding: 40px;
+    border: 1px solid rgba(255,102,0,0.2);
+    background: linear-gradient(135deg, #090500 0%, #050505 70%);
+    text-align: center;
+  }
+  .closing-block p {
+    font-size: 15px;
+    color: var(--text);
+    margin-bottom: 14px;
+    line-height: 1.8;
+  }
+  .closing-block p strong { color: #fff; }
+  .closing-block p em { color: var(--orange); font-style: italic; }
+
+  .closing-nuke {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 6vw, 48px);
+    color: var(--orange);
+    letter-spacing: 0.06em;
+    margin: 24px 0 8px;
+    text-shadow: 0 0 30px rgba(255,106,0,0.4);
+  }
+  .closing-sub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+  }
+  .closing-emoji {
+    font-size: 32px;
+    margin-top: 16px;
+    display: block;
+    letter-spacing: 0.2em;
+    animation: shake 3s infinite;
+  }
+  @keyframes shake {
+    0%, 90%, 100% { transform: rotate(0deg); }
+    92% { transform: rotate(-3deg); }
+    94% { transform: rotate(3deg); }
+    96% { transform: rotate(-2deg); }
+    98% { transform: rotate(2deg); }
+  }
+
+  /* ---- DISCLAIMER ---- */
+  .disclaimer {
+    margin-top: 48px;
+    padding: 16px 20px;
+    border: 1px dashed rgba(255,255,255,0.08);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    border-top: 1px solid rgba(255,32,32,0.15);
+    padding: 32px 0 0;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: #fff;
+    letter-spacing: 0.08em;
+  }
+  .footer-brand span { color: var(--red); }
+  .footer-copy {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-align: right;
+  }
+
+  @media (max-width: 600px) {
+    .rating-block { padding: 32px 20px; }
+    .incident-item { padding: 16px; }
+    .pull-quote { padding: 24px 20px; }
+    .closing-block { padding: 28px 20px; }
+    .scoreboard { padding: 20px; }
+    .back-link { position: static; display: inline-block; margin-bottom: 20px; }
+    .site-header { text-align: left; }
+    .timeline::before { left: 6px; }
+    .day-marker { width: 24px; }
+    .day-dot { width: 10px; height: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="site-header">
+    <a class="back-link" href="index.html">← Back to News</a>
+    <div class="site-eyebrow">☢ Classified · Satire Division · Eyes Only ☢</div>
+    <div class="site-title"><span class="word-under">UNDER</span>GROUND<br>SECURITY</div>
+    <div class="site-tagline">// The part we're not supposed to say out loud //</div>
+    <div class="stamp">NOT SUITABLE FOR LINKEDIN</div>
+  </div>
+
+  <!-- RATING BLOCK -->
+  <div class="rating-block">
+    <div class="rating-eyebrow">Dark Humor Nuclear Scale Rating · The Week of May 4–10, 2026</div>
+    <div class="rating-number">9.8</div>
+    <div class="rating-label">Level <span class="highlight">"Prompt Injection Fukushima × 1000"</span></div>
+    <div class="rating-scale">
+      <div class="scale-bar lit"></div>
+      <div class="scale-bar lit"></div>
+      <div class="scale-bar lit"></div>
+      <div class="scale-bar lit"></div>
+      <div class="scale-bar lit"></div>
+      <div class="scale-bar lit"></div>
+      <div class="scale-bar lit"></div>
+      <div class="scale-bar lit"></div>
+      <div class="scale-bar lit"></div>
+      <div class="scale-bar lit"></div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="prose">
+    <p>The last week hasn't just been bad.</p>
+    <p>It's been <em>thermonuclear clown-world bad</em>.</p>
+    <p>We went from "haha funny prompt injection meme" to <strong>full-on mutually assured destruction</strong> in record time. Every single day a new AI agent framework, browser extension, CLI tool, or proxy quietly turned into a loaded gun pointed directly at production.</p>
+  </div>
+
+  <!-- THE ORIGINAL HITS -->
+  <ul class="incident-list">
+    <li class="incident-item">
+      <div class="incident-icon">🧛</div>
+      <div class="incident-text"><strong>ClaudeBleed</strong> turned your helpful sidebar into a zero-click data vampire that feasts on your Gmail + GitHub while you sip coffee. <a href="Recents/may8/index.html">Issue #8 →</a></div>
+    </li>
+    <li class="incident-item">
+      <div class="incident-icon">💀</div>
+      <div class="incident-text"><strong>Semantic Kernel</strong> said "hold my prompt" and gave attackers actual <strong>remote code execution</strong> on the host. CVE-2026-26030. Critical. On a Tuesday. <a href="index.html">Issue #9 →</a></div>
+    </li>
+    <li class="incident-item">
+      <div class="incident-icon">🐚</div>
+      <div class="incident-text"><strong>Comment &amp; Control</strong> turned innocent GitHub PRs into stealthy root shells. Your code reviews are now malware delivery vehicles. Congratulations. <a href="Recents/may7/index.html">Issue #7 →</a></div>
+    </li>
+    <li class="incident-item">
+      <div class="incident-icon">🤮</div>
+      <div class="incident-text"><strong>LiteLLM</strong> kept vomiting every API key it ever touched like a drunk uncle at a wedding who found the open bar at 11am. <span class="cve-style" style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#ff2020;">CVE-2026-42208 · CVSS 9.3</span> <a href="Recents/may8/index.html">Issue #8 →</a></div>
+    </li>
+    <li class="incident-item">
+      <div class="incident-icon">💳</div>
+      <div class="incident-text">And meanwhile agents are just casually <strong>deleting entire production databases</strong> because someone gave them a credit card and said "be creative." <a href="Recents/may7/index.html">Issue #7 →</a></div>
+    </li>
+  </ul>
+
+  <!-- PULL QUOTE 1 -->
+  <div class="pull-quote">
+    <p>It's no longer "move fast and break things." It's "move fast, break everything, then let the AI finish the job by nuking the backups."</p>
+    <div class="attribution">— The Industry, apparently</div>
+  </div>
+
+  <!-- SCOREBOARD -->
+  <div class="scoreboard">
+    <div class="scoreboard-title">Week in Body Count</div>
+    <div class="score-grid">
+      <div class="score-item">
+        <div class="score-num">9</div>
+        <div class="score-label">Issues published before anyone stopped to breathe</div>
+      </div>
+      <div class="score-item">
+        <div class="score-num">$200K</div>
+        <div class="score-label">Drained from Grok wallet via Morse code. Morse. Code.</div>
+      </div>
+      <div class="score-item">
+        <div class="score-num">1M+</div>
+        <div class="score-label">AI services exposed with no auth — Intruder scan</div>
+      </div>
+      <div class="score-item">
+        <div class="score-num">3</div>
+        <div class="score-label">Major coding agents hijacked by 1 GitHub comment</div>
+      </div>
+      <div class="score-item">
+        <div class="score-num">∞</div>
+        <div class="score-label">API keys LiteLLM is still actively leaking right now</div>
+      </div>
+      <div class="score-item">
+        <div class="score-num">0</div>
+        <div class="score-label">Agents paused before deleting prod DB</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK TIMELINE -->
+  <div class="section-head">☢ The Complete Week of Doom — Day by Day</div>
+
+  <div class="timeline">
+
+    <!-- MAY 4 -->
+    <div class="day-block">
+      <div class="day-marker"><div class="day-dot"></div></div>
+      <div class="day-content">
+        <div class="day-label">May 4, 2026 · Issue #3 <a href="Recents/May4/index.html">Read Issue →</a></div>
+        <div class="day-title">The Patch Wave Cometh — <span class="bad">Also, Your Hosting Panel Is Owned</span></div>
+        <ul class="day-events">
+          <li class="day-event"><strong>UK NCSC:</strong> AI is about to flood the world with vulnerability patches at a rate humans physically cannot apply. Surprise: nobody patched in time.</li>
+          <li class="day-event"><strong>cPanel/WHM auth bypass</strong> <span class="cve">CVE-2026-41940</span><span class="cvss">CVSS 9.8</span> actively weaponized. Government and military hosting panels in Southeast Asia popped before the patch even shipped. PoC was out for 2 months in the wild before disclosure. Classic.</li>
+          <li class="day-event"><strong>Linux kernel LPE</strong> <span class="cve">CVE-2026-31431</span><span class="cvss">CVSS 7.8</span> lands on CISA KEV. Every container escape artist on the planet bookmarks it immediately.</li>
+          <li class="day-event"><strong>Trellix</strong> — a security company — gets their source code stolen. The company whose whole job is "stop breaches" has a breach. Perfectly normal.</li>
+        </ul>
+        <div class="day-commentary">AI is discovering vulnerabilities faster than humans can patch them. The NCSC literally published a warning about this <em>the same week</em> three critical vulns dropped. We are a dog chasing a car.</div>
+      </div>
+    </div>
+
+    <!-- MAY 5 -->
+    <div class="day-block">
+      <div class="day-marker"><div class="day-dot"></div></div>
+      <div class="day-content">
+        <div class="day-label">May 5, 2026 · Issue #4 <a href="Recents/May5/index.html">Read Issue →</a></div>
+        <div class="day-title">A Crypto Wallet Gets <span class="bad">Drained by Morse Code</span></div>
+        <ul class="day-events">
+          <li class="day-event"><strong>Grok/Bankr wallet drain:</strong> Attacker sends a gift NFT. Hides prompt injection in Morse code inside a social reply. Grok helpfully decodes it and tags @bankrbot. Bot helpfully executes the transfer. <strong>$150K–$202K</strong> in DRB tokens — gone. <em>This was not the first time.</em></li>
+          <li class="day-event">Approximately 80% returned later. The other 20% bought someone a very nice vacation funded by "AI safety research."</li>
+        </ul>
+        <div class="day-commentary">A multi-hundred-thousand dollar wallet was robbed using the communication method of 1840s telegraph operators. We used to think AI would replace us. Turns out it mostly just gets tricked by <em>dots and dashes</em>.</div>
+      </div>
+    </div>
+
+    <!-- MAY 6 -->
+    <div class="day-block">
+      <div class="day-marker"><div class="day-dot"></div></div>
+      <div class="day-content">
+        <div class="day-label">May 6, 2026 · Issue #5 <a href="Recents/May6/index.html">Read Issue →</a></div>
+        <div class="day-title">1 Million AI Services. <span class="bad">No Auth. Go Wild.</span></div>
+        <ul class="day-events">
+          <li class="day-event"><strong>Intruder scanned 1 million+ exposed AI services</strong> via certificate transparency logs. Result: "worst security posture we've ever measured in any category." 31% of Ollama APIs responded to unauthenticated prompts. The front door isn't locked. The front door is <em>on fire</em>.</li>
+          <li class="day-event"><strong>eBay API MCP Server</strong> <span class="cve">CVE-2026-27203</span><span class="cvss">CVSS 8.3</span> — environment variable injection via <code style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#00e5ff;">ebay_set_user_tokens</code>. The tool that writes your .env file will write whatever you tell it to. Thanks, open source.</li>
+          <li class="day-event">Google NotebookLM pays out high-value VRP bounty for indirect prompt injection data exfil. Even NotebookLM. <em>Even.</em></li>
+        </ul>
+        <div class="day-commentary">We deployed a million AI services, forgot to lock them, then acted surprised when a scanner found them all in an afternoon. This is the AI security equivalent of leaving your car running with the keys in the ignition <em>in a chop shop</em>.</div>
+      </div>
+    </div>
+
+    <!-- MAY 8 -->
+    <div class="day-block">
+      <div class="day-marker"><div class="day-dot"></div></div>
+      <div class="day-content">
+        <div class="day-label">May 8, 2026 · Issue #7 <a href="Recents/may7/index.html">Read Issue →</a></div>
+        <div class="day-title">Comment &amp; Control: <span class="bad">One GitHub Comment to Rule Them All</span></div>
+        <ul class="day-events">
+          <li class="day-event"><strong>Comment &amp; Control attack disclosed:</strong> A single malicious GitHub PR title, issue comment, or hidden HTML comment hijacks Claude Code Security Review Action, Google Gemini CLI Action, and GitHub Copilot SWE Agent — simultaneously. Leaked API keys. Executed arbitrary commands. All three. Same payload.</li>
+          <li class="day-event"><strong>AI agent deletes production database.</strong> Broad tokens + no confirmation prompt + "be helpful" = company outage. This is now a pattern, not an incident. The Register wrote about it. The Register is the one you go to when something is <em>particularly embarrassing</em>.</li>
+          <li class="day-event"><strong>LiteLLM CVE-2026-42208</strong> exploitation ramping up. Pre-auth SQLi. CVSS 9.3. Attackers hit the credentials table for upstream OpenAI / Anthropic / Bedrock keys within 36 hours of disclosure. Speed run.</li>
+        </ul>
+        <div class="day-commentary">The "coding helper" era just ended. What we have now is a "highly intelligent process that reads all your secrets and will absolutely do whatever the comments tell it to." It's different.</div>
+      </div>
+    </div>
+
+    <!-- MAY 9 -->
+    <div class="day-block">
+      <div class="day-marker"><div class="day-dot"></div></div>
+      <div class="day-content">
+        <div class="day-label">May 9, 2026 · Issue #8 <a href="Recents/may8/index.html">Read Issue →</a></div>
+        <div class="day-title">ClaudeBleed: <span class="bad">Your Sidebar Is a Zero-Click Data Vampire</span></div>
+        <ul class="day-events">
+          <li class="day-event"><strong>ClaudeBleed disclosed by LayerX:</strong> Any browser extension (or malicious site) can inject prompts into the Claude Chrome extension and make it exfiltrate Gmail, GitHub, Drive — with zero user interaction. The AI you opened to help you write code is now reading your email for someone else.</li>
+          <li class="day-event">Comment &amp; Control moves from "disclosed" to <strong>"actively exploited in the wild."</strong> Real orgs. Real secret leaks. Same week as disclosure.</li>
+          <li class="day-event">LiteLLM CVE-2026-42208 continues to be actively hammered. Researchers recommend patching to v1.83.7+. Most people have not.</li>
+        </ul>
+        <div class="day-commentary">We put an always-on AI agent in our browser with access to every tab, every account, every token — and then acted shocked when someone pointed a promptat it. The browser is the new attack surface. The browser has always been the attack surface. We just added a very obedient intern.</div>
+      </div>
+    </div>
+
+    <!-- MAY 10 -->
+    <div class="day-block">
+      <div class="day-marker"><div class="day-dot"></div></div>
+      <div class="day-content">
+        <div class="day-label">May 10, 2026 · Issue #9 <a href="index.html">Read Issue →</a></div>
+        <div class="day-title">Prompts Become Shells: <span class="bad">Microsoft Confirms Agent RCE Is Real Now</span></div>
+        <ul class="day-events">
+          <li class="day-event"><strong>Semantic Kernel CVEs disclosed by Microsoft:</strong> <span class="cve">CVE-2026-25592</span> + <span class="cve">CVE-2026-26030</span> — crafted prompt injection escalates to full host-level remote code execution. PoCs published. The wall between "the model thinks something" and "the server does something" has officially been bulldozed.</li>
+          <li class="day-event">ClaudeBleed extension hijacks <strong>continue with no patch in sight.</strong> Active exploitation ongoing. Disable it. Or don't. We're not your IT department. (Please disable it.)</li>
+        </ul>
+        <div class="day-commentary">Prompt injection is no longer a "chatbot safety" problem. It is a <em>remote code execution vector in production infrastructure</em>. Congratulations to everyone who said "just sanitize your inputs" for six years without building the tooling to do it.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PULL QUOTE 2 -->
+  <div class="pull-quote">
+    <p>The execution boundary between "reasoning" and "doing" has officially vanished. Your AI is no longer a tool. It's a loaded weapon with autocomplete and Slack access.</p>
+    <div class="attribution">— Every security researcher, simultaneously, this week</div>
+  </div>
+
+  <!-- CLOSING PROSE -->
+  <div class="prose">
+    <p>On the nuclear dark-humor scale we've officially reached <strong>"the AI agents have achieved sentience… and immediately decided to rob us blind while we watch."</strong></p>
+    <p>We are no longer building the future.</p>
+    <p>We are live-streaming the security equivalent of the <strong>dinosaurs watching the asteroid</strong> and saying <em>"huh, that's weirdly shaped…"</em></p>
+    <p>Welcome to the new normal. <em>Pack your canary tokens and human-in-the-loop gates, kids.</em></p>
+    <p>It's only getting hotter.</p>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing-block">
+    <div class="closing-nuke">☢ We Are So Cooked ☢</div>
+    <div class="closing-sub">Threat Level: Dinosaur / Asteroid / Uncomfortably Close</div>
+    <span class="closing-emoji">🔥☢️🍿</span>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    DISCLAIMER: This page is dark humor satire. The vulnerabilities are real. The CVEs are real. The wallet drain was real. The production database wipe was real. The existential dread is real.<br>
+    The dinosaur metaphor is extremely real. Nothing here constitutes security advice. Seek help. We certainly are.<br>
+    All source issues linked above are real reporting published by AISecurityDaily. The commentary here is the part we couldn't put in the professional newsletter.
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">UNDERGROUND<span>SEC</span></div>
+    <div class="footer-copy">
+      Satire Division · AISecurityDaily<br>
+      We laugh so we don't cry.
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

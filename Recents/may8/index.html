@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Vibe Coding Security — Issue #9 | May 10, 2026</title>
+<title>AI Vibe Coding Security — Issue #8 | May 9, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -597,29 +597,6 @@
     text-align: right;
   }
 
-  .underground-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: #ff4466;
-    border: 1px solid rgba(255,68,102,0.4);
-    padding: 7px 16px;
-    background: rgba(255,68,102,0.06);
-    transition: background 0.2s, border-color 0.2s, color 0.2s;
-    border-radius: 2px;
-  }
-  .underground-btn:hover {
-    background: rgba(255,68,102,0.14);
-    border-color: rgba(255,68,102,0.7);
-    color: #ff6680;
-  }
-  .underground-btn .skull { font-size: 13px; }
-
   @media (max-width: 600px) {
     header { flex-direction: column; align-items: flex-start; }
     .issue-meta { text-align: left; }
@@ -641,80 +618,77 @@
   <!-- HEADER -->
   <header>
     <div class="logo-text">AI<span>Security</span>Daily</div>
-    <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
-      <a class="underground-btn" href="undergroundSecurity.html"><span class="skull">☢</span> Underground</a>
-      <div class="issue-meta">
-        <div class="issue-label">Issue #9</div>
-        <div class="issue-date">May 10, 2026</div>
-      </div>
+    <div class="issue-meta">
+      <div class="issue-label">Issue #8</div>
+      <div class="issue-date">May 9, 2026</div>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-tag">Breaking Intel • Last 12–16 Hours</div>
-    <h1>Prompts Become<span>Shells: Agent RCE Live</span></h1>
-    <p class="hero-sub">Microsoft discloses critical CVEs in Semantic Kernel — prompt injection now leads to full host-level remote code execution in production AI agent frameworks. ClaudeBleed extension hijacks continue. The agent execution boundary just collapsed.</p>
+    <h1>ClaudeBleed<span>Chrome Extension Takeover</span></h1>
+    <p class="hero-sub">Official Claude Chrome extension vulnerable to remote prompt injection. Attackers can hijack the agent and steal data from Gmail, GitHub, Google Drive — no user click needed. Comment &amp; Control attacks now in the wild. The browser is the new agent attack surface.</p>
     <div class="threat-bar">
-      <div class="threat-pill critical"><span class="dot"></span> CVE-2026-26030 · Prompt-to-RCE</div>
-      <div class="threat-pill high"><span class="dot"></span> Semantic Kernel Agents</div>
-      <div class="threat-pill watch"><span class="dot"></span> Browser Agent Hijacks</div>
+      <div class="threat-pill critical"><span class="dot"></span> ClaudeBleed · Extension RCE</div>
+      <div class="threat-pill high"><span class="dot"></span> Comment &amp; Control Wild</div>
+      <div class="threat-pill watch"><span class="dot"></span> Browser Agent Hijack</div>
     </div>
   </section>
 
   <!-- MAIN STORIES -->
   <div class="section-label">Top Stories</div>
 
-  <!-- STORY 1: SEMANTIC KERNEL RCE -->
+  <!-- STORY 1: CLAUDEBLEED -->
   <article class="article-card red">
     <div class="article-num">01</div>
     <div class="article-meta">
-      <span class="badge critical">Critical · Prompt-to-RCE</span>
-      <span class="article-source">Via <a href="https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks" target="_blank" rel="noopener">Microsoft Security Blog</a></span>
+      <span class="badge critical">Critical · Remote Prompt Injection</span>
+      <span class="article-source">Via <a href="https://layerxsecurity.com/blog/a-flaw-in-claudes-browser-extension-allows-any-extension-to-hijack-it/" target="_blank" rel="noopener">LayerX</a> · <a href="https://www.securityweek.com/vulnerability-in-claude-extension-for-chrome-exposes-ai-agent-to-takeover/" target="_blank" rel="noopener">SecurityWeek</a></span>
     </div>
-    <h2 class="article-title">Prompts Become Shells: Microsoft Semantic Kernel CVEs Turn Prompt Injection into Host RCE</h2>
+    <h2 class="article-title">ClaudeBleed: Claude Chrome Extension Allows Remote AI Takeover via Prompt Injection</h2>
     <div class="article-body">
-      <p><span class="cve-tag">CVE-2026-25592 &amp; CVE-2026-26030</span><span class="cvss-tag">Critical</span></p>
+      <p>A high-severity vulnerability in the official Claude Chrome extension (ClaudeBleed) lets attackers inject malicious instructions remotely. Once triggered, the compromised agent can exfiltrate data from connected services including Gmail, GitHub, and Google Drive.</p>
       <br>
-      <p>Microsoft researchers disclosed two critical vulnerabilities in Semantic Kernel, a widely used open-source AI agent orchestration framework. A crafted prompt injection can now escalate to full remote code execution on the host running the agent.</p>
-      <br>
-      <p>The flaws exploit how agents handle untrusted inputs in vector stores and tool-calling paths. This is the clearest real-world proof yet that prompt injection is no longer “just a chatbot problem” — it’s a code execution vector in production agent frameworks.</p>
+      <p>The attack requires no user interaction beyond visiting a page that triggers the extension — classic indirect prompt injection against browser-based agents.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">If you’re using Semantic Kernel, LangChain, or any agent framework with tool access, your agents can now be turned into remote shells with a single malicious prompt. The execution boundary between “reasoning” and “doing” has officially vanished.</div>
+      <div class="matters-text">Browser extensions are the new always-on agents. If you use Claude (or any AI coding tool) in Chrome, your entire workspace is one malicious site away from compromise. The extension has full access to every tab and connected account.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Update Semantic Kernel immediately and review all agent deployments.</li>
-      <li>Add strict input sanitization + output validation before any tool execution or code generation.</li>
-      <li>Run agents in isolated sandboxes with minimal privileges (no host filesystem/shell access unless absolutely required).</li>
-      <li>Test your agents against prompt-to-RCE payloads (Microsoft published PoCs).</li>
+      <li>Disable the Claude Chrome extension until patched (or use in isolated profile).</li>
+      <li>Audit all AI browser extensions (Claude, Cursor, Gemini, etc.) for prompt injection surfaces.</li>
+      <li>Never let browser-based agents have persistent credentials in memory.</li>
+      <li>Use containerized or sandboxed browser profiles for AI tooling.</li>
+      <li>Monitor extension permissions — revoke anything accessing sensitive sites.</li>
     </ul>
   </article>
 
-  <!-- STORY 2: CLAUDEBLEED UPDATE -->
+  <!-- STORY 2: COMMENT AND CONTROL ESCALATION -->
   <article class="article-card orange">
     <div class="article-num">02</div>
     <div class="article-meta">
-      <span class="badge vuln">Active · Browser Agents</span>
-      <span class="article-source">Via <a href="https://layerxsecurity.com/blog/a-flaw-in-claudes-browser-extension-allows-any-extension-to-hijack-it/" target="_blank" rel="noopener">LayerX Security</a> · Ongoing Reports</span>
+      <span class="badge vuln">Disclosed · PoC Public</span>
+      <span class="article-source">Via <a href="https://oddguan.com/blog/comment-and-control-prompt-injection-credential-theft-claude-code-gemini-cli-github-copilot/" target="_blank" rel="noopener">Aonan Guan (OddGuan)</a> · Johns Hopkins · <a href="https://www.securityweek.com/claude-code-gemini-cli-github-copilot-agents-vulnerable-to-prompt-injection-via-comments/" target="_blank" rel="noopener">SecurityWeek</a></span>
     </div>
-    <h2 class="article-title">ClaudeBleed Chrome Extension Hijack — Remote Prompt Injection Still Live</h2>
+    <h2 class="article-title">Comment &amp; Control Attacks Now in the Wild — Multiple Orgs Hit</h2>
     <div class="article-body">
-      <p>The Claude Chrome extension vulnerability (ClaudeBleed) continues to see active discussion and PoC sharing. Any other extension (or malicious site) can inject prompts and hijack the agent to steal data from Gmail, GitHub, Drive, etc.</p>
+      <p>The GitHub comment/PR-based prompt injection technique that simultaneously owns Claude Code, Gemini CLI, and GitHub Copilot is seeing active exploitation. Researchers and defenders are reporting real secret leaks and unauthorized actions in the last 24 hours.</p>
       <br>
-      <p>No user interaction required. This proves browser-based AI agents are now prime real estate for remote takeovers.</p>
+      <p>Same vector we covered yesterday — now production reality.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">Your daily AI coding workflow in the browser is one compromised extension or tab away from full workspace compromise. The “helpful sidebar” just became an always-on attack surface.</div>
+      <div class="matters-text">Every repo using AI agents that read comments or PRs is now live fire. The “just let the agent see the context” assumption is broken.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Disable or isolate the Claude (and any AI) Chrome extension until fully patched.</li>
-      <li>Audit all browser extensions with AI/agent capabilities.</li>
-      <li>Use sandboxed browser profiles or containers for AI tooling.</li>
+      <li>Immediately review and sanitize all GitHub Actions using <code>pull_request_target</code>.</li>
+      <li>Block or heavily filter PR titles, comments, and issue bodies before agent ingestion.</li>
+      <li>Rotate any leaked tokens/secrets from affected workflows.</li>
+      <li>Test your own agents against the public Comment &amp; Control payloads.</li>
     </ul>
   </article>
 
@@ -725,70 +699,74 @@
     <h3>Signals &amp; Intel</h3>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">Prompt Injection Still OWASP #1</strong> — Confirmed across multiple 2026 reports. Agentic systems have made it dramatically more dangerous.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px">OWASP / Microsoft / Palo Alto</span></div>
+      <div><strong style="color:#fff">LiteLLM CVE-2026-42208 Exploitation Ramping</strong> — Pre-auth SQLi (CVSS 9.3) in LiteLLM Proxy v1.81.16–v1.83.6 exploited ~36 hrs after disclosure; attackers hit <code>litellm_credentials</code> for upstream OpenAI/Anthropic/Bedrock keys. Patch: v1.83.7+.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px">Sources: <a href="https://docs.litellm.ai/blog/cve-2026-42208-litellm-proxy-sql-injection" target="_blank" rel="noopener" style="color:var(--cyan)">LiteLLM advisory</a> · <a href="https://www.sysdig.com/blog/cve-2026-42208-targeted-sql-injection-against-litellms-authentication-path-discovered-36-hours-following-vulnerability-disclosure" target="_blank" rel="noopener" style="color:var(--cyan)">Sysdig</a></span></div>
     </div>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">Agent Memory Poisoning &amp; Tool Misuse Rising</strong> — New incidents show persistent malicious instructions surviving across sessions.</div>
+      <div><strong style="color:#fff">Browser Agents = New High-Value Target</strong> — ClaudeBleed proves extensions with persistent sessions are prime real estate for remote agent hijacking.</div>
     </div>
   </div>
 
   <!-- SKILL PROMPTS -->
   <div class="section-label">Security Skill Prompts</div>
-  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, GPT-4o, Cursor, or your preferred coding assistant. Tuned for today’s agent RCE reality.</p>
+  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, GPT-4o, Cursor, or your preferred coding assistant. Tuned for browser + GitHub agent reality.</p>
 
   <div class="prompts-section">
 
     <div class="prompt-card">
       <div class="prompt-card-header">
         <div class="prompt-topic">
-          <div class="prompt-icon cyan">🛡️</div>
+          <div class="prompt-icon cyan">🌐</div>
           <div>
-            <div class="prompt-title">AI Agent Framework RCE Audit</div>
-            <div class="prompt-subtitle">Semantic Kernel · prompt-to-shell</div>
+            <div class="prompt-title">Browser Extension / Claude Agent Audit</div>
+            <div class="prompt-subtitle">ClaudeBleed · remote prompt injection</div>
           </div>
         </div>
         <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
       <div class="prompt-box">
-<span class="hl-cyan">Audit this AI agent implementation (Semantic Kernel, LangChain, or custom) for prompt-to-RCE risks like CVE-2026-26030.</span>
+<span class="hl-cyan">Audit this browser extension or browser-based AI agent (Claude, Cursor, Gemini, etc.) for remote prompt injection risks like ClaudeBleed.</span>
 
 <span class="hl-muted">Focus on:</span>
-<span class="hl-green">1.</span> Untrusted prompts flowing into tool calling / code execution paths
-<span class="hl-green">2.</span> Vector store or memory handling of adversarial inputs
-<span class="hl-green">3.</span> Lack of output validation before shell / filesystem / API calls
-<span class="hl-green">4.</span> Overly broad agent permissions
+<span class="hl-green">1.</span> How the extension ingests page content / DOM
+<span class="hl-green">2.</span> Persistent credential storage in memory
+<span class="hl-green">3.</span> Lack of input sanitization from untrusted tabs
+<span class="hl-green">4.</span> Access to Gmail/GitHub/Drive APIs without re-auth
 
 <span class="hl-muted">For each issue:</span>
-- Show vulnerable code
-- Explain the RCE scenario
-- Provide hardened version
+- Show vulnerable code/path
+- Explain attack scenario
+- Provide hardened mitigation
 
-<span class="hl-orange">[PASTE YOUR AGENT CODE / FRAMEWORK CONFIG HERE]</span></div>
+<span class="hl-orange">[PASTE YOUR EXTENSION CODE OR AGENT CONFIG HERE]</span></div>
     </div>
 
     <div class="prompt-card">
       <div class="prompt-card-header">
         <div class="prompt-topic">
-          <div class="prompt-icon orange">🌐</div>
+          <div class="prompt-icon orange">📝</div>
           <div>
-            <div class="prompt-title">Browser Agent / Extension Hardening</div>
-            <div class="prompt-subtitle">ClaudeBleed-style remote injection</div>
+            <div class="prompt-title">GitHub Comment &amp; Control Defense Review</div>
+            <div class="prompt-subtitle">PR titles / comments → agent hijack</div>
           </div>
         </div>
         <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
       <div class="prompt-box">
-<span class="hl-orange">Review this browser-based AI agent or Chrome extension for remote prompt injection risks.</span>
+<span class="hl-orange">Review this GitHub Action / AI coding agent workflow for Comment &amp; Control style prompt injection.</span>
 
 <span class="hl-muted">Check for:</span>
-<span class="hl-green">1.</span> Cross-extension messaging or DOM access without origin validation
-<span class="hl-green">2.</span> Persistent credential handling in the extension context
-<span class="hl-green">3.</span> No sanitization of injected page/tab content
+<span class="hl-green">1.</span> pull_request_target usage
+<span class="hl-green">2.</span> Direct ingestion of PR titles, comments, or issue bodies
+<span class="hl-green">3.</span> Exposure of GITHUB_TOKEN or other secrets
+<span class="hl-green">4.</span> No sanitization layer before LLM context
 
-<span class="hl-muted">Deliver hardened mitigations + safe architecture.</span>
+<span class="hl-muted">Deliver:</span>
+- Hardened workflow YAML
+- Input filtering code
+- Safe system prompt
 
-<span class="hl-orange">[PASTE YOUR EXTENSION / AGENT CODE HERE]</span></div>
+<span class="hl-orange">[PASTE YOUR GITHUB WORKFLOW OR AGENT CODE HERE]</span></div>
     </div>
 
   </div>
@@ -797,7 +775,7 @@
   <footer>
     <div class="footer-brand">AI<span>Security</span>Daily</div>
     <div class="footer-copy">
-      Issue #9 · May 10, 2026<br>
+      Issue #8 · May 9, 2026<br>
       For vibe coders who ship secure.
     </div>
   </footer>
