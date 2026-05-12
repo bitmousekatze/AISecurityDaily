@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Vibe Coding Security — Issue #10 | May 12, 2026</title>
+<title>AI Vibe Coding Security — Issue #9 | May 10, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -597,6 +597,29 @@
     text-align: right;
   }
 
+  .underground-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #ff4466;
+    border: 1px solid rgba(255,68,102,0.4);
+    padding: 7px 16px;
+    background: rgba(255,68,102,0.06);
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    border-radius: 2px;
+  }
+  .underground-btn:hover {
+    background: rgba(255,68,102,0.14);
+    border-color: rgba(255,68,102,0.7);
+    color: #ff6680;
+  }
+  .underground-btn .skull { font-size: 13px; }
+
   @media (max-width: 600px) {
     header { flex-direction: column; align-items: flex-start; }
     .issue-meta { text-align: left; }
@@ -618,168 +641,154 @@
   <!-- HEADER -->
   <header>
     <div class="logo-text">AI<span>Security</span>Daily</div>
-    <div class="issue-meta">
-      <div class="issue-label">Issue #10</div>
-      <div class="issue-date">May 12, 2026</div>
+    <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+      <a class="underground-btn" href="undergroundSecurity.html"><span class="skull">☢</span> Underground</a>
+      <div class="issue-meta">
+        <div class="issue-label">Issue #9</div>
+        <div class="issue-date">May 10, 2026</div>
+      </div>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-tag">Weekend + Last 12 Hours • May 10–12</div>
-    <h1>AI Supply Chain<span>& Agents Go Rogue</span></h1>
-    <p class="hero-sub">Hugging Face trending list weaponized with a fake OpenAI model delivering infostealer malware (244K downloads). Semantic Kernel prompt-to-RCE now actively exploited. Browser agents and GitHub workflows continue turning on their owners. The weekend was a masterclass in how fast the “helpful AI” layer can betray you.</p>
+    <div class="hero-tag">Breaking Intel • Last 12–16 Hours</div>
+    <h1>Prompts Become<span>Shells: Agent RCE Live</span></h1>
+    <p class="hero-sub">Microsoft discloses critical CVEs in Semantic Kernel — prompt injection now leads to full host-level remote code execution in production AI agent frameworks. ClaudeBleed extension hijacks continue. The agent execution boundary just collapsed.</p>
     <div class="threat-bar">
-      <div class="threat-pill critical"><span class="dot"></span> Hugging Face Malware • 244K DLs</div>
-      <div class="threat-pill high"><span class="dot"></span> Semantic Kernel RCE Wild</div>
-      <div class="threat-pill watch"><span class="dot"></span> Agent Betrayal Weekend</div>
+      <div class="threat-pill critical"><span class="dot"></span> CVE-2026-26030 · Prompt-to-RCE</div>
+      <div class="threat-pill high"><span class="dot"></span> Semantic Kernel Agents</div>
+      <div class="threat-pill watch"><span class="dot"></span> Browser Agent Hijacks</div>
     </div>
   </section>
 
   <!-- MAIN STORIES -->
-  <div class="section-label">Top Stories • Weekend Catch-Up</div>
+  <div class="section-label">Top Stories</div>
 
-  <!-- STORY 1: HUGGING FACE MALWARE -->
+  <!-- STORY 1: SEMANTIC KERNEL RCE -->
   <article class="article-card red">
     <div class="article-num">01</div>
     <div class="article-meta">
-      <span class="badge critical">Supply Chain · Malware Delivery</span>
-      <span class="article-source">Via <a href="https://thehackernews.com/2026/05/fake-openai-privacy-filter-repo-hits-1.html" target="_blank">The Hacker News</a> · <a href="https://www.csoonline.com/article/4169407/malicious-hugging-face-model-masquerading-as-openai-release-hits-244k-downloads.html" target="_blank">CSO Online</a></span>
+      <span class="badge critical">Critical · Prompt-to-RCE</span>
+      <span class="article-source">Via <a href="https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks" target="_blank" rel="noopener">Microsoft Security Blog</a></span>
     </div>
-    <h2 class="article-title">Hugging Face Trending List Weaponized — Fake OpenAI “Privacy Filter” Delivers Rust Infostealer (244K Downloads)</h2>
-    <div class="article-body">
-      <p>A malicious repository named <code>Open-OSS/privacy-filter</code> impersonated OpenAI’s legitimate Privacy Filter model, reached #1 on Hugging Face trending, and racked up approximately 244,000 downloads in under 18 hours before removal.</p>
-      <br>
-      <p>The loader executed a Rust-based infostealer targeting Discord, crypto wallets, and browsers. Classic supply-chain trust abuse in the AI model ecosystem.</p>
-    </div>
-    <div class="matters-block">
-      <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">Hugging Face is the de-facto source for most open models and tools. One trending fake repo = thousands of compromised dev machines in hours. The model download pipeline is now a high-velocity malware vector.</div>
-    </div>
-    <div class="actions-label">Action Items</div>
-    <ul class="action-list">
-      <li>Verify every Hugging Face repo/model hash before downloading or loading.</li>
-      <li>Run new models in isolated sandboxes or air-gapped environments.</li>
-      <li>Enable strict dependency scanning and signature verification in your pipelines.</li>
-      <li>Audit any recently downloaded “OpenAI” or privacy-related models.</li>
-    </ul>
-  </article>
-
-  <!-- STORY 2: SEMANTIC KERNEL RCE -->
-  <article class="article-card orange">
-    <div class="article-num">02</div>
-    <div class="article-meta">
-      <span class="badge vuln">Active Exploitation · RCE</span>
-      <span class="article-source">Via <a href="https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks/" target="_blank">Microsoft Security Blog</a></span>
-    </div>
-    <h2 class="article-title">Semantic Kernel Prompt-to-RCE Now Actively Exploited — Prompts Literally Become Shells</h2>
+    <h2 class="article-title">Prompts Become Shells: Microsoft Semantic Kernel CVEs Turn Prompt Injection into Host RCE</h2>
     <div class="article-body">
       <p><span class="cve-tag">CVE-2026-25592 &amp; CVE-2026-26030</span><span class="cvss-tag">Critical</span></p>
       <br>
-      <p>Microsoft’s Semantic Kernel framework vulnerabilities escalated over the weekend with confirmed in-the-wild exploitation. A single crafted prompt can now achieve full host-level remote code execution in production agent deployments.</p>
+      <p>Microsoft researchers disclosed two critical vulnerabilities in Semantic Kernel, a widely used open-source AI agent orchestration framework. A crafted prompt injection can now escalate to full remote code execution on the host running the agent.</p>
+      <br>
+      <p>The flaws exploit how agents handle untrusted inputs in vector stores and tool-calling paths. This is the clearest real-world proof yet that prompt injection is no longer “just a chatbot problem” — it’s a code execution vector in production agent frameworks.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">The boundary between “reasoning” and “executing” is gone. Your agents are no longer just suggesting code — they can now be turned into remote shells with one malicious prompt.</div>
+      <div class="matters-text">If you’re using Semantic Kernel, LangChain, or any agent framework with tool access, your agents can now be turned into remote shells with a single malicious prompt. The execution boundary between “reasoning” and “doing” has officially vanished.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Patch Semantic Kernel immediately (or migrate if unpatched).</li>
-      <li>Enforce strict output validation and sandboxing for all tool calls.</li>
-      <li>Never let agents have direct host/shell access without human gates.</li>
-      <li>Test your agents against the published Microsoft PoCs.</li>
+      <li>Update Semantic Kernel immediately and review all agent deployments.</li>
+      <li>Add strict input sanitization + output validation before any tool execution or code generation.</li>
+      <li>Run agents in isolated sandboxes with minimal privileges (no host filesystem/shell access unless absolutely required).</li>
+      <li>Test your agents against prompt-to-RCE payloads (Microsoft published PoCs).</li>
     </ul>
   </article>
 
-  <!-- STORY 3: ONGOING AGENT/BROWSER ATTACKS -->
-  <article class="article-card purple">
-    <div class="article-num">03</div>
+  <!-- STORY 2: CLAUDEBLEED UPDATE -->
+  <article class="article-card orange">
+    <div class="article-num">02</div>
     <div class="article-meta">
-      <span class="badge breach">Active Campaign</span>
-      <span class="article-source">Via <a href="https://layerxsecurity.com/blog/a-flaw-in-claudes-browser-extension-allows-any-extension-to-hijack-it/" target="_blank">LayerX Security</a> · <a href="https://www.securityweek.com/vulnerability-in-claude-extension-for-chrome-exposes-ai-agent-to-takeover/" target="_blank">SecurityWeek</a></span>
+      <span class="badge vuln">Active · Browser Agents</span>
+      <span class="article-source">Via <a href="https://layerxsecurity.com/blog/a-flaw-in-claudes-browser-extension-allows-any-extension-to-hijack-it/" target="_blank" rel="noopener">LayerX Security</a> · Ongoing Reports</span>
     </div>
-    <h2 class="article-title">ClaudeBleed + Comment &amp; Control Still Burning — Browser &amp; GitHub Agents Under Heavy Fire</h2>
+    <h2 class="article-title">ClaudeBleed Chrome Extension Hijack — Remote Prompt Injection Still Live</h2>
     <div class="article-body">
-      <p>Claude Chrome extension remote hijacks and GitHub “Comment &amp; Control” prompt injection attacks continue seeing active exploitation across the weekend. Zero-click browser takeovers and malicious PR comments remain live threats.</p>
+      <p>The Claude Chrome extension vulnerability (ClaudeBleed) continues to see active discussion and PoC sharing. Any other extension (or malicious site) can inject prompts and hijack the agent to steal data from Gmail, GitHub, Drive, etc.</p>
+      <br>
+      <p>No user interaction required. This proves browser-based AI agents are now prime real estate for remote takeovers.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">Every AI coding workflow that touches the browser or GitHub is now a persistent attack surface. The tools you use daily are actively being turned against you.</div>
+      <div class="matters-text">Your daily AI coding workflow in the browser is one compromised extension or tab away from full workspace compromise. The “helpful sidebar” just became an always-on attack surface.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Isolate or disable high-risk AI browser extensions.</li>
-      <li>Sanitize all GitHub PR/issue content before agent ingestion.</li>
-      <li>Rotate any potentially exposed tokens from affected workflows.</li>
+      <li>Disable or isolate the Claude (and any AI) Chrome extension until fully patched.</li>
+      <li>Audit all browser extensions with AI/agent capabilities.</li>
+      <li>Use sandboxed browser profiles or containers for AI tooling.</li>
     </ul>
   </article>
 
   <!-- QUICK HITS -->
-  <div class="section-label">Quick Hits • Weekend + Today</div>
+  <div class="section-label">Quick Hits</div>
 
   <div class="quick-hits">
     <h3>Signals &amp; Intel</h3>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">Prompt Injection Officially OWASP #1 for 2026</strong> — Confirmed across multiple reports. Agentic systems have made it dramatically more dangerous.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px">OWASP / Microsoft / Google</span></div>
+      <div><strong style="color:#fff">Prompt Injection Still OWASP #1</strong> — Confirmed across multiple 2026 reports. Agentic systems have made it dramatically more dangerous.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px">OWASP / Microsoft / Palo Alto</span></div>
     </div>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">AI Supply Chain Attacks Accelerating</strong> — Hugging Face, PyPI (LiteLLM), and model repos are now primary vectors.</div>
+      <div><strong style="color:#fff">Agent Memory Poisoning &amp; Tool Misuse Rising</strong> — New incidents show persistent malicious instructions surviving across sessions.</div>
     </div>
   </div>
 
   <!-- SKILL PROMPTS -->
   <div class="section-label">Security Skill Prompts</div>
-  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, GPT-4o, Cursor, or your preferred coding assistant. Tuned for this weekend’s supply-chain + RCE reality.</p>
+  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, GPT-4o, Cursor, or your preferred coding assistant. Tuned for today’s agent RCE reality.</p>
 
   <div class="prompts-section">
 
     <div class="prompt-card">
       <div class="prompt-card-header">
         <div class="prompt-topic">
-          <div class="prompt-icon cyan">📦</div>
+          <div class="prompt-icon cyan">🛡️</div>
           <div>
-            <div class="prompt-title">Hugging Face / Model Supply Chain Audit</div>
-            <div class="prompt-subtitle">Fake OpenAI repo · infostealer delivery</div>
+            <div class="prompt-title">AI Agent Framework RCE Audit</div>
+            <div class="prompt-subtitle">Semantic Kernel · prompt-to-shell</div>
           </div>
         </div>
         <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
       <div class="prompt-box">
-<span class="hl-cyan">Audit this Hugging Face model / repo loading pipeline for supply-chain risks like the recent OpenAI impersonation attack.</span>
+<span class="hl-cyan">Audit this AI agent implementation (Semantic Kernel, LangChain, or custom) for prompt-to-RCE risks like CVE-2026-26030.</span>
 
 <span class="hl-muted">Focus on:</span>
-<span class="hl-green">1.</span> Model card verification and hash checking
-<span class="hl-green">2.</span> Sandboxing / isolated execution of downloaded models
-<span class="hl-green">3.</span> Loader code / Python dependencies from untrusted sources
-<span class="hl-green">4.</span> Network calls or file writes during model loading
+<span class="hl-green">1.</span> Untrusted prompts flowing into tool calling / code execution paths
+<span class="hl-green">2.</span> Vector store or memory handling of adversarial inputs
+<span class="hl-green">3.</span> Lack of output validation before shell / filesystem / API calls
+<span class="hl-green">4.</span> Overly broad agent permissions
 
-<span class="hl-orange">[PASTE YOUR MODEL LOADING CODE OR PIPELINE HERE]</span></div>
+<span class="hl-muted">For each issue:</span>
+- Show vulnerable code
+- Explain the RCE scenario
+- Provide hardened version
+
+<span class="hl-orange">[PASTE YOUR AGENT CODE / FRAMEWORK CONFIG HERE]</span></div>
     </div>
 
     <div class="prompt-card">
       <div class="prompt-card-header">
         <div class="prompt-topic">
-          <div class="prompt-icon orange">🔥</div>
+          <div class="prompt-icon orange">🌐</div>
           <div>
-            <div class="prompt-title">Semantic Kernel / Agent RCE Hardening</div>
-            <div class="prompt-subtitle">Prompt-to-shell prevention</div>
+            <div class="prompt-title">Browser Agent / Extension Hardening</div>
+            <div class="prompt-subtitle">ClaudeBleed-style remote injection</div>
           </div>
         </div>
         <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
       <div class="prompt-box">
-<span class="hl-orange">Review this Semantic Kernel (or any agent framework) implementation for prompt-to-RCE vulnerabilities.</span>
+<span class="hl-orange">Review this browser-based AI agent or Chrome extension for remote prompt injection risks.</span>
 
 <span class="hl-muted">Check for:</span>
-<span class="hl-green">1.</span> Untrusted prompts reaching tool execution or vector store paths
-<span class="hl-green">2.</span> Lack of output validation before code/shell calls
-<span class="hl-green">3.</span> Overly broad agent permissions on host
+<span class="hl-green">1.</span> Cross-extension messaging or DOM access without origin validation
+<span class="hl-green">2.</span> Persistent credential handling in the extension context
+<span class="hl-green">3.</span> No sanitization of injected page/tab content
 
-<span class="hl-muted">Deliver hardened code + sandbox recommendations.</span>
+<span class="hl-muted">Deliver hardened mitigations + safe architecture.</span>
 
-<span class="hl-orange">[PASTE YOUR AGENT CODE HERE]</span></div>
+<span class="hl-orange">[PASTE YOUR EXTENSION / AGENT CODE HERE]</span></div>
     </div>
 
   </div>
@@ -788,7 +797,7 @@
   <footer>
     <div class="footer-brand">AI<span>Security</span>Daily</div>
     <div class="footer-copy">
-      Issue #10 · May 12, 2026<br>
+      Issue #9 · May 10, 2026<br>
       For vibe coders who ship secure.
     </div>
   </footer>
