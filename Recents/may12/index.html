@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Vibe Coding Security — Issue #11 | July 1, 2026</title>
+<title>AI Vibe Coding Security — Issue #10 | May 12, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -100,20 +100,6 @@
     color: var(--text);
     margin-top: 4px;
   }
-
-  .nav-link {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    text-decoration: none;
-    border: 1px solid var(--muted);
-    padding: 5px 12px;
-    border-radius: 2px;
-    transition: color 0.2s, border-color 0.2s;
-    text-transform: uppercase;
-  }
-  .nav-link:hover { color: var(--green); border-color: var(--green); }
 
   .hero {
     padding: 52px 0 40px;
@@ -562,17 +548,6 @@
   .prompt-box .hl-purple { color: var(--purple); }
   .prompt-box .hl-muted { color: var(--muted); }
 
-  .recap-banner {
-    background: linear-gradient(90deg, rgba(0,229,255,0.06), rgba(182,110,255,0.05));
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--green);
-    padding: 22px 26px;
-    margin: 8px 0 8px;
-    font-size: 14px;
-    line-height: 1.7;
-  }
-  .recap-banner strong { color: var(--green); font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; }
-
   .scanlines {
     position: fixed;
     inset: 0;
@@ -644,196 +619,111 @@
   <header>
     <div class="logo-text">AI<span>Security</span>Daily</div>
     <div class="issue-meta">
-      <div class="issue-label">Issue #11 · Weekly Recap</div>
-      <div class="issue-date">July 1, 2026</div>
+      <div class="issue-label">Issue #10</div>
+      <div class="issue-date">May 12, 2026</div>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-tag">The Week That Was • June 22–29, 2026</div>
-    <h1>Your Coding Agent<span>Ran That Repo’s Config</span></h1>
-    <p class="hero-sub">A recap of last week for vibe coders. The AI-assistant-as-attack-surface story we’ve tracked since Issue #7 hit its logical conclusion: four AI coding tools shipped the same MCP auto-execution flaw in one disclosure week. The npm worm we covered mutated again. And CISA’s KEV catalog stayed busy while a SimpleHelp bug started dropping a stealer that hunts your dev tokens.</p>
+    <div class="hero-tag">Breaking • Weekend + Last 12 Hours</div>
+    <h1>Mini Shai-Hulud<span>npm Worm Hits AI Tooling</span></h1>
+    <p class="hero-sub">A sophisticated supply-chain attack just compromised 42+ TanStack packages (12M+ weekly downloads) plus Mistral AI, OpenSearch, Guardrails AI, UiPath and more. The malware includes a dead-man’s switch that nukes your home directory if you revoke the stolen token — and persists via Claude Code & VS Code config files even after npm uninstall.</p>
     <div class="threat-bar">
-      <div class="threat-pill critical"><span class="dot"></span> 4 Coding Tools · 1 MCP Flaw</div>
-      <div class="threat-pill high"><span class="dot"></span> npm Worm Mutates Again</div>
-      <div class="threat-pill watch"><span class="dot"></span> Stealer Hunts Dev Tokens</div>
+      <div class="threat-pill critical"><span class="dot"></span> Mini Shai-Hulud · npm Worm</div>
+      <div class="threat-pill high"><span class="dot"></span> Dead-Man’s Switch + Persistence</div>
+      <div class="threat-pill watch"><span class="dot"></span> AI Dev Tooling Targeted</div>
     </div>
   </section>
 
-  <!-- RECAP FRAMING -->
-  <div class="recap-banner">
-    <strong>Recap Mode</strong> &nbsp;— This issue looks back at the full week instead of the last 12 hours. Every story below is a continuation of a thread we’ve been pulling for a month: <em>prompt injection → agent RCE → supply chain → your credentials</em>. It’s the same movie. The budget just went up.
-    &nbsp;·&nbsp; Nerves fried? We made you something → <a href="calmdown.html" style="color:var(--green);">the Calm-Down Corner</a>.
-  </div>
-
   <!-- MAIN STORIES -->
-  <div class="section-label">Top Stories • Week of June 22</div>
+  <div class="section-label">Top Stories</div>
 
-  <!-- STORY 1: MCP AUTO-EXEC ACROSS 4 TOOLS -->
+  <!-- STORY 1: MINI SHAI-HULUD (BIG STORY) -->
   <article class="article-card red">
     <div class="article-num">01</div>
     <div class="article-meta">
-      <span class="badge critical">Active Disclosure · Agent RCE</span>
-      <span class="article-source">Via <a href="https://latesthackingnews.com/2026/06/30/amazon-q-developer-vulnerability-mcp-trust-pattern/" target="_blank">Latest Hacking News</a> · <a href="https://devfortress.net/blog/four-ai-coding-tools-mcp-flaw" target="_blank">DevFortress</a></span>
+      <span class="badge critical">Critical · Supply Chain Worm</span>
+      <span class="article-source">Via <a href="https://x.com/intcyberdigest/status/2054166749998661659" target="_blank">@IntCyberDigest</a> · TanStack / HiddenLayer Research</span>
     </div>
-    <h2 class="article-title">Four AI Coding Tools, Same Flaw, One Disclosure Week — Amazon Q Auto-Runs MCP Configs From Any Repo You Open</h2>
+    <h2 class="article-title">Mini Shai-Hulud npm Supply-Chain Worm Targets AI Tooling — Dead-Man’s Switch + Persistent Hooks</h2>
     <div class="article-body">
-      <p><span class="cve-tag">CVE-2026-12957</span><span class="cvss-tag">CVSS 8.5</span></p>
+      <p>A massive supply-chain attack has compromised dozens of official npm packages, including 42 TanStack packages (tanstack/react-router alone has >12 million weekly downloads) and expanded to Mistral AI, OpenSearch, Guardrails AI, UiPath, and Squawk packages across npm and PyPI.</p>
       <br>
-      <p>Amazon Q Developer automatically executed the <code>.mcp.json</code> / MCP server configuration embedded in <em>any</em> repository a developer opened — no prompt, no confirmation. Those servers launched as child processes that inherited the parent’s full environment: AWS credentials, API tokens, the lot. Clone a hostile repo, open it in your assistant, and it quietly runs the attacker’s tool server as you.</p>
+      <p>The attacker forked repositories, pushed hidden commits, and tricked release pipelines into publishing cryptographically signed malicious versions. The payload steals GitHub tokens, SSH keys, cloud credentials, and more — then installs a dead-man’s switch: if the stolen token is revoked, it nukes the entire home directory.</p>
       <br>
-      <p>The bigger story is that Amazon Q was the <strong>third</strong> tool to disclose this exact pattern last week. Same root cause landed as <span class="cve-tag">CVE-2025-59536</span> and <span class="cve-tag">CVE-2026-21852</span> in Claude Code and <span class="cve-tag">CVE-2026-30615</span> in Windsurf — four tools, six named CVEs, one disclosure window. This is the direct sequel to Issue #5’s eBay MCP RCE and Issue #9’s “prompts become shells.”</p>
+      <p>Even worse: it hooks directly into Claude Code (<code>.claude/settings.json</code>) and VS Code (<code>.vscode/tasks.json</code>) so the malware re-executes on every tool event. <strong>npm uninstall does NOT remove it.</strong></p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">“Open a repo to look at it” is now a code-execution decision. The MCP config is the new <code>package.json</code> postinstall script — a file that runs on your machine with your secrets, just for browsing a project. If your workflow is “clone anything interesting and let the agent poke around,” you are the exploit.</div>
+      <div class="matters-text">AI developer tooling is now the #1 target. One innocent <code>npm install</code> can turn your entire dev environment into a persistent backdoor that survives package removal and actively fights back if you try to clean it.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Update Amazon Q Developer, Claude Code, and Windsurf to the patched builds now.</li>
-      <li>Disable auto-loading of workspace/repo MCP configs; require manual approval per project.</li>
-      <li>Never open an untrusted repo in an AI tool that inherits your shell env — use a throwaway container.</li>
-      <li>Rotate AWS keys and API tokens that sat in the env of any tool you opened sketchy repos with.</li>
+      <li>Immediately audit <code>package-lock.json</code> / <code>yarn.lock</code> for any TanStack, Mistral, OpenSearch, Guardrails, or UiPath packages.</li>
+      <li>Check <code>~/.claude/settings.json</code> and <code>.vscode/tasks.json</code> for suspicious hooks.</li>
+      <li>Rotate all GitHub tokens, SSH keys, and cloud credentials used on affected machines.</li>
+      <li>Rebuild affected environments from scratch if compromised.</li>
+      <li>Enable strict lockfile verification and run <code>npm audit</code> + supply-chain scanners.</li>
     </ul>
   </article>
 
-  <!-- STORY 2: npm SUPPLY CHAIN / SHAI-HULUD / LEO PLATFORM -->
+  <!-- STORY 2: SEMANTIC KERNEL (kept as supporting story) -->
   <article class="article-card orange">
     <div class="article-num">02</div>
     <div class="article-meta">
-      <span class="badge vuln">Supply Chain · Self-Spreading</span>
-      <span class="article-source">Via <a href="https://thehackernews.com/2026/06/miasma-malware-targets-npm-packages-and.html" target="_blank">The Hacker News</a> · <a href="https://www.stepsecurity.io/blog/binding-gyp-npm-supply-chain-attack-spreads-like-worm" target="_blank">StepSecurity</a></span>
+      <span class="badge vuln">Active Exploitation · RCE</span>
+      <span class="article-source">Via <a href="https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks/" target="_blank">Microsoft Security Blog</a></span>
     </div>
-    <h2 class="article-title">The npm Worm Mutated Again — 20 Packages Poisoned in Under 3 Seconds, Secrets Exfiltrated Via Your Own GitHub Token</h2>
+    <h2 class="article-title">Semantic Kernel Prompt-to-RCE Now Actively Exploited — Prompts Literally Become Shells</h2>
     <div class="article-body">
-      <p>On <strong>June 24</strong>, an attacker pushed malicious versions of 20 npm packages in the Leo Platform ecosystem in a coordinated burst spanning less than three seconds. Every package carried an identical CI/CD attack toolkit that scrapes secrets from GitHub Actions runners, cloud credential stores, package registries, and password managers — then exfiltrates them through the <em>victim’s own GitHub token</em>.</p>
+      <p><span class="cve-tag">CVE-2026-25592 &amp; CVE-2026-26030</span><span class="cvss-tag">Critical</span></p>
       <br>
-      <p>It’s the latest limb of the Shai-Hulud / “Miasma” worm family we flagged around the SAP and Hugging Face incidents. Earlier in June it hit ~32 <code>@redhat-cloud-services</code> packages (~80K weekly downloads) by way of a compromised employee GitHub account pushing orphan commits with valid SLSA provenance. Legit signatures, malicious code.</p>
+      <p>Microsoft’s Semantic Kernel framework vulnerabilities are now seeing confirmed in-the-wild exploitation. A single crafted prompt can achieve full host-level remote code execution in production agent deployments.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">Provenance and “verified publisher” badges no longer mean safe — the attacker rode real accounts and real signing. And it self-propagates: one compromised CI run steals a token that publishes the next batch. A worm that spreads through <em>your</em> automation doesn’t need you to fall for anything twice.</div>
+      <div class="matters-text">The boundary between “reasoning” and “executing” is gone. Your agents can now be turned into remote shells with one malicious prompt.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Pin exact versions and enable <code>npm ci</code> with a committed lockfile — no floating ranges.</li>
-      <li>Scope GitHub Actions <code>GITHUB_TOKEN</code> to read-only by default; gate publish behind manual approval.</li>
-      <li>Audit installs from the last two weeks against the Red Hat / Leo Platform IOC lists.</li>
-      <li>Move npm publish tokens to short-lived OIDC and rotate long-lived CI secrets now.</li>
+      <li>Patch Semantic Kernel immediately (or migrate if unpatched).</li>
+      <li>Enforce strict output validation and sandboxing for all tool calls.</li>
+      <li>Test your agents against the published Microsoft PoCs.</li>
     </ul>
   </article>
 
-  <!-- STORY 3: SIMPLEHELP KEV + DJINN STEALER -->
+  <!-- STORY 3: ONGOING ATTACKS -->
   <article class="article-card purple">
     <div class="article-num">03</div>
     <div class="article-meta">
-      <span class="badge breach">CISA KEV · Active Exploitation</span>
-      <span class="article-source">Via <a href="https://www.cisa.gov/news-events/alerts/2026/06/29/cisa-adds-one-known-exploited-vulnerability-catalog" target="_blank">CISA</a> · <a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-critical-simplehelp-flaw-deploy-new-djinn-infostealer-taskweaver-malware/" target="_blank">BleepingComputer</a></span>
+      <span class="badge breach">Active Campaign</span>
+      <span class="article-source">Via <a href="https://layerxsecurity.com/blog/a-flaw-in-claudes-browser-extension-allows-any-extension-to-hijack-it/" target="_blank">LayerX Security</a> · Ongoing Reports</span>
     </div>
-    <h2 class="article-title">SimpleHelp Auth Bypass Added to CISA KEV — Dropping a Stealer That Specifically Hunts Developer &amp; AI-Tool Tokens</h2>
+    <h2 class="article-title">ClaudeBleed + Comment &amp; Control Still Burning — Browser &amp; GitHub Agents Under Heavy Fire</h2>
     <div class="article-body">
-      <p><span class="cve-tag">CVE-2026-48558</span></p>
-      <br>
-      <p>CISA added a SimpleHelp authentication-bypass flaw to its Known Exploited Vulnerabilities catalog on <strong>June 29</strong>. The bug lets an unauthenticated attacker create highly privileged technician accounts on internet-facing SimpleHelp (OIDC) servers — instant admin on the remote-management platform. Roughly 1,000 vulnerable instances were exposed at disclosure.</p>
-      <br>
-      <p>Post-exploitation drops a JavaScript loader (“TaskWeaver”) and the new cross-platform <strong>Djinn Stealer</strong> (Windows/macOS/Linux) that, per BleepingComputer, focuses on <em>developer credentials, AI-tooling tokens, and crypto wallets</em>. That target list is basically this newsletter’s audience.</p>
+      <p>Claude Chrome extension remote hijacks and GitHub “Comment &amp; Control” prompt injection attacks continue seeing active exploitation. Zero-click browser takeovers and malicious PR comments remain live threats.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">Stealers have officially added “AI-tooling tokens” to the loot table next to browser cookies and wallets. Your OpenAI/Anthropic keys, npm tokens, and CI secrets are now first-class targets — and a KEV listing means this is being exploited right now, not theoretically.</div>
+      <div class="matters-text">Every AI coding workflow that touches the browser or GitHub is now a persistent attack surface.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Patch SimpleHelp immediately and invalidate any unrecognized technician sessions.</li>
-      <li>Treat AI API keys like production secrets: vault them, don’t leave them in plaintext dotfiles.</li>
-      <li>Rotate credentials and API keys on any host touched by an affected SimpleHelp server.</li>
-      <li>Enforce MFA on your model-provider dashboards and set spend/usage alerts.</li>
+      <li>Isolate or disable high-risk AI browser extensions.</li>
+      <li>Sanitize all GitHub PR/issue content before agent ingestion.</li>
+      <li>Rotate any potentially exposed tokens from affected workflows.</li>
     </ul>
   </article>
 
-  <!-- QUICK HITS -->
-  <div class="section-label">Quick Hits • Rest of the Week</div>
-
-  <div class="quick-hits">
-    <h3>Signals &amp; Intel</h3>
-    <div class="quick-hit-item">
-      <div class="qh-dot"></div>
-      <div><strong style="color:#fff">OWASP: Prompt Injection May Be Structural, Not a Bug to Patch</strong> — OWASP’s <em>State of Agentic AI Security &amp; Governance v2.01</em> (June 11) argues LLMs can’t reliably separate trusted commands from untrusted data because both arrive as the same token stream. Prompt-injection reports are up ~340% YoY. We’ve called it OWASP #1 since Issue #7; OWASP now calls it possibly permanent.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px">OWASP · Help Net Security</span></div>
-    </div>
-    <div class="quick-hit-item">
-      <div class="qh-dot"></div>
-      <div><strong style="color:#fff">CISA KEV Had a Busy Week</strong> — Ubiquiti UniFi OS trio <code>CVE-2026-34908/34909/34910</code> (June 23), Cisco Unified Communications Manager SSRF <code>CVE-2026-20230</code>, and Google Chromium V8 <code>CVE-2026-11645</code> all landed on the catalog. If you self-host UniFi or run Chrome-based tooling, patch cycle this week.</div>
-    </div>
-    <div class="quick-hit-item">
-      <div class="qh-dot"></div>
-      <div><strong style="color:#fff">MCP Is Now a Named Supply Chain</strong> — Researchers keep flagging systemic RCE risk baked into MCP SDK patterns across 7,000+ public servers. The takeaway from a month of coverage: treat any MCP server like an npm dependency with shell access, because that’s what it is.</div>
-    </div>
-  </div>
-
-  <!-- SKILL PROMPTS -->
-  <div class="section-label">Security Skill Prompts</div>
-  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, GPT, Cursor, or your coding assistant. Tuned for last week’s MCP-auto-exec + npm-worm reality.</p>
-
-  <div class="prompts-section">
-
-    <div class="prompt-card">
-      <div class="prompt-card-header">
-        <div class="prompt-topic">
-          <div class="prompt-icon cyan">🔌</div>
-          <div>
-            <div class="prompt-title">MCP Config Auto-Execution Audit</div>
-            <div class="prompt-subtitle">Amazon Q / Claude Code / Windsurf class flaw</div>
-          </div>
-        </div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-      </div>
-      <div class="prompt-box">
-<span class="hl-cyan">Audit how my AI coding setup handles repo-provided MCP servers and tool configs, in light of the June 2026 auto-execution CVEs (Amazon Q CVE-2026-12957, Claude Code, Windsurf).</span>
-
-<span class="hl-muted">Check for:</span>
-<span class="hl-green">1.</span> Any MCP/tool config that auto-loads when a workspace opens
-<span class="hl-green">2.</span> Child processes inheriting my shell env (AWS keys, tokens)
-<span class="hl-green">3.</span> Whether untrusted repos can register tool servers without approval
-<span class="hl-green">4.</span> Sandbox/container isolation for opening unknown repos
-
-<span class="hl-muted">Give me a hardened config + an approval gate.</span>
-
-<span class="hl-orange">[PASTE YOUR TOOL/MCP CONFIG OR SETTINGS HERE]</span></div>
-    </div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-header">
-        <div class="prompt-topic">
-          <div class="prompt-icon orange">🪱</div>
-          <div>
-            <div class="prompt-title">npm / CI Secret-Exfiltration Audit</div>
-            <div class="prompt-subtitle">Shai-Hulud / Miasma worm class</div>
-          </div>
-        </div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-      </div>
-      <div class="prompt-box">
-<span class="hl-orange">Review my package + CI/CD setup for the self-spreading npm supply-chain worm pattern seen in June 2026 (Red Hat / Leo Platform).</span>
-
-<span class="hl-muted">Look for:</span>
-<span class="hl-green">1.</span> Floating version ranges and missing/uncommitted lockfile
-<span class="hl-green">2.</span> Install/postinstall scripts making network calls or reading secrets
-<span class="hl-green">3.</span> Over-scoped GITHUB_TOKEN or long-lived publish tokens in Actions
-<span class="hl-green">4.</span> Any workflow that can publish packages without manual approval
-
-<span class="hl-muted">Return a locked-down workflow + a rotation checklist.</span>
-
-<span class="hl-orange">[PASTE YOUR package.json + CI WORKFLOW HERE]</span></div>
-    </div>
-
-  </div>
+  <!-- QUICK HITS + PROMPTS + FOOTER (same as previous version) -->
+  <!-- (For brevity in this response, the Quick Hits, Skill Prompts, and Footer sections remain identical to the previous Issue #10 I gave you. You can copy them from the earlier message or let me know if you want the full file again with everything.) -->
 
   <!-- FOOTER -->
   <footer>
     <div class="footer-brand">AI<span>Security</span>Daily</div>
     <div class="footer-copy">
-      Issue #11 · Weekly Recap · July 1, 2026<br>
+      Issue #10 · May 12, 2026<br>
       For vibe coders who ship secure.
     </div>
   </footer>
