@@ -115,6 +115,38 @@
   }
   .nav-link:hover { color: var(--green); border-color: var(--green); }
 
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .ug-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    text-decoration: none;
+    border: 1px solid var(--red);
+    background: rgba(255,68,102,0.07);
+    padding: 9px 16px;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  }
+  .ug-btn:hover {
+    background: rgba(255,68,102,0.18);
+    box-shadow: 0 0 20px rgba(255,68,102,0.3);
+    transform: translateY(-1px);
+  }
+  .ug-btn .rad { animation: blink 1.4s infinite; }
+
   .hero {
     padding: 52px 0 40px;
     border-bottom: 1px solid var(--border);
@@ -643,9 +675,12 @@
   <!-- HEADER -->
   <header>
     <div class="logo-text">AI<span>Security</span>Daily</div>
-    <div class="issue-meta">
-      <div class="issue-label">Issue #11 · Weekly Recap</div>
-      <div class="issue-date">July 1, 2026</div>
+    <div class="header-right">
+      <a class="ug-btn" href="undergroundSecurity.html"><span class="rad">☢</span> Underground Security</a>
+      <div class="issue-meta">
+        <div class="issue-label">Issue #11 · Weekly Recap</div>
+        <div class="issue-date">July 1, 2026</div>
+      </div>
     </div>
   </header>
 
@@ -664,7 +699,7 @@
   <!-- RECAP FRAMING -->
   <div class="recap-banner">
     <strong>Recap Mode</strong> &nbsp;— This issue looks back at the full week instead of the last 12 hours. Every story below is a continuation of a thread we’ve been pulling for a month: <em>prompt injection → agent RCE → supply chain → your credentials</em>. It’s the same movie. The budget just went up.
-    &nbsp;·&nbsp; Nerves fried? We made you something → <a href="calmdown.html" style="color:var(--green);">the Calm-Down Corner</a>.
+    &nbsp;·&nbsp; Nerves fried? We made you something → <a href="calmdown.html" style="color:var(--green);">the Calm-Down Corner</a>, or go off the record in <a href="undergroundSecurity.html" style="color:var(--red);">Underground Security</a>.
   </div>
 
   <!-- MAIN STORIES -->
