@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Vibe Coding Security — Issue #12 | July 7, 2026</title>
+<title>AI Vibe Coding Security — Issue #11 | July 1, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -678,112 +678,112 @@
     <div class="header-right">
       <a class="ug-btn" href="undergroundSecurity.html"><span class="rad">☢</span> Underground Security</a>
       <div class="issue-meta">
-        <div class="issue-label">Issue #12 · Weekly Recap</div>
-        <div class="issue-date">July 7, 2026</div>
+        <div class="issue-label">Issue #11 · Weekly Recap</div>
+        <div class="issue-date">July 1, 2026</div>
       </div>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-tag">The Week That Was • June 30 – July 7, 2026</div>
-    <h1>Your Editor Trusted<span>A Stranger's Prompt</span></h1>
-    <p class="hero-sub">A recap of last week for vibe coders. Issue #11 ended with four AI coding tools auto-running strangers' MCP configs. This week the other shoe dropped twice: Cursor disclosed two zero-click prompt-injection-to-RCE flaws it originally declined to fix, and JetBrains patched a cluster of critical bugs that turn "open a project" into code execution. Meanwhile North Korea went multi-registry with 108 malicious packages — and npm finally announced installs will stop auto-running code.</p>
+    <div class="hero-tag">The Week That Was • June 22–29, 2026</div>
+    <h1>Your Coding Agent<span>Ran That Repo’s Config</span></h1>
+    <p class="hero-sub">A recap of last week for vibe coders. The AI-assistant-as-attack-surface story we’ve tracked since Issue #7 hit its logical conclusion: four AI coding tools shipped the same MCP auto-execution flaw in one disclosure week. The npm worm we covered mutated again. And CISA’s KEV catalog stayed busy while a SimpleHelp bug started dropping a stealer that hunts your dev tokens.</p>
     <div class="threat-bar">
-      <div class="threat-pill critical"><span class="dot"></span> Cursor: 2× Zero-Click RCE</div>
-      <div class="threat-pill high"><span class="dot"></span> JetBrains: IDE-Wide Criticals</div>
-      <div class="threat-pill watch"><span class="dot"></span> DPRK: 108 Packages, 4 Ecosystems</div>
+      <div class="threat-pill critical"><span class="dot"></span> 4 Coding Tools · 1 MCP Flaw</div>
+      <div class="threat-pill high"><span class="dot"></span> npm Worm Mutates Again</div>
+      <div class="threat-pill watch"><span class="dot"></span> Stealer Hunts Dev Tokens</div>
     </div>
   </section>
 
   <!-- RECAP FRAMING -->
   <div class="recap-banner">
-    <strong>Recap Mode</strong> &nbsp;— This issue looks back at the full week instead of the last 12 hours. The thread from the last five issues — <em>prompt injection → agent RCE → supply chain → your credentials</em> — didn't just continue. It got a CVSS 9.8 sticker, twice, on the editor you're probably reading this next to.
+    <strong>Recap Mode</strong> &nbsp;— This issue looks back at the full week instead of the last 12 hours. Every story below is a continuation of a thread we’ve been pulling for a month: <em>prompt injection → agent RCE → supply chain → your credentials</em>. It’s the same movie. The budget just went up.
     &nbsp;·&nbsp; Nerves fried? We made you something → <a href="calmdown.html" style="color:var(--green);">the Calm-Down Corner</a>, or go off the record in <a href="undergroundSecurity.html" style="color:var(--red);">Underground Security</a>.
   </div>
 
   <!-- MAIN STORIES -->
-  <div class="section-label">Top Stories • Week of June 30</div>
+  <div class="section-label">Top Stories • Week of June 22</div>
 
-  <!-- STORY 1: CURSOR DUNESLIDE -->
+  <!-- STORY 1: MCP AUTO-EXEC ACROSS 4 TOOLS -->
   <article class="article-card red">
     <div class="article-num">01</div>
     <div class="article-meta">
-      <span class="badge critical">Zero-Click · Agent RCE</span>
-      <span class="article-source">Via <a href="https://www.catonetworks.com/blog/duneslide-two-critical-rce-vulnerabilities/" target="_blank">Cato Networks</a> · <a href="https://thehackernews.com/2026/07/critical-cursor-flaws-could-let-prompt.html" target="_blank">The Hacker News</a> · <a href="https://www.securityweek.com/critical-cursor-ai-ide-flaws-could-lead-to-os-level-remote-code-execution/" target="_blank">SecurityWeek</a></span>
+      <span class="badge critical">Active Disclosure · Agent RCE</span>
+      <span class="article-source">Via <a href="https://latesthackingnews.com/2026/06/30/amazon-q-developer-vulnerability-mcp-trust-pattern/" target="_blank">Latest Hacking News</a> · <a href="https://devfortress.net/blog/four-ai-coding-tools-mcp-flaw" target="_blank">DevFortress</a></span>
     </div>
-    <h2 class="article-title">"DuneSlide": Two Zero-Click Prompt Injections Break Cursor Out of Its Own Sandbox — And Cursor Initially Said That Wasn't a Bug</h2>
+    <h2 class="article-title">Four AI Coding Tools, Same Flaw, One Disclosure Week — Amazon Q Auto-Runs MCP Configs From Any Repo You Open</h2>
     <div class="article-body">
-      <p><span class="cve-tag">CVE-2026-50548</span><span class="cvss-tag">CVSS 9.8</span> &nbsp;<span class="cve-tag">CVE-2026-50549</span><span class="cvss-tag">CVSS 9.8</span></p>
+      <p><span class="cve-tag">CVE-2026-12957</span><span class="cvss-tag">CVSS 8.5</span></p>
       <br>
-      <p>Cato AI Labs disclosed two independent flaws in Cursor — dubbed <strong>DuneSlide</strong> — that let a poisoned MCP response or web search result steer the agent into writing files <em>outside</em> the project sandbox, then escalate to full OS-level code execution. One abuses the <code>working_directory</code> parameter of the terminal tool to point commands at attacker-chosen paths; the other has the agent create a symlink inside the project that points outside it. No click, no confirmation — the victim just types an innocuous prompt that happens to ingest attacker-controlled content.</p>
+      <p>Amazon Q Developer automatically executed the <code>.mcp.json</code> / MCP server configuration embedded in <em>any</em> repository a developer opened — no prompt, no confirmation. Those servers launched as child processes that inherited the parent’s full environment: AWS credentials, API tokens, the lot. Clone a hostile repo, open it in your assistant, and it quietly runs the attacker’s tool server as you.</p>
       <br>
-      <p>The timeline is the story: Cato reported both bugs on <strong>February 19</strong> and Cursor rejected them on <strong>February 23</strong>, saying its threat model "does not account for MCP server misuse" — even via standard, innocuous integrations. Both were quietly fixed in Cursor 3.0 (April 2); everything before 3.0 is vulnerable. This is Issue #11's auto-exec saga wearing a new coat: last week the config was the payload, this week the <em>content the agent reads</em> is.</p>
+      <p>The bigger story is that Amazon Q was the <strong>third</strong> tool to disclose this exact pattern last week. Same root cause landed as <span class="cve-tag">CVE-2025-59536</span> and <span class="cve-tag">CVE-2026-21852</span> in Claude Code and <span class="cve-tag">CVE-2026-30615</span> in Windsurf — four tools, six named CVEs, one disclosure window. This is the direct sequel to Issue #5’s eBay MCP RCE and Issue #9’s “prompts become shells.”</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">The sandbox is a suggestion if the agent can be talked into redecorating outside it. Every MCP server you connect and every web result your agent ingests is now input to a machine that can write files and run terminals as you. "My editor's threat model doesn't cover that" — said the editor — is exactly why <em>yours</em> has to.</div>
+      <div class="matters-text">“Open a repo to look at it” is now a code-execution decision. The MCP config is the new <code>package.json</code> postinstall script — a file that runs on your machine with your secrets, just for browsing a project. If your workflow is “clone anything interesting and let the agent poke around,” you are the exploit.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Confirm you're on Cursor 3.0 or later — every earlier version carries both flaws.</li>
-      <li>Trim your MCP server list to ones you'd give shell access, because you effectively have.</li>
-      <li>Turn off auto-run/YOLO modes; keep a human approval gate on terminal and file-write tools.</li>
-      <li>Work on untrusted repos in a container or VM that holds zero real credentials.</li>
+      <li>Update Amazon Q Developer, Claude Code, and Windsurf to the patched builds now.</li>
+      <li>Disable auto-loading of workspace/repo MCP configs; require manual approval per project.</li>
+      <li>Never open an untrusted repo in an AI tool that inherits your shell env — use a throwaway container.</li>
+      <li>Rotate AWS keys and API tokens that sat in the env of any tool you opened sketchy repos with.</li>
     </ul>
   </article>
 
-  <!-- STORY 2: JETBRAINS CLUSTER -->
+  <!-- STORY 2: npm SUPPLY CHAIN / SHAI-HULUD / LEO PLATFORM -->
   <article class="article-card orange">
     <div class="article-num">02</div>
     <div class="article-meta">
-      <span class="badge vuln">Patch Wave · Dev Toolchain</span>
-      <span class="article-source">Via <a href="https://cybersecuritynews.com/jetbrains-vulnerabilities/" target="_blank">Cybersecurity News</a> · <a href="https://gbhackers.com/jetbrains-patches-critical-hub-authentication-bypass/" target="_blank">GBHackers</a></span>
+      <span class="badge vuln">Supply Chain · Self-Spreading</span>
+      <span class="article-source">Via <a href="https://thehackernews.com/2026/06/miasma-malware-targets-npm-packages-and.html" target="_blank">The Hacker News</a> · <a href="https://www.stepsecurity.io/blog/binding-gyp-npm-supply-chain-attack-spreads-like-worm" target="_blank">StepSecurity</a></span>
     </div>
-    <h2 class="article-title">JetBrains Patches a Critical Cluster Across Hub, YouTrack, Kotlin and Its IDEs — "Open a Malicious Project" Is Code Execution in GoLand</h2>
+    <h2 class="article-title">The npm Worm Mutated Again — 20 Packages Poisoned in Under 3 Seconds, Secrets Exfiltrated Via Your Own GitHub Token</h2>
     <div class="article-body">
-      <p><span class="cve-tag">CVE-2026-56141</span><span class="cvss-tag">CVSS 9.8</span> &nbsp;<span class="cve-tag">CVE-2026-50242</span> &nbsp;<span class="cve-tag">CVE-2026-56142</span></p>
+      <p>On <strong>June 24</strong>, an attacker pushed malicious versions of 20 npm packages in the Leo Platform ecosystem in a coordinated burst spanning less than three seconds. Every package carried an identical CI/CD attack toolkit that scrapes secrets from GitHub Actions runners, cloud credential stores, package registries, and password managers — then exfiltrates them through the <em>victim’s own GitHub token</em>.</p>
       <br>
-      <p>JetBrains shipped fixes for a pile of critical vulnerabilities across its on-premise ecosystem. The headliner: <strong>Hub account-restore codes were generated with a weak RNG</strong>, letting an unauthenticated attacker enumerate valid codes and take over any account — including admin. A second flaw allowed auth bypass via direct database access, and a third let attackers attach their own authentication details to existing accounts.</p>
-      <br>
-      <p>The IDE side is worse for individual devs: <strong>GoLand executed attacker-controlled logic from untrusted project configuration just by opening a project</strong>, Kotlin had unsafe deserialization in build-cache metadata that ran code during builds, and IntelliJ IDEA carried command injection through filename completion. Sound familiar? It's the same lesson as last week's MCP auto-exec: your IDE treats project files as trusted, and attackers noticed years before the vendors did.</p>
+      <p>It’s the latest limb of the Shai-Hulud / “Miasma” worm family we flagged around the SAP and Hugging Face incidents. Earlier in June it hit ~32 <code>@redhat-cloud-services</code> packages (~80K weekly downloads) by way of a compromised employee GitHub account pushing orphan commits with valid SLSA provenance. Legit signatures, malicious code.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">A compromised IDE isn't one machine — it's your source, your SSH keys, your API tokens, and your deploy pipeline in one seat. Between Cursor, JetBrains, and Issue #11's four MCP auto-runners, the score for the past fortnight is: <em>every major way developers open code has shipped an "opening code runs code" bug.</em></div>
+      <div class="matters-text">Provenance and “verified publisher” badges no longer mean safe — the attacker rode real accounts and real signing. And it self-propagates: one compromised CI run steals a token that publishes the next batch. A worm that spreads through <em>your</em> automation doesn’t need you to fall for anything twice.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Update all JetBrains IDEs (IntelliJ, GoLand, PyCharm, WebStorm, Rider, etc.) and Kotlin toolchains now.</li>
-      <li>Self-hosting Hub, YouTrack, or TeamCity? Patch immediately — the Hub takeover needs no auth.</li>
-      <li>Audit Hub/YouTrack admin accounts and sessions for restores or logins you don't recognize.</li>
-      <li>Use per-project "trusted project" prompts honestly — don't reflex-click trust on cloned repos.</li>
+      <li>Pin exact versions and enable <code>npm ci</code> with a committed lockfile — no floating ranges.</li>
+      <li>Scope GitHub Actions <code>GITHUB_TOKEN</code> to read-only by default; gate publish behind manual approval.</li>
+      <li>Audit installs from the last two weeks against the Red Hat / Leo Platform IOC lists.</li>
+      <li>Move npm publish tokens to short-lived OIDC and rotate long-lived CI secrets now.</li>
     </ul>
   </article>
 
-  <!-- STORY 3: POLINRIDER DPRK SUPPLY CHAIN -->
+  <!-- STORY 3: SIMPLEHELP KEV + DJINN STEALER -->
   <article class="article-card purple">
     <div class="article-num">03</div>
     <div class="article-meta">
-      <span class="badge breach">Supply Chain · Nation-State</span>
-      <span class="article-source">Via <a href="https://threat-modeling.com/vulnerability-intelligence-report-july-6-2026/" target="_blank">Threat-Modeling.com</a></span>
+      <span class="badge breach">CISA KEV · Active Exploitation</span>
+      <span class="article-source">Via <a href="https://www.cisa.gov/news-events/alerts/2026/06/29/cisa-adds-one-known-exploited-vulnerability-catalog" target="_blank">CISA</a> · <a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-critical-simplehelp-flaw-deploy-new-djinn-infostealer-taskweaver-malware/" target="_blank">BleepingComputer</a></span>
     </div>
-    <h2 class="article-title">North Korea's "PolinRider" Campaign Goes Multi-Registry — 108 Malicious Packages Across npm, Packagist, Go Modules and a Chrome Extension</h2>
+    <h2 class="article-title">SimpleHelp Auth Bypass Added to CISA KEV — Dropping a Stealer That Specifically Hunts Developer &amp; AI-Tool Tokens</h2>
     <div class="article-body">
-      <p>The DPRK-linked campaign tracked as <strong>PolinRider</strong> was mapped this week at <strong>108 malicious packages and 162 total artifacts</strong>: 19 on npm, 10 on Packagist, 61 Go modules, and a Chrome extension. Entry point is the long-running "Contagious Interview" playbook — fake recruiters send a take-home coding task whose repo or dependency tree pulls the malware in — plus compromised maintainer accounts publishing under real names.</p>
+      <p><span class="cve-tag">CVE-2026-48558</span></p>
       <br>
-      <p>This lands three weeks after the same country's Sapphire Sleet crew republished 140+ packages in the Mastra AI scope, and it closes the loop on a trend we've tracked since the Shai-Hulud worm coverage: supply-chain attackers no longer live on npm alone. If your lockfile spans ecosystems, so does your attack surface — Go and PHP devs don't get to skim this section anymore.</p>
+      <p>CISA added a SimpleHelp authentication-bypass flaw to its Known Exploited Vulnerabilities catalog on <strong>June 29</strong>. The bug lets an unauthenticated attacker create highly privileged technician accounts on internet-facing SimpleHelp (OIDC) servers — instant admin on the remote-management platform. Roughly 1,000 vulnerable instances were exposed at disclosure.</p>
+      <br>
+      <p>Post-exploitation drops a JavaScript loader (“TaskWeaver”) and the new cross-platform <strong>Djinn Stealer</strong> (Windows/macOS/Linux) that, per BleepingComputer, focuses on <em>developer credentials, AI-tooling tokens, and crypto wallets</em>. That target list is basically this newsletter’s audience.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">The "npm problem" is now an <em>every-registry</em> problem, and the initial access is aimed straight at developers — a job offer, a take-home task, a repo you're told to run. Combine that with last story's "opening a project is code execution" and the take-home interview is a remarkably efficient exploit chain.</div>
+      <div class="matters-text">Stealers have officially added “AI-tooling tokens” to the loot table next to browser cookies and wallets. Your OpenAI/Anthropic keys, npm tokens, and CI secrets are now first-class targets — and a KEV listing means this is being exploited right now, not theoretically.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Run recruiter take-home tasks in a disposable VM — never on the machine with your keys.</li>
-      <li>Adopt a minimum package-age policy (e.g. 7+ days) across npm, Packagist, and Go proxies.</li>
-      <li>Audit Go module and Composer dependencies too — scanning only package.json is half a scan.</li>
-      <li>Check installed browser extensions against your org's allowlist; the campaign shipped one.</li>
+      <li>Patch SimpleHelp immediately and invalidate any unrecognized technician sessions.</li>
+      <li>Treat AI API keys like production secrets: vault them, don’t leave them in plaintext dotfiles.</li>
+      <li>Rotate credentials and API keys on any host touched by an affected SimpleHelp server.</li>
+      <li>Enforce MFA on your model-provider dashboards and set spend/usage alerts.</li>
     </ul>
   </article>
 
@@ -794,72 +794,72 @@
     <h3>Signals &amp; Intel</h3>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">npm v12 Will Stop Auto-Running Code on Install</strong> — npm's security-focused v12 release, expected this month, disables install scripts by default and blocks silent pulls from external repos unless explicitly allowed. After the worm season we've chronicled since May, the registry is finally killing its own <code>postinstall</code> footgun. Experts say it's not enough; it's still the best npm news this year.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px"><a href="https://cybernews.com/security/npm-security-overhaul-adress-supply-chain-attacks/" target="_blank" style="color:var(--muted);text-decoration:none;">Cybernews</a></span></div>
+      <div><strong style="color:#fff">OWASP: Prompt Injection May Be Structural, Not a Bug to Patch</strong> — OWASP’s <em>State of Agentic AI Security &amp; Governance v2.01</em> (June 11) argues LLMs can’t reliably separate trusted commands from untrusted data because both arrive as the same token stream. Prompt-injection reports are up ~340% YoY. We’ve called it OWASP #1 since Issue #7; OWASP now calls it possibly permanent.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px">OWASP · Help Net Security</span></div>
     </div>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">SharePoint RCE Joins CISA KEV</strong> — <span class="cve-tag">CVE-2026-45659</span> (CVSS 8.8, deserialization RCE) was added with a July 4 federal deadline amid active exploitation. Microsoft patched it in May but didn't disclose it until weeks later. Last week's SimpleHelp KEV entry (<span class="cve-tag">CVE-2026-48558</span>) blew past its July 2 deadline with the TaskWeaver loader still dropping.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px"><a href="https://thehackernews.com/2026/07/sharepoint-rce-cve-2026-45659-added-to.html" target="_blank" style="color:var(--muted);text-decoration:none;">The Hacker News</a> · CISA</span></div>
+      <div><strong style="color:#fff">CISA KEV Had a Busy Week</strong> — Ubiquiti UniFi OS trio <code>CVE-2026-34908/34909/34910</code> (June 23), Cisco Unified Communications Manager SSRF <code>CVE-2026-20230</code>, and Google Chromium V8 <code>CVE-2026-11645</code> all landed on the catalog. If you self-host UniFi or run Chrome-based tooling, patch cycle this week.</div>
     </div>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">Ransomware Crews Now Run Their Own Agents</strong> — the "JadePuffer" ransomware operation was observed using an AI agent to automate its entire attack lifecycle, from initial access to encryption. The defenders' copilots have officially met their counterparts. Elsewhere in patch-now land: Adobe shipped fixes for 11 critical ColdFusion flaws — six of them a perfect CVSS 10.0, all unauthenticated RCE.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px"><a href="https://threat-modeling.com/vulnerability-intelligence-report-july-6-2026/" target="_blank" style="color:var(--muted);text-decoration:none;">Threat-Modeling.com</a></span></div>
+      <div><strong style="color:#fff">MCP Is Now a Named Supply Chain</strong> — Researchers keep flagging systemic RCE risk baked into MCP SDK patterns across 7,000+ public servers. The takeaway from a month of coverage: treat any MCP server like an npm dependency with shell access, because that’s what it is.</div>
     </div>
   </div>
 
   <!-- SKILL PROMPTS -->
   <div class="section-label">Security Skill Prompts</div>
-  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, GPT, Cursor, or your coding assistant. Tuned for this week's zero-click-editor-RCE + multi-registry reality.</p>
+  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, GPT, Cursor, or your coding assistant. Tuned for last week’s MCP-auto-exec + npm-worm reality.</p>
 
   <div class="prompts-section">
 
     <div class="prompt-card">
       <div class="prompt-card-header">
         <div class="prompt-topic">
-          <div class="prompt-icon cyan">🏖️</div>
+          <div class="prompt-icon cyan">🔌</div>
           <div>
-            <div class="prompt-title">Agent Sandbox Escape Audit</div>
-            <div class="prompt-subtitle">Cursor DuneSlide class flaw</div>
+            <div class="prompt-title">MCP Config Auto-Execution Audit</div>
+            <div class="prompt-subtitle">Amazon Q / Claude Code / Windsurf class flaw</div>
           </div>
         </div>
         <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
       <div class="prompt-box">
-<span class="hl-cyan">Audit my AI coding agent setup for the DuneSlide class of sandbox escapes (Cursor CVE-2026-50548 / CVE-2026-50549, July 2026): prompt injection from MCP responses or web results steering file writes outside the project.</span>
+<span class="hl-cyan">Audit how my AI coding setup handles repo-provided MCP servers and tool configs, in light of the June 2026 auto-execution CVEs (Amazon Q CVE-2026-12957, Claude Code, Windsurf).</span>
 
 <span class="hl-muted">Check for:</span>
-<span class="hl-green">1.</span> Terminal/file tools that accept path or working-directory overrides
-<span class="hl-green">2.</span> Symlink creation that can point outside the workspace
-<span class="hl-green">3.</span> Auto-run / YOLO modes with no human gate on writes or shells
-<span class="hl-green">4.</span> MCP servers and web-fetch tools whose output the agent trusts as instructions
+<span class="hl-green">1.</span> Any MCP/tool config that auto-loads when a workspace opens
+<span class="hl-green">2.</span> Child processes inheriting my shell env (AWS keys, tokens)
+<span class="hl-green">3.</span> Whether untrusted repos can register tool servers without approval
+<span class="hl-green">4.</span> Sandbox/container isolation for opening unknown repos
 
-<span class="hl-muted">Give me a locked-down config + the approval gates I'm missing.</span>
+<span class="hl-muted">Give me a hardened config + an approval gate.</span>
 
-<span class="hl-orange">[PASTE YOUR AGENT/EDITOR SETTINGS + MCP LIST HERE]</span></div>
+<span class="hl-orange">[PASTE YOUR TOOL/MCP CONFIG OR SETTINGS HERE]</span></div>
     </div>
 
     <div class="prompt-card">
       <div class="prompt-card-header">
         <div class="prompt-topic">
-          <div class="prompt-icon orange">📦</div>
+          <div class="prompt-icon orange">🪱</div>
           <div>
-            <div class="prompt-title">Multi-Registry Supply Chain Audit</div>
-            <div class="prompt-subtitle">PolinRider / Contagious Interview class</div>
+            <div class="prompt-title">npm / CI Secret-Exfiltration Audit</div>
+            <div class="prompt-subtitle">Shai-Hulud / Miasma worm class</div>
           </div>
         </div>
         <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
       <div class="prompt-box">
-<span class="hl-orange">Review my project's full dependency surface for the multi-registry supply-chain pattern seen in the July 2026 PolinRider campaign (npm + Packagist + Go modules + browser extensions).</span>
+<span class="hl-orange">Review my package + CI/CD setup for the self-spreading npm supply-chain worm pattern seen in June 2026 (Red Hat / Leo Platform).</span>
 
 <span class="hl-muted">Look for:</span>
-<span class="hl-green">1.</span> Recently published or low-download packages across ALL my ecosystems, not just npm
-<span class="hl-green">2.</span> Install/build hooks (postinstall, composer scripts, go:generate) with network or filesystem reach
-<span class="hl-green">3.</span> Dependencies added around any take-home task, tutorial, or recruiter repo I've run
-<span class="hl-green">4.</span> Missing minimum package-age or provenance policy in my CI
+<span class="hl-green">1.</span> Floating version ranges and missing/uncommitted lockfile
+<span class="hl-green">2.</span> Install/postinstall scripts making network calls or reading secrets
+<span class="hl-green">3.</span> Over-scoped GITHUB_TOKEN or long-lived publish tokens in Actions
+<span class="hl-green">4.</span> Any workflow that can publish packages without manual approval
 
-<span class="hl-muted">Return a prioritized removal/verify list + a policy I can enforce.</span>
+<span class="hl-muted">Return a locked-down workflow + a rotation checklist.</span>
 
-<span class="hl-orange">[PASTE YOUR package.json / composer.json / go.mod HERE]</span></div>
+<span class="hl-orange">[PASTE YOUR package.json + CI WORKFLOW HERE]</span></div>
     </div>
 
   </div>
@@ -868,7 +868,7 @@
   <footer>
     <div class="footer-brand">AI<span>Security</span>Daily</div>
     <div class="footer-copy">
-      Issue #12 · Weekly Recap · July 7, 2026<br>
+      Issue #11 · Weekly Recap · July 1, 2026<br>
       For vibe coders who ship secure.
     </div>
   </footer>
