@@ -1,6 +1,4 @@
-# AI Vibe Coding Security — Daily Threat Intel Newsletter
-
-![AI Vibe Coding Security](./assets/logo.jpg)
+# AI Vibe Coding Security — Threat Intel Newsletter
 
 > **Threat intel for builders who ship fast.**
 > Real security news, explained for developers — with AI prompts you can use *right now* to audit your own code.
@@ -13,28 +11,46 @@ The most recent report is always live at:
 
 **👉 [https://bitmousekatze.github.io/AISecurityDaily/](https://bitmousekatze.github.io/AISecurityDaily/)**
 
-`index.html` in the root of this repo is updated each day with the newest issue. GitHub Pages serves it automatically — just bookmark the link above and check back daily.
+`index.html` in the root of this repo is always the newest issue. GitHub Pages serves it automatically — bookmark the link above and check back.
+
+**Current: Issue #13 · July 9, 2026** — China's vulnerability database vs. the Claude Code "backdoor" · hijacked Ollama servers powering automated exploit rigs · Gitea's trust-everyone Docker default under active probing.
 
 ---
 
-## 🗂 Archive — Recent Issues
+## ☢ Underground Security
 
-Past issues are stored in the [`/Recent`](./Recent/) folder. Each file is a fully self-contained HTML page (no external dependencies) so you can open any of them offline too.
+Every issue ships with a companion page: **[Underground Security](https://bitmousekatze.github.io/AISecurityDaily/undergroundSecurity.html)** — the Satire Division. Same real stories, same real CVEs, none of the professional restraint. Nuclear-scale dark humor rating, week-in-body-count scoreboard, day-by-day doom timeline. Not suitable for LinkedIn.
+
+---
+
+## 🗂 Archive — Past Issues
+
+Past issues are stored in the [`/Recents`](./Recents/) folder as fully self-contained HTML pages (open them offline if you like — note that links *between* archived pages may not resolve).
 
 | Date | Issue | Topics Covered |
 |------|-------|----------------|
-| [May 2, 2026](./Recent/2026-05-02.html) | #001 | Trellix repo breach · SAP npm supply-chain attack · ConsentFix v3 OAuth exploit |
+| [Jul 7, 2026](./Recents/Jul7/index.html) | #12 | Weekly recap: Cursor "DuneSlide" zero-click RCE · JetBrains critical cluster · DPRK "PolinRider" multi-registry campaign |
+| [Jul 1, 2026](./Recents/Jul1/index.html) | #11 | Weekly recap: AI editors auto-running repo MCP configs (Amazon Q, Claude Code, Windsurf) |
+| [May 12, 2026](./Recents/may12/index.html) | #10 | Mini Shai-Hulud npm worm hits AI tooling (TanStack, Mistral, Guardrails et al.) |
+| [May 10, 2026](./Recents/may9/index.html) | #9 | "Prompts Become Shells" — agent framework RCE in the wild |
+| [May 9, 2026](./Recents/may8/index.html) | #8 | ClaudeBleed Chrome extension takeover · Comment & Control exploitation |
+| [May 7, 2026](./Recents/may7/index.html) | #6 | Comment & Control: one GitHub comment hijacks Claude Code, Gemini CLI & Copilot |
+| [May 6, 2026](./Recents/May6/index.html) | #5 | 1 million exposed AI services scanned — worst security posture ever measured |
+| [May 5, 2026](./Recents/May5/index.html) | #4 | Grok wallet drained by prompt injection |
+| [May 4, 2026](./Recents/May4/index.html) | #3 | The patch wave · CISA agentic AI guidance |
+| [May 3, 2026](./Recents/May3/index.html) | #2 | Linux root-access flaw hits KEV · ALPHV sentencing · NSA tests Mythos AI |
+| [May 2, 2026](./Recents/May2-2026/May2ndMorningBreif.html) | #1 | Trellix repo breach · SAP npm supply-chain attack · ConsentFix v3 OAuth exploit |
 
-> New rows are added here each day when a previous issue is archived.
+Archived Underground Security editions: [May 10](./Recents/underground-may10.html) · [Jul 7](./Recents/Jul7/undergroundSecurity.html)
 
 ---
 
 ## 📋 What's in Each Issue
 
-Every daily report covers the **last 12–24 hours** of security news filtered for developers and builders. Each story includes:
+Issues started daily (May 2026) and now ship as **weekly recaps plus midweek specials** when the news doesn't wait. Every issue covers security news filtered for developers and builders. Each story includes:
 
 - **What happened** — the incident, plain English
-- **Why it matters for builders** — direct relevance to your code and stack
+- **Why it matters for vibe coders** — direct relevance to your code and stack
 - **Action items** — concrete things you can do today
 - **AI prompts** — copy-paste prompts for Claude, ChatGPT, or your AI assistant to audit *your own project* for the same vulnerability
 
@@ -43,23 +59,26 @@ Every daily report covers the **last 12–24 hours** of security news filtered f
 ## 🔄 How This Repo Works
 
 ```
-aivibe-security/
+AISecurityDaily/
 │
-├── index.html          ← Today's issue (always the latest)
-├── README.md           ← You are here
-├── assets/
-│   └── logo.jpg        ← Brand assets
+├── index.html                ← Current issue (always the latest)
+├── undergroundSecurity.html  ← Satire Division companion (refreshed each issue)
+├── README.md                 ← You are here
 │
-└── Recent/
-    ├── 2026-05-02.html ← Archived issues, one file per day
-    ├── 2026-05-03.html
+└── Recents/
+    ├── Jul7/                 ← Archived issues, one folder per edition
+    │   ├── index.html
+    │   └── undergroundSecurity.html
+    ├── Jul1/
+    ├── may12/
     └── ...
 ```
 
-**Daily workflow:**
-1. Current `index.html` is moved to `Recent/YYYY-MM-DD.html`
-2. New `index.html` is published with the day's threat intel
-3. The archive table above is updated with a link to the archived issue
+**Edition workflow:**
+1. Current `index.html` is archived to `Recents/<MonDD>/index.html`
+2. New `index.html` is published with the latest threat intel
+3. `undergroundSecurity.html` gets a satire refresh for the same coverage window
+4. The archive table above gets a new row
 
 ---
 
@@ -78,18 +97,18 @@ The prompts are written to be **stack-agnostic** — they work whether you're bu
 
 ## 📬 Stay Updated
 
-- **Star this repo** to get notified of daily updates
-- **Watch → Custom → Releases** if you only want weekly digests
+- **Star this repo** to get notified of new issues
+- **Watch → Custom → Releases** if you only want occasional digests
 - Issues or suggestions? Open a [GitHub Issue](../../issues)
 
 ---
 
 ## ⚠️ Disclaimer
 
-This newsletter is for **educational purposes**. Threat intelligence is sourced from public security news outlets (The Hacker News, BleepingComputer, SecurityOnline, etc.) and curated for a developer audience. Always verify CVEs and advisories against official vendor sources before taking action in production.
+This newsletter is for **educational purposes**. Threat intelligence is sourced from public security news outlets (The Hacker News, BleepingComputer, CISA, vendor blogs, etc.) and curated for a developer audience. Always verify CVEs and advisories against official vendor sources before taking action in production. The Underground Security page is satire — the CVEs in it are unfortunately real.
 
 ---
 
 <p align="center">
-  <sub>Built with ☕ and mild existential dread about npm packages &nbsp;·&nbsp; AI Vibe Coding Security &nbsp;·&nbsp; Published daily</sub>
+  <sub>Built with ☕ and mild existential dread about npm packages &nbsp;·&nbsp; AI Vibe Coding Security &nbsp;·&nbsp; We laugh so we don't cry</sub>
 </p>
