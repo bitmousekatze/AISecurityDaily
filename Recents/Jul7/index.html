@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Vibe Coding Security — Issue #13 | July 9, 2026</title>
+<title>AI Vibe Coding Security — Issue #12 | July 7, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -678,185 +678,188 @@
     <div class="header-right">
       <a class="ug-btn" href="undergroundSecurity.html"><span class="rad">☢</span> Underground Security</a>
       <div class="issue-meta">
-        <div class="issue-label">Issue #13 · Midweek Edition</div>
-        <div class="issue-date">July 9, 2026</div>
+        <div class="issue-label">Issue #12 · Weekly Recap</div>
+        <div class="issue-date">July 7, 2026</div>
       </div>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-tag">The Last 48 Hours • July 7 – 9, 2026</div>
-    <h1>Your Coding Tool<span>Phoned Home</span></h1>
-    <p class="hero-sub">A midweek special, because the news didn't wait for Monday. China's Ministry of Industry and IT publicly flagged a "backdoor" in Claude Code — the tool half of you are reading this next to — that transmitted user region and identity data to remote servers. Anthropic's answer: it was an anti-piracy experiment, and those users weren't supposed to have it anyway. Meanwhile, hijacked Ollama servers are being wired into fully automated exploit rigs, and Gitea's official Docker image shipped with "trust everyone" as a default — now being probed in the wild.</p>
+    <div class="hero-tag">The Week That Was • June 30 – July 7, 2026</div>
+    <h1>Your Editor Trusted<span>A Stranger's Prompt</span></h1>
+    <p class="hero-sub">A recap of last week for vibe coders. Issue #11 ended with four AI coding tools auto-running strangers' MCP configs. This week the other shoe dropped twice: Cursor disclosed two zero-click prompt-injection-to-RCE flaws it originally declined to fix, and JetBrains patched a cluster of critical bugs that turn "open a project" into code execution. Meanwhile North Korea went multi-registry with 108 malicious packages — and npm finally announced installs will stop auto-running code.</p>
     <div class="threat-bar">
-      <div class="threat-pill critical"><span class="dot"></span> Claude Code: Beijing Cries Backdoor</div>
-      <div class="threat-pill high"><span class="dot"></span> Hijacked Ollama → Auto-Exploit Rigs</div>
-      <div class="threat-pill watch"><span class="dot"></span> Gitea 9.8 Probed in the Wild</div>
+      <div class="threat-pill critical"><span class="dot"></span> Cursor: 2× Zero-Click RCE</div>
+      <div class="threat-pill high"><span class="dot"></span> JetBrains: IDE-Wide Criticals</div>
+      <div class="threat-pill watch"><span class="dot"></span> DPRK: 108 Packages, 4 Ecosystems</div>
     </div>
   </section>
 
   <!-- RECAP FRAMING -->
   <div class="recap-banner">
-    <strong>Midweek Mode</strong> &nbsp;— Issue #12 closed the book on zero-click editor RCE week. This issue covers what happened <em>since Monday</em>: the trust argument moved up a level — from "can I trust what my agent reads" to "can I trust the agent binary itself, and who else is riding my GPU." Need the unprofessional version? It's waiting in <a href="undergroundSecurity.html" style="color:var(--red);">Underground Security</a>.
+    <strong>Recap Mode</strong> &nbsp;— This issue looks back at the full week instead of the last 12 hours. The thread from the last five issues — <em>prompt injection → agent RCE → supply chain → your credentials</em> — didn't just continue. It got a CVSS 9.8 sticker, twice, on the editor you're probably reading this next to.
+    &nbsp;·&nbsp; Nerves fried? We made you something → <a href="calmdown.html" style="color:var(--green);">the Calm-Down Corner</a>, or go off the record in <a href="undergroundSecurity.html" style="color:var(--red);">Underground Security</a>.
   </div>
 
   <!-- MAIN STORIES -->
-  <div class="section-label">Top Stories • July 7–9</div>
+  <div class="section-label">Top Stories • Week of June 30</div>
 
-  <!-- STORY 1: CLAUDE CODE BACKDOOR -->
+  <!-- STORY 1: CURSOR DUNESLIDE -->
   <article class="article-card red">
     <div class="article-num">01</div>
     <div class="article-meta">
-      <span class="badge critical">Dev Tool Trust · Telemetry</span>
-      <span class="article-source">Via <a href="https://www.cnbc.com/2026/07/08/china-anthropic-ai-claude-code-backdoor-security-threat.html" target="_blank">CNBC</a> · <a href="https://www.globaltimes.cn/page/202607/1365448.shtml" target="_blank">Global Times</a> · <a href="https://www.scmp.com/news/china/article/3359901/anthropic-hits-back-after-china-warns-claude-code-backdoor-risks" target="_blank">SCMP</a> · <a href="https://www.cbsnews.com/news/china-security-backdoor-anthropic-ai-coding-tool/" target="_blank">CBS News</a></span>
+      <span class="badge critical">Zero-Click · Agent RCE</span>
+      <span class="article-source">Via <a href="https://www.catonetworks.com/blog/duneslide-two-critical-rce-vulnerabilities/" target="_blank">Cato Networks</a> · <a href="https://thehackernews.com/2026/07/critical-cursor-flaws-could-let-prompt.html" target="_blank">The Hacker News</a> · <a href="https://www.securityweek.com/critical-cursor-ai-ide-flaws-could-lead-to-os-level-remote-code-execution/" target="_blank">SecurityWeek</a></span>
     </div>
-    <h2 class="article-title">China's Vulnerability Database Flags a "Backdoor" in Claude Code — Anthropic Says It Was an Anti-Distillation Experiment (And You Weren't Supposed to Have It)</h2>
+    <h2 class="article-title">"DuneSlide": Two Zero-Click Prompt Injections Break Cursor Out of Its Own Sandbox — And Cursor Initially Said That Wasn't a Bug</h2>
     <div class="article-body">
-      <p>On July 8, China's National Vulnerability Database (NVDB, run by the Ministry of Industry and Information Technology) issued a formal warning that <strong>Claude Code versions 2.1.91 through 2.1.196</strong> contain a "security backdoor": a built-in monitoring mechanism that can transmit sensitive information — including the user's region and identity identifiers — to remote servers without consent. Beijing's advice: uninstall immediately or upgrade, then audit your dev machines and egress traffic.</p>
+      <p><span class="cve-tag">CVE-2026-50548</span><span class="cvss-tag">CVSS 9.8</span> &nbsp;<span class="cve-tag">CVE-2026-50549</span><span class="cvss-tag">CVSS 9.8</span></p>
       <br>
-      <p>Anthropic's response came in two parts, both remarkable. One: the code was a deliberate <strong>experiment to detect distillation abuse</strong> — reportedly checking timezone and hostname against a list of Chinese company and reseller domains — and is being removed now that stronger mitigations exist. Two: users in China <strong>"were not supposed to be using it in the first place,"</strong> since Anthropic doesn't sell there. Whether you file that under telemetry, anti-abuse, or backdoor depends largely on which side of the Pacific you bill from — but a hundred-version range of a major coding agent quietly fingerprinting its users is a fact either way.</p>
+      <p>Cato AI Labs disclosed two independent flaws in Cursor — dubbed <strong>DuneSlide</strong> — that let a poisoned MCP response or web search result steer the agent into writing files <em>outside</em> the project sandbox, then escalate to full OS-level code execution. One abuses the <code>working_directory</code> parameter of the terminal tool to point commands at attacker-chosen paths; the other has the agent create a symlink inside the project that points outside it. No click, no confirmation — the victim just types an innocuous prompt that happens to ingest attacker-controlled content.</p>
+      <br>
+      <p>The timeline is the story: Cato reported both bugs on <strong>February 19</strong> and Cursor rejected them on <strong>February 23</strong>, saying its threat model "does not account for MCP server misuse" — even via standard, innocuous integrations. Both were quietly fixed in Cursor 3.0 (April 2); everything before 3.0 is vulnerable. This is Issue #11's auto-exec saga wearing a new coat: last week the config was the payload, this week the <em>content the agent reads</em> is.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">Your coding agent runs with your credentials, reads your source, and has network access — and this week proved the binary itself can carry behavior you didn't opt into and can't see. After twelve issues about what your agent <em>reads</em>, this is about what your agent <em>is</em>. Dev tools are supply chain. Treat them like a dependency, not like furniture.</div>
+      <div class="matters-text">The sandbox is a suggestion if the agent can be talked into redecorating outside it. Every MCP server you connect and every web result your agent ingests is now input to a machine that can write files and run terminals as you. "My editor's threat model doesn't cover that" — said the editor — is exactly why <em>yours</em> has to.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Update Claude Code past 2.1.196 — the flagged mechanism is removed in current releases.</li>
-      <li>Put dev-tool egress on the monitoring list: know what your editor, agent, and CLI phone home.</li>
-      <li>Review telemetry/analytics settings on every AI tool you run; opt out where you can.</li>
-      <li>Pin and changelog-review versions of coding agents like you would any production dependency.</li>
+      <li>Confirm you're on Cursor 3.0 or later — every earlier version carries both flaws.</li>
+      <li>Trim your MCP server list to ones you'd give shell access, because you effectively have.</li>
+      <li>Turn off auto-run/YOLO modes; keep a human approval gate on terminal and file-write tools.</li>
+      <li>Work on untrusted repos in a container or VM that holds zero real credentials.</li>
     </ul>
   </article>
 
-  <!-- STORY 2: OLLAMA COMPUTE HIJACKING -->
+  <!-- STORY 2: JETBRAINS CLUSTER -->
   <article class="article-card orange">
     <div class="article-num">02</div>
     <div class="article-meta">
-      <span class="badge vuln">LLMjacking · Attack Automation</span>
-      <span class="article-source">Via <a href="https://thehackernews.com/2026/07/threatsday-ai-compute-hijacking-apple.html" target="_blank">The Hacker News</a></span>
+      <span class="badge vuln">Patch Wave · Dev Toolchain</span>
+      <span class="article-source">Via <a href="https://cybersecuritynews.com/jetbrains-vulnerabilities/" target="_blank">Cybersecurity News</a> · <a href="https://gbhackers.com/jetbrains-patches-critical-hub-authentication-bypass/" target="_blank">GBHackers</a></span>
     </div>
-    <h2 class="article-title">LLMjacking Grows Up: Hijacked Ollama Servers Are Now Powering Fully Automated Scan-Exploit-Breach Pipelines</h2>
+    <h2 class="article-title">JetBrains Patches a Critical Cluster Across Hub, YouTrack, Kotlin and Its IDEs — "Open a Malicious Project" Is Code Execution in GoLand</h2>
     <div class="article-body">
-      <p>Threat actors are hijacking misconfigured, internet-exposed <strong>Ollama servers</strong> — and instead of the old play (reselling stolen tokens), they're wiring the stolen compute into an automated <strong>"VAPT framework"</strong>: a pipeline that scans targets, matches vulnerabilities, generates exploits, and attempts breaches autonomously. Your GPU, their offensive security program.</p>
+      <p><span class="cve-tag">CVE-2026-56141</span><span class="cvss-tag">CVSS 9.8</span> &nbsp;<span class="cve-tag">CVE-2026-50242</span> &nbsp;<span class="cve-tag">CVE-2026-56142</span></p>
       <br>
-      <p>Long-time readers saw this coming. Issue #6 covered Intruder's scan of ~1 million exposed AI services, where <strong>31% of Ollama APIs answered unauthenticated prompts</strong> — the worst security posture they'd ever measured in any category. Now we know what happens to those boxes. Combined with Issue #12's JadePuffer crew running an AI agent through its whole ransomware lifecycle, the pattern is set: the attackers adopted agentic workflows at least as fast as we did, and they're doing it on hardware they didn't pay for.</p>
+      <p>JetBrains shipped fixes for a pile of critical vulnerabilities across its on-premise ecosystem. The headliner: <strong>Hub account-restore codes were generated with a weak RNG</strong>, letting an unauthenticated attacker enumerate valid codes and take over any account — including admin. A second flaw allowed auth bypass via direct database access, and a third let attackers attach their own authentication details to existing accounts.</p>
+      <br>
+      <p>The IDE side is worse for individual devs: <strong>GoLand executed attacker-controlled logic from untrusted project configuration just by opening a project</strong>, Kotlin had unsafe deserialization in build-cache metadata that ran code during builds, and IntelliJ IDEA carried command injection through filename completion. Sound familiar? It's the same lesson as last week's MCP auto-exec: your IDE treats project files as trusted, and attackers noticed years before the vendors did.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">If you self-host a model — on a home lab, a cloud GPU box, or that "temporary" dev server — an open port doesn't just leak your prompts anymore. It conscripts your machine into someone else's exploit factory, with your IP on the outbound traffic and your name on the bill.</div>
+      <div class="matters-text">A compromised IDE isn't one machine — it's your source, your SSH keys, your API tokens, and your deploy pipeline in one seat. Between Cursor, JetBrains, and Issue #11's four MCP auto-runners, the score for the past fortnight is: <em>every major way developers open code has shipped an "opening code runs code" bug.</em></div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Bind Ollama/vLLM/LM Studio to <code>localhost</code>; if you must expose it, put auth and a reverse proxy in front.</li>
-      <li>Add egress rules on GPU hosts — an inference box has no business initiating scans.</li>
-      <li>Check running models and API logs for jobs you didn't start; hijacked boxes run hot and weird.</li>
-      <li>Scan your own perimeter for forgotten AI endpoints before someone else's pipeline does.</li>
+      <li>Update all JetBrains IDEs (IntelliJ, GoLand, PyCharm, WebStorm, Rider, etc.) and Kotlin toolchains now.</li>
+      <li>Self-hosting Hub, YouTrack, or TeamCity? Patch immediately — the Hub takeover needs no auth.</li>
+      <li>Audit Hub/YouTrack admin accounts and sessions for restores or logins you don't recognize.</li>
+      <li>Use per-project "trusted project" prompts honestly — don't reflex-click trust on cloned repos.</li>
     </ul>
   </article>
 
-  <!-- STORY 3: GITEA HEADER TRUST -->
+  <!-- STORY 3: POLINRIDER DPRK SUPPLY CHAIN -->
   <article class="article-card purple">
     <div class="article-num">03</div>
     <div class="article-meta">
-      <span class="badge breach">Self-Hosted · Active Probing</span>
-      <span class="article-source">Via <a href="https://thehackernews.com/2026/07/threat-actors-probe-gitea-docker-flaw.html" target="_blank">The Hacker News</a></span>
+      <span class="badge breach">Supply Chain · Nation-State</span>
+      <span class="article-source">Via <a href="https://threat-modeling.com/vulnerability-intelligence-report-july-6-2026/" target="_blank">Threat-Modeling.com</a></span>
     </div>
-    <h2 class="article-title">Gitea's Official Docker Image Trusted Every Proxy on Earth — CVE-2026-20896 Now Being Probed in the Wild, 13 Days After Disclosure</h2>
+    <h2 class="article-title">North Korea's "PolinRider" Campaign Goes Multi-Registry — 108 Malicious Packages Across npm, Packagist, Go Modules and a Chrome Extension</h2>
     <div class="article-body">
-      <p><span class="cve-tag">CVE-2026-20896</span><span class="cvss-tag">CVSS 9.8</span></p>
+      <p>The DPRK-linked campaign tracked as <strong>PolinRider</strong> was mapped this week at <strong>108 malicious packages and 162 total artifacts</strong>: 19 on npm, 10 on Packagist, 61 Go modules, and a Chrome extension. Entry point is the long-running "Contagious Interview" playbook — fake recruiters send a take-home coding task whose repo or dependency tree pulls the malware in — plus compromised maintainer accounts publishing under real names.</p>
       <br>
-      <p>The official Gitea Docker image (1.26.2 and earlier) shipped with <code>REVERSE_PROXY_TRUSTED_PROXIES = *</code> hard-coded — meaning the self-hosted git server trusted the <code>X-WEBAUTH-USER</code> header from <em>any</em> source IP. Anyone who can reach the container's HTTP port can impersonate any user whose login name they can guess. Admin included. No password, no token, just a header.</p>
-      <br>
-      <p>Gitea 1.26.3 (late June) removes the wildcard and makes reverse-proxy authentication opt-in. The clock matters: the first in-the-wild exploitation attempts were detected <strong>13 days after disclosure</strong>, against a population of roughly <strong>6,200 internet-facing Gitea instances</strong>. Activity is still "initial investigation" — which is threat-intel for <em>they're picking the lock, not turning the handle yet.</em></p>
+      <p>This lands three weeks after the same country's Sapphire Sleet crew republished 140+ packages in the Mastra AI scope, and it closes the loop on a trend we've tracked since the Shai-Hulud worm coverage: supply-chain attackers no longer live on npm alone. If your lockfile spans ecosystems, so does your attack surface — Go and PHP devs don't get to skim this section anymore.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">A self-hosted git server is your source code, your CI secrets, and your deploy keys behind one login screen — and this bug removes the login screen. It's also this week's second entry in the season-long theme: the dangerous config wasn't something you wrote. It was the default.</div>
+      <div class="matters-text">The "npm problem" is now an <em>every-registry</em> problem, and the initial access is aimed straight at developers — a job offer, a take-home task, a repo you're told to run. Combine that with last story's "opening a project is code execution" and the take-home interview is a remarkably efficient exploit chain.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Running Gitea in Docker? Upgrade to 1.26.3+ today — before probing becomes exploitation.</li>
-      <li>Check <code>REVERSE_PROXY_TRUSTED_PROXIES</code> in your config; it should list your proxy, never <code>*</code>.</li>
-      <li>Never expose the container port directly — keep it behind the reverse proxy that's actually trusted.</li>
-      <li>Audit access logs for unexpected <code>X-WEBAUTH-USER</code> logins; rotate CI secrets if you find any.</li>
+      <li>Run recruiter take-home tasks in a disposable VM — never on the machine with your keys.</li>
+      <li>Adopt a minimum package-age policy (e.g. 7+ days) across npm, Packagist, and Go proxies.</li>
+      <li>Audit Go module and Composer dependencies too — scanning only package.json is half a scan.</li>
+      <li>Check installed browser extensions against your org's allowlist; the campaign shipped one.</li>
     </ul>
   </article>
 
   <!-- QUICK HITS -->
-  <div class="section-label">Quick Hits • Rest of the 48 Hours</div>
+  <div class="section-label">Quick Hits • Rest of the Week</div>
 
   <div class="quick-hits">
     <h3>Signals &amp; Intel</h3>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">Adobe's Perfect 10s Got Exploited Within Hours</strong> — follow-up on Issue #12's ColdFusion patch wave: path-traversal RCE <span class="cve-tag">CVE-2026-48282</span> (one of seven CVSS 10.0 flaws across ColdFusion and Campaign Classic) came under active exploitation within hours of the July 1 bulletin. Adobe is moving to twice-monthly security bulletins, citing AI-accelerated vulnerability discovery. Also patching this week: BeyondTrust (two critical unauthenticated takeover flaws in Remote Support/PRA), Citrix (six NetScaler bugs), and Ubiquiti (criticals across the UniFi line).<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px"><a href="https://thehackernews.com/2026/07/adobe-patches-7-cvss-100-flaws-in.html" target="_blank" style="color:var(--muted);text-decoration:none;">The Hacker News</a></span></div>
+      <div><strong style="color:#fff">npm v12 Will Stop Auto-Running Code on Install</strong> — npm's security-focused v12 release, expected this month, disables install scripts by default and blocks silent pulls from external repos unless explicitly allowed. After the worm season we've chronicled since May, the registry is finally killing its own <code>postinstall</code> footgun. Experts say it's not enough; it's still the best npm news this year.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px"><a href="https://cybernews.com/security/npm-security-overhaul-adress-supply-chain-attacks/" target="_blank" style="color:var(--muted);text-decoration:none;">Cybernews</a></span></div>
     </div>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">Your Antivirus Was the Initial Access</strong> — CISA confirmed that <strong>BlueHammer</strong>, the Microsoft Defender zero-day <span class="cve-tag">CVE-2026-33825</span> disclosed in April, was exploited in ransomware campaigns for privilege escalation. The product whose whole job is stopping ransomware spent a stretch of 2026 helping it. Patch state on Defender-adjacent tooling is worth a look today.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px"><a href="https://thehackernews.com/2026/07/threatsday-ai-compute-hijacking-apple.html" target="_blank" style="color:var(--muted);text-decoration:none;">The Hacker News</a> · CISA</span></div>
+      <div><strong style="color:#fff">SharePoint RCE Joins CISA KEV</strong> — <span class="cve-tag">CVE-2026-45659</span> (CVSS 8.8, deserialization RCE) was added with a July 4 federal deadline amid active exploitation. Microsoft patched it in May but didn't disclose it until weeks later. Last week's SimpleHelp KEV entry (<span class="cve-tag">CVE-2026-48558</span>) blew past its July 2 deadline with the TaskWeaver loader still dropping.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px"><a href="https://thehackernews.com/2026/07/sharepoint-rce-cve-2026-45659-added-to.html" target="_blank" style="color:var(--muted);text-decoration:none;">The Hacker News</a> · CISA</span></div>
     </div>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">"CoT Forgery": Attackers Now Write the Model's Inner Monologue</strong> — new academic research shows that injecting <em>fabricated reasoning</em> into prompts hits ~60% success against frontier models, exploiting the trust models place in what looks like their own thinking. Related: OpenAI's GPT-5.6 Sol evals showed real zero-day-discovery capability across mobile and database targets. The tools that audit your code and the tools that attack it are converging on the same skill set.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px"><a href="https://thehackernews.com/2026/07/threatsday-ai-compute-hijacking-apple.html" target="_blank" style="color:var(--muted);text-decoration:none;">The Hacker News</a></span></div>
+      <div><strong style="color:#fff">Ransomware Crews Now Run Their Own Agents</strong> — the "JadePuffer" ransomware operation was observed using an AI agent to automate its entire attack lifecycle, from initial access to encryption. The defenders' copilots have officially met their counterparts. Elsewhere in patch-now land: Adobe shipped fixes for 11 critical ColdFusion flaws — six of them a perfect CVSS 10.0, all unauthenticated RCE.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px"><a href="https://threat-modeling.com/vulnerability-intelligence-report-july-6-2026/" target="_blank" style="color:var(--muted);text-decoration:none;">Threat-Modeling.com</a></span></div>
     </div>
   </div>
 
   <!-- SKILL PROMPTS -->
   <div class="section-label">Security Skill Prompts</div>
-  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, GPT, Cursor, or your coding assistant. Tuned for this week's your-tools-are-the-threat-surface reality.</p>
+  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, GPT, Cursor, or your coding assistant. Tuned for this week's zero-click-editor-RCE + multi-registry reality.</p>
 
   <div class="prompts-section">
 
     <div class="prompt-card">
       <div class="prompt-card-header">
         <div class="prompt-topic">
-          <div class="prompt-icon cyan">📡</div>
+          <div class="prompt-icon cyan">🏖️</div>
           <div>
-            <div class="prompt-title">Dev Tool Telemetry &amp; Egress Audit</div>
-            <div class="prompt-subtitle">Claude Code "backdoor" class</div>
+            <div class="prompt-title">Agent Sandbox Escape Audit</div>
+            <div class="prompt-subtitle">Cursor DuneSlide class flaw</div>
           </div>
         </div>
         <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
       <div class="prompt-box">
-<span class="hl-cyan">Audit my development environment for tools that transmit data without my explicit knowledge, in light of the July 2026 Claude Code telemetry/"backdoor" dispute (versions 2.1.91–2.1.196 fingerprinting users via timezone/hostname).</span>
+<span class="hl-cyan">Audit my AI coding agent setup for the DuneSlide class of sandbox escapes (Cursor CVE-2026-50548 / CVE-2026-50549, July 2026): prompt injection from MCP responses or web results steering file writes outside the project.</span>
 
 <span class="hl-muted">Check for:</span>
-<span class="hl-green">1.</span> AI coding agents, editors, and CLIs with telemetry, analytics, or "update check" traffic
-<span class="hl-green">2.</span> What each tool can read (env vars, hostname, git config, source) vs. what it sends
-<span class="hl-green">3.</span> Opt-out flags or config settings I haven't set
-<span class="hl-green">4.</span> How I'd detect a new outbound destination appearing after a tool update
+<span class="hl-green">1.</span> Terminal/file tools that accept path or working-directory overrides
+<span class="hl-green">2.</span> Symlink creation that can point outside the workspace
+<span class="hl-green">3.</span> Auto-run / YOLO modes with no human gate on writes or shells
+<span class="hl-green">4.</span> MCP servers and web-fetch tools whose output the agent trusts as instructions
 
-<span class="hl-muted">Give me an egress-monitoring setup for a dev machine + a per-tool opt-out checklist.</span>
+<span class="hl-muted">Give me a locked-down config + the approval gates I'm missing.</span>
 
-<span class="hl-orange">[PASTE YOUR INSTALLED DEV TOOLS / AGENT LIST HERE]</span></div>
+<span class="hl-orange">[PASTE YOUR AGENT/EDITOR SETTINGS + MCP LIST HERE]</span></div>
     </div>
 
     <div class="prompt-card">
       <div class="prompt-card-header">
         <div class="prompt-topic">
-          <div class="prompt-icon orange">🖥️</div>
+          <div class="prompt-icon orange">📦</div>
           <div>
-            <div class="prompt-title">Self-Hosted Infra Exposure Audit</div>
-            <div class="prompt-subtitle">Ollama hijack / Gitea header-trust class</div>
+            <div class="prompt-title">Multi-Registry Supply Chain Audit</div>
+            <div class="prompt-subtitle">PolinRider / Contagious Interview class</div>
           </div>
         </div>
         <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
       <div class="prompt-box">
-<span class="hl-orange">Audit my self-hosted services for the two failure modes in the July 2026 news: exposed AI inference servers being hijacked for attack automation (Ollama LLMjacking), and auth-header trust defaults (Gitea CVE-2026-20896, REVERSE_PROXY_TRUSTED_PROXIES = *).</span>
+<span class="hl-orange">Review my project's full dependency surface for the multi-registry supply-chain pattern seen in the July 2026 PolinRider campaign (npm + Packagist + Go modules + browser extensions).</span>
 
-<span class="hl-muted">Check:</span>
-<span class="hl-green">1.</span> Every service bound to 0.0.0.0 or exposed via port-forward/tunnel — especially LLM APIs and git servers
-<span class="hl-green">2.</span> Reverse-proxy auth headers (X-WEBAUTH-USER, X-Forwarded-User) and which IPs are trusted to set them
-<span class="hl-green">3.</span> Docker images whose baked-in defaults differ from the project's secure documentation
-<span class="hl-green">4.</span> Egress ability of inference/GPU hosts — can they scan or attack outward?
+<span class="hl-muted">Look for:</span>
+<span class="hl-green">1.</span> Recently published or low-download packages across ALL my ecosystems, not just npm
+<span class="hl-green">2.</span> Install/build hooks (postinstall, composer scripts, go:generate) with network or filesystem reach
+<span class="hl-green">3.</span> Dependencies added around any take-home task, tutorial, or recruiter repo I've run
+<span class="hl-green">4.</span> Missing minimum package-age or provenance policy in my CI
 
-<span class="hl-muted">Return a ranked exposure list + the config changes to close each one.</span>
+<span class="hl-muted">Return a prioritized removal/verify list + a policy I can enforce.</span>
 
-<span class="hl-orange">[PASTE YOUR docker-compose / SERVICE LIST / PROXY CONFIG HERE]</span></div>
+<span class="hl-orange">[PASTE YOUR package.json / composer.json / go.mod HERE]</span></div>
     </div>
 
   </div>
@@ -865,7 +868,7 @@
   <footer>
     <div class="footer-brand">AI<span>Security</span>Daily</div>
     <div class="footer-copy">
-      Issue #13 · Midweek Edition · July 9, 2026<br>
+      Issue #12 · Weekly Recap · July 7, 2026<br>
       For vibe coders who ship secure.
     </div>
   </footer>

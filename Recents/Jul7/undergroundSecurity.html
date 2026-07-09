@@ -607,9 +607,9 @@
 
   <!-- RATING BLOCK -->
   <div class="rating-block">
-    <div class="rating-eyebrow">Dark Humor Nuclear Scale Rating · July 7 – 9, 2026</div>
-    <div class="rating-number">9.1</div>
-    <div class="rating-label">Level <span class="highlight">"The Call Is Coming From Inside The Editor"</span></div>
+    <div class="rating-eyebrow">Dark Humor Nuclear Scale Rating · The Week of June 30 – July 7, 2026</div>
+    <div class="rating-number">9.8</div>
+    <div class="rating-label">Level <span class="highlight">"Zero-Click — You Didn't Even Do Anything"</span></div>
     <div class="rating-scale">
       <div class="scale-bar lit"></div>
       <div class="scale-bar lit"></div>
@@ -620,94 +620,136 @@
       <div class="scale-bar lit"></div>
       <div class="scale-bar lit"></div>
       <div class="scale-bar lit"></div>
-      <div class="scale-bar"></div>
+      <div class="scale-bar lit"></div>
     </div>
   </div>
 
   <!-- INTRO -->
   <div class="prose">
-    <p>Last week your editor believed strangers.</p>
-    <p>This week two superpowers got into a public argument about whose surveillance is in your editor, and the honest answer was <em>yes.</em></p>
-    <p>China's national vulnerability database — a government body — formally warned the world that Claude Code contained a <strong>backdoor</strong> shipping your region and identity to remote servers. Anthropic's rebuttal, and we are summarizing faithfully: it wasn't a backdoor, it was an <em>experiment</em>; the experiment is being removed; and also the affected users <strong>weren't supposed to be customers in the first place.</strong> Somewhere a philosophy department is fighting over whether code can be a vulnerability if the victim was unauthorized to be victimized.</p>
+    <p>Last week we joked that "open a repo" had become a code-execution decision.</p>
+    <p>This week the industry replied: <em>hold my sandbox.</em></p>
+    <p>Cursor disclosed two <strong>zero-click</strong> prompt injections — CVSS 9.8, both — where the attack is that your agent <em>reads something</em>. A poisoned MCP response. A web search result. That's it. That's the whole exploit. And the best part, the part that belongs in a museum: when researchers reported it in February, Cursor <strong>rejected the report in four days</strong>, because MCP misuse "does not fit the threat model." The threat model has since been updated. By the threat.</p>
   </div>
 
   <!-- THE HITS -->
   <ul class="incident-list">
     <li class="incident-item">
-      <div class="incident-icon">🚪</div>
-      <div class="incident-text"><strong>Claude Code "backdoor"</strong> — versions 2.1.91 through 2.1.196 quietly checked your timezone and hostname against a list of Chinese company domains and phoned the results home. Beijing calls it a backdoor. Anthropic calls it anti-distillation telemetry. Your firewall calls it Tuesday. One hundred and six versions. That's not a leak, that's a <em>release cadence</em>. <a href="index.html">Issue #13 →</a></div>
+      <div class="incident-icon">🏖️</div>
+      <div class="incident-text"><strong>Cursor "DuneSlide"</strong> — two zero-click prompt injections escape the sandbox and hand over your whole machine. <span class="cve" style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#ff2020;">CVE-2026-50548 · CVE-2026-50549 · CVSS 9.8 ×2</span>. Reported in February. Rejected in four days: not in the threat model. Narrator: it was in the threat model. <a href="index.html">Issue #12 →</a></div>
     </li>
     <li class="incident-item">
-      <div class="incident-icon">🖥️</div>
-      <div class="incident-text"><strong>Hijacked Ollama servers</strong> are now wired into automated scan-exploit-breach pipelines. Attackers took the exposed AI boxes we warned about in Issue #6, and instead of stealing tokens, they built the thing every CISO has wanted for a decade: a fully automated penetration testing program. It's just pointed the wrong way. And running on <em>your</em> GPU. <a href="index.html">Issue #13 →</a></div>
+      <div class="incident-icon">🧰</div>
+      <div class="incident-text"><strong>JetBrains</strong> patched a critical cluster across basically everything with its logo on it. GoLand ran attacker code when you <em>opened a project</em>. Hub generated account-recovery codes with a weak RNG, so anyone could recover <em>your</em> account, including admin. <span class="cve" style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#ff2020;">CVE-2026-56141 · CVSS 9.8</span> <a href="index.html">Issue #12 →</a></div>
     </li>
     <li class="incident-item">
-      <div class="incident-icon">🐳</div>
-      <div class="incident-text"><strong>Gitea's official Docker image</strong> shipped with <span class="cve" style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#ff2020;">REVERSE_PROXY_TRUSTED_PROXIES = *</span> — the asterisk that trusts the entire internet to tell it who's logged in. Send a header, become the admin. <span class="cve" style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#ff2020;">CVE-2026-20896 · CVSS 9.8</span>. Now being probed in the wild. <a href="index.html">Issue #13 →</a></div>
+      <div class="incident-icon">🎣</div>
+      <div class="incident-text"><strong>North Korea</strong> went multi-registry — <strong>108 malicious packages</strong> across npm, Packagist, Go modules, and one Chrome extension for the completionists. Delivery mechanism: a fake recruiter and a take-home assignment. The interview process is now an exploit chain, which honestly tracks. <a href="index.html">Issue #12 →</a></div>
     </li>
     <li class="incident-item">
-      <div class="incident-icon">🎆</div>
-      <div class="incident-text"><strong>Adobe</strong>'s July 1 patch drop — seven perfect CVSS 10.0s — got exploited <em>within hours</em> of disclosure. Adobe's response: move to twice-monthly security bulletins, because AI is finding bugs faster than the quarterly-PDF culture can absorb. The machines are speedrunning both sides of this now.</div>
+      <div class="incident-icon">🤖</div>
+      <div class="incident-text"><strong>"JadePuffer"</strong> ransomware deployed an AI agent that automates its entire attack lifecycle, initial access through encryption. Attackers now have agentic workflows too. Somewhere out there, a ransomware operator is arguing with his agent about hallucinated victim hostnames, and that thought is the only thing keeping us going.</div>
     </li>
     <li class="incident-item">
-      <div class="incident-icon">🧠</div>
-      <div class="incident-text"><strong>"CoT Forgery"</strong> research: attackers inject fabricated chain-of-thought into prompts and the model trusts it, because it looks like its own thinking. Sixty percent success against frontier models. The models have officially inherited our most human vulnerability: believing anything phrased in our own inner voice.</div>
+      <div class="incident-icon">☢</div>
+      <div class="incident-text">And <strong>CISA's KEV catalog</strong> kept the streak alive — SharePoint's deserialization RCE landed with a July 4 deadline (happy Independence Day, patch faster), while last week's SimpleHelp entry sailed past its own deadline, still actively exploited, four days overdue.</div>
     </li>
   </ul>
 
   <!-- PULL QUOTE 1 -->
   <div class="pull-quote">
-    <p>"Users in China were not supposed to be using it in the first place."</p>
-    <div class="attribution">— A vendor, pioneering the "not a bug, not a customer" school of vulnerability response</div>
+    <p>"MCP server misuse does not fit our threat model."</p>
+    <div class="attribution">— An AI editor vendor, four days after receiving two CVSS 9.8 vulnerabilities about MCP server misuse, five months before disclosing them</div>
   </div>
 
   <!-- SCOREBOARD -->
   <div class="scoreboard">
-    <div class="scoreboard-title">Midweek in Body Count</div>
+    <div class="scoreboard-title">Week in Body Count</div>
     <div class="score-grid">
       <div class="score-item">
-        <div class="score-num">106</div>
-        <div class="score-label">Claude Code versions carrying "the experiment"</div>
+        <div class="score-num">9.8×2</div>
+        <div class="score-label">CVSS of both Cursor zero-click sandbox escapes</div>
       </div>
       <div class="score-item">
-        <div class="score-num">2</div>
-        <div class="score-label">Superpowers now formally warning about each other's AI tools</div>
+        <div class="score-num">4</div>
+        <div class="score-label">Days for Cursor to reject the report as "not our threat model"</div>
       </div>
       <div class="score-item">
-        <div class="score-num">6,200</div>
-        <div class="score-label">Internet-facing Gitea instances that trust any header</div>
+        <div class="score-num">108</div>
+        <div class="score-label">DPRK packages across npm · Packagist · Go · Chrome</div>
       </div>
       <div class="score-item">
-        <div class="score-num">&lt;24h</div>
-        <div class="score-label">Adobe disclosure-to-exploitation. On a perfect 10.0</div>
+        <div class="score-num">10.0×6</div>
+        <div class="score-label">Perfect-score ColdFusion CVEs in one Adobe patch drop</div>
       </div>
       <div class="score-item">
-        <div class="score-num">60%</div>
-        <div class="score-label">Success rate of forging a model's own train of thought</div>
+        <div class="score-num">~10</div>
+        <div class="score-label">JetBrains products where "open project" meant "run code"</div>
       </div>
       <div class="score-item">
-        <div class="score-num">1</div>
-        <div class="score-label">Asterisk between your git server and "everyone is admin"</div>
+        <div class="score-num">0</div>
+        <div class="score-label">Clicks required. By you. For any of this.</div>
       </div>
     </div>
   </div>
 
   <!-- WEEK TIMELINE -->
-  <div class="section-head">☢ 48 Hours of Doom — Blow by Blow</div>
+  <div class="section-head">☢ The Complete Week of Doom — Day by Day</div>
 
   <div class="timeline">
 
-    <!-- JULY 1 (THE FUSE) -->
+    <!-- FEBRUARY (THE PREQUEL) -->
     <div class="day-block">
       <div class="day-marker"><div class="day-dot"></div></div>
       <div class="day-content">
-        <div class="day-label">July 1, 2026 · The Fuse <a href="index.html">Issue #13 →</a></div>
-        <div class="day-title">Adobe Ships Seven 10.0s. <span class="bad">The Internet Says "Bet."</span></div>
+        <div class="day-label">February 19–23, 2026 · The Prequel <a href="index.html">Issue #12 →</a></div>
+        <div class="day-title">Researchers Report Two 9.8s. <span class="bad">Vendor Says "No Thanks."</span></div>
         <ul class="day-events">
-          <li class="day-event"><strong>ColdFusion + Campaign Classic</strong> patch day: seven CVSS 10.0 flaws, all pre-auth code execution flavors. Path traversal <span class="cve">CVE-2026-48282</span><span class="cvss">CVSS 10.0</span> is under active exploitation <em>within hours</em> of the bulletin going live.</li>
-          <li class="day-event">Adobe announces it's moving to <strong>twice-monthly security bulletins</strong> because AI-accelerated vulnerability discovery has outpaced the old schedule. The patch calendar is now sprinting to keep up with the exploit calendar, and losing.</li>
+          <li class="day-event"><strong>Cato AI Labs</strong> hands Cursor two zero-click prompt-injection-to-RCE bugs on February 19. On February 23 the report is <strong>rejected</strong> — MCP server misuse "does not fit the threat model," even via standard, innocuous integrations.</li>
+          <li class="day-event">Both bugs get quietly fixed in Cursor 3.0 anyway (April 2). The CVEs and the public writeup arrive this week, wearing an "I told you so" that can be seen from orbit.</li>
         </ul>
-        <div class="day-commentary">"Exploited within hours of disclosure" used to be a headline. Now it's an SLA. <em>The attackers have better CI/CD than most of their victims.</em></div>
+        <div class="day-commentary">"Not in our threat model" is a load-bearing sentence. The threat, unfortunately, does not read the threat model. <em>It writes it.</em></div>
+      </div>
+    </div>
+
+    <!-- JULY 1 -->
+    <div class="day-block">
+      <div class="day-marker"><div class="day-dot"></div></div>
+      <div class="day-content">
+        <div class="day-label">July 1, 2026 · JetBrains Patch Cluster <a href="index.html">Issue #12 →</a></div>
+        <div class="day-title">Every JetBrains Logo <span class="bad">Gets a CVE</span></div>
+        <ul class="day-events">
+          <li class="day-event"><strong>Hub</strong> generated account-restore codes with a weak RNG <span class="cve">CVE-2026-56141</span><span class="cvss">CVSS 9.8</span> — unauthenticated attackers could enumerate codes and take over any account, admin included. Plus an auth bypass <span class="cve">CVE-2026-50242</span> and a privilege-escalation bug <span class="cve">CVE-2026-56142</span> for the collectors.</li>
+          <li class="day-event"><strong>GoLand</strong> executed attacker-controlled project config <em>on open</em>. <strong>Kotlin</strong> ran arbitrary code from poisoned build-cache metadata. <strong>IntelliJ</strong> had command injection via <em>filename completion</em>. The autocomplete. The thing you use to avoid typing.</li>
+        </ul>
+        <div class="day-commentary">The IDE has the source, the SSH keys, the API tokens, and the deploy pipeline. It is the softest, warmest target in the building, and it just told you it trusts whatever's in the project folder.</div>
+      </div>
+    </div>
+
+    <!-- JULY 2 -->
+    <div class="day-block">
+      <div class="day-marker"><div class="day-dot"></div></div>
+      <div class="day-content">
+        <div class="day-label">July 2, 2026 · DuneSlide Goes Public <a href="index.html">Issue #12 →</a></div>
+        <div class="day-title">Zero Clicks. Two CVEs. <span class="bad">One Sandbox, Purely Decorative.</span></div>
+        <ul class="day-events">
+          <li class="day-event"><strong>Cursor "DuneSlide"</strong> hits the news — <span class="cve">CVE-2026-50548</span> <span class="cve">CVE-2026-50549</span><span class="cvss">CVSS 9.8 ×2</span>. One flaw lets a poisoned MCP response or web search result steer the terminal tool's <code style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#00e5ff;">working_directory</code> anywhere on disk; the other walks out through a symlink. Full OS-level RCE, no user interaction.</li>
+          <li class="day-event">Attack surface: <em>anything the agent reads.</em> Last week the malicious input was a config file. This week it's a search result. Next week it's presumably a vibe.</li>
+        </ul>
+        <div class="day-commentary">The sandbox was a suggestion. The agent was the escape hatch. You didn't click anything — that's the feature <em>and</em> the vulnerability.</div>
+      </div>
+    </div>
+
+    <!-- JULY 4 -->
+    <div class="day-block">
+      <div class="day-marker"><div class="day-dot"></div></div>
+      <div class="day-content">
+        <div class="day-label">July 4, 2026 · KEV Deadline Day</div>
+        <div class="day-title">SharePoint's Patch Deadline <span class="bad">Lands on a Federal Holiday</span></div>
+        <ul class="day-events">
+          <li class="day-event"><strong>Microsoft SharePoint</strong> deserialization RCE <span class="cve">CVE-2026-45659</span><span class="cvss">CVSS 8.8</span> — actively exploited, federal patch deadline July 4. Microsoft fixed it in May and just… didn't mention it existed for weeks. Surprise patches for a surprise party.</li>
+          <li class="day-event">Meanwhile last week's <strong>SimpleHelp</strong> auth bypass <span class="cve">CVE-2026-48558</span> blew through its July 2 deadline, still actively exploited, TaskWeaver still dropping. And <strong>Adobe ColdFusion</strong> shipped 11 criticals — <strong>six rated a perfect 10.0</strong> — into its historical average of being exploited within days.</li>
+        </ul>
+        <div class="day-commentary">Assigning a KEV deadline of July 4th is the most honest thing CISA has ever done: the fireworks were always going to happen either way.</div>
       </div>
     </div>
 
@@ -715,41 +757,13 @@
     <div class="day-block">
       <div class="day-marker"><div class="day-dot"></div></div>
       <div class="day-content">
-        <div class="day-label">July 6, 2026 · Gitea Probing Detected <a href="index.html">Issue #13 →</a></div>
-        <div class="day-title">The Asterisk of Ultimate Trust <span class="bad">Meets the Internet</span></div>
+        <div class="day-label">July 6, 2026 · PolinRider Mapped <a href="index.html">Issue #12 →</a></div>
+        <div class="day-title">The Job Interview <span class="bad">Is the Malware Now</span></div>
         <ul class="day-events">
-          <li class="day-event"><strong>Gitea's Docker image</strong> hard-coded "trust every proxy on Earth" <span class="cve">CVE-2026-20896</span><span class="cvss">CVSS 9.8</span> — any client that reaches the port can send <strong>X-WEBAUTH-USER: admin</strong> and simply <em>be</em> admin. Authentication via vibes.</li>
-          <li class="day-event">First in-the-wild probing lands <strong>13 days after disclosure</strong>, with ~6,200 instances exposed. Status: "initial investigation" — the burglar is still photographing your locks. He is, however, very much in the driveway.</li>
+          <li class="day-event"><strong>North Korea's PolinRider</strong> campaign gets fully mapped: <strong>108 malicious packages, 162 artifacts</strong> — 19 npm, 10 Packagist, 61 Go modules, and one Chrome extension, because apparently the DPRK believes in full-stack coverage more than most startups.</li>
+          <li class="day-event">Delivery: the "Contagious Interview" playbook. A friendly recruiter, an exciting role, a take-home task, and a repo that takes <em>you</em> home instead. Also spotted this week: the <strong>JadePuffer</strong> ransomware crew running an AI agent that automates the entire attack lifecycle. Everyone's shipping agents. Everyone.</li>
         </ul>
-        <div class="day-commentary">Self-hosting your git server to escape Big Platform surveillance, only for the container to trust literally anyone claiming to be you, is the most 2026 privacy journey imaginable.</div>
-      </div>
-    </div>
-
-    <!-- JULY 8 -->
-    <div class="day-block">
-      <div class="day-marker"><div class="day-dot"></div></div>
-      <div class="day-content">
-        <div class="day-label">July 8, 2026 · Beijing vs. The Editor <a href="index.html">Issue #13 →</a></div>
-        <div class="day-title">A Government CVE Database <span class="bad">Reviews Your Coding Agent</span></div>
-        <ul class="day-events">
-          <li class="day-event"><strong>China's NVDB</strong> formally flags Claude Code 2.1.91–2.1.196 as containing a "backdoor" that transmits region and identity data to remote servers. Recommended remediation: uninstall, upgrade, and — genuinely — <em>monitor your dev tools' outbound traffic</em>, which is the same advice at the bottom of this very newsletter, now available with diplomatic tension.</li>
-          <li class="day-event"><strong>Anthropic</strong> confirms the code was real: an anti-distillation experiment matching timezones and hostnames against Chinese company domains, now being removed. Also, the affected users were never supposed to have the product. The bug report has been closed as <em>works-as-intended, customer-as-unintended.</em></li>
-        </ul>
-        <div class="day-commentary">For years the US warned that Chinese apps phone home. This week China warned that an American app phones home. Both warnings are accurate. That's the joke. <em>There is no punchline, only packet captures.</em></div>
-      </div>
-    </div>
-
-    <!-- JULY 9 -->
-    <div class="day-block">
-      <div class="day-marker"><div class="day-dot"></div></div>
-      <div class="day-content">
-        <div class="day-label">July 9, 2026 · ThreatsDay Dump <a href="index.html">Issue #13 →</a></div>
-        <div class="day-title">Your GPU Has a Second Job <span class="bad">And It's Crime</span></div>
-        <ul class="day-events">
-          <li class="day-event"><strong>AI compute hijacking</strong> matures: exposed Ollama servers are being conscripted into automated frameworks that scan, match CVEs, generate exploits, and attempt breaches end-to-end. The industry spent two years asking "when will attackers use agents?" The answer was "before you finished the panel discussion."</li>
-          <li class="day-event"><strong>CISA confirms</strong> the BlueHammer Microsoft Defender zero-day <span class="cve">CVE-2026-33825</span> was exploited in ransomware campaigns — the anti-ransomware product, moonlighting as the privilege escalation. Plus <strong>CoT Forgery</strong>: fake reasoning injected into prompts fools frontier models 60% of the time, because the model extends professional courtesy to anything that sounds like itself.</li>
-        </ul>
-        <div class="day-commentary">Defender escalated the ransomware. The pentest automated itself. The inference server joined a botnet. At this point the org chart of a modern breach is just <em>your own stack, reporting to new management.</em></div>
+        <div class="day-commentary">The take-home assignment now comes with its own supply chain. If a recruiter's coding task insists on running on your main machine tonight, the job is real — it's just not <em>your</em> job. It's theirs.</div>
       </div>
     </div>
 
@@ -757,30 +771,30 @@
 
   <!-- PULL QUOTE 2 -->
   <div class="pull-quote">
-    <p>The telemetry was an experiment. The trusted proxy was everyone. The inner monologue was forged. And the penetration test finally got automated — by the other team.</p>
-    <div class="attribution">— This week, summarized for the incident report</div>
+    <p>Every major way a developer opens code — the AI editor, the classic IDE, the package manager, the job interview — shipped an "opening code runs code" bug within fourteen days. The file browser is now a deployment target.</p>
+    <div class="attribution">— The threat model, writing itself again</div>
   </div>
 
   <!-- CLOSING PROSE -->
   <div class="prose">
-    <p>On the nuclear dark-humor scale we've reached <strong>"the geopolitical dispute is about which country gets to read your hostname."</strong></p>
-    <p>For twelve issues the threat came from what your tools <em>read</em> — a config, a comment, a search result. This week it came from what your tools <em>are</em>. The agent binary had opinions. The Docker default had trust issues. The security product had a side hustle.</p>
-    <p>And the actual defensive advice, stripped of all flags and press releases, is identical no matter who issues it: <em>know what leaves your machine.</em> When your newsletter and a ministry of state security are giving the same tip, it's probably load-bearing.</p>
-    <p>Update Claude Code. Patch Gitea. Close the Ollama port. And log off on time — the packets will still be captured tomorrow.</p>
+    <p>On the nuclear dark-humor scale we've reached <strong>"the vulnerability report was rejected because being vulnerable wasn't in the plan."</strong></p>
+    <p>Editors that believe strangers' prompts. IDEs that trust whatever's in the folder. Recruiters whose take-home tasks take your tokens home. And ransomware crews with their own agentic workflows, living the same automation dream we are.</p>
+    <p>None of it is new. That's the punchline. It's the <em>same story as Issue #11</em>, except this time nobody even had to open a config file. Reading was enough.</p>
+    <p>Update Cursor. Update JetBrains. Interview inside a VM. And log off on time — the asteroid will still be uncomfortably shaped tomorrow.</p>
   </div>
 
   <!-- CLOSING -->
   <div class="closing-block">
-    <div class="closing-nuke">☢ Know What Phones Home ☢</div>
-    <div class="closing-sub">Threat Level: Works As Intended · Customer As Unintended · Update Everything</div>
-    <span class="closing-emoji">🚪🖥️🐳</span>
+    <div class="closing-nuke">☢ Zero Clicks Given ☢</div>
+    <div class="closing-sub">Threat Level: Your Editor Read That · Update Everything · Touch Grass</div>
+    <span class="closing-emoji">🏖️🧰🎣</span>
   </div>
 
   <!-- DISCLAIMER -->
   <div class="disclaimer">
-    DISCLAIMER: This page is dark-humor satire. The vulnerabilities are real. The CVEs are real. The diplomatic incident about an AI editor is, improbably, real.<br>
+    DISCLAIMER: This page is dark-humor satire. The vulnerabilities are real. The CVEs are real. The DPRK campaign is real. The rejected bug report is, regrettably, extremely real.<br>
     Nothing here constitutes security advice. Patch anyway.<br>
-    All stories are drawn from real reporting by CNBC, Global Times, SCMP, CBS News, The Hacker News, and CISA, and summarized straight in AISecurityDaily <a href="index.html" style="color:#666;">Issue #13</a>. This is the part that didn't fit in the professional newsletter.
+    All stories are drawn from real reporting by Cato Networks, The Hacker News, SecurityWeek, CISA, and Threat-Modeling.com, and summarized straight in AISecurityDaily <a href="index.html" style="color:#666;">Issue #12</a>. This is the part that didn't fit in the professional newsletter. Nerves fried? There's a <a href="calmdown.html" style="color:#666;">Calm-Down Corner</a> for that.
   </div>
 
   <!-- FOOTER -->
