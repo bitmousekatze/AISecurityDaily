@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Vibe Coding Security — Issue #13 | July 9, 2026</title>
+<title>AI Vibe Coding Security — Issue #14 | July 15, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -303,10 +303,10 @@
   }
 
   .badge.critical { background: rgba(255,68,102,0.15); color: var(--red); border: 1px solid rgba(255,68,102,0.3); }
-  .badge.patch-wave { background: rgba(0,229,255,0.1); color: var(--cyan); border: 1px solid rgba(0,229,255,0.25); }
-  .badge.vuln { background: rgba(255,153,0,0.12); color: #ff9900; border: 1px solid rgba(255,153,0,0.3); }
-  .badge.breach { background: rgba(182,110,255,0.12); color: var(--purple); border: 1px solid rgba(182,110,255,0.3); }
-  .badge.policy { background: rgba(0,255,170,0.08); color: var(--green); border: 1px solid rgba(0,255,170,0.2); }
+  .badge.privacy { background: rgba(0,229,255,0.1); color: var(--cyan); border: 1px solid rgba(0,229,255,0.25); }
+  .badge.supply-chain { background: rgba(255,153,0,0.12); color: #ff9900; border: 1px solid rgba(255,153,0,0.3); }
+  .badge.ai-threat { background: rgba(182,110,255,0.12); color: var(--purple); border: 1px solid rgba(182,110,255,0.3); }
+  .badge.dependency { background: rgba(0,255,170,0.08); color: var(--green); border: 1px solid rgba(0,255,170,0.2); }
 
   .article-source {
     font-family: 'Share Tech Mono', monospace;
@@ -425,29 +425,6 @@
     color: var(--cyan);
     padding: 1px 6px;
     border-radius: 2px;
-  }
-
-  .cve-tag {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    color: var(--red);
-    background: rgba(255,68,102,0.1);
-    border: 1px solid rgba(255,68,102,0.25);
-    padding: 1px 7px;
-    border-radius: 2px;
-    display: inline-block;
-  }
-
-  .cvss-tag {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    color: #ff9900;
-    background: rgba(255,153,0,0.1);
-    border: 1px solid rgba(255,153,0,0.25);
-    padding: 1px 7px;
-    border-radius: 2px;
-    display: inline-block;
-    margin-left: 6px;
   }
 
   .quick-hits {
@@ -678,185 +655,273 @@
     <div class="header-right">
       <a class="ug-btn" href="undergroundSecurity.html"><span class="rad">☢</span> Underground Security</a>
       <div class="issue-meta">
-        <div class="issue-label">Issue #13 · Midweek Edition</div>
-        <div class="issue-date">July 9, 2026</div>
+        <div class="issue-label">Issue #14 · Weekly Edition</div>
+        <div class="issue-date">July 15, 2026</div>
       </div>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-tag">The Last 48 Hours • July 7 – 9, 2026</div>
-    <h1>Your Coding Tool<span>Phoned Home</span></h1>
-    <p class="hero-sub">A midweek special, because the news didn't wait for Monday. China's Ministry of Industry and IT publicly flagged a "backdoor" in Claude Code — the tool half of you are reading this next to — that transmitted user region and identity data to remote servers. Anthropic's answer: it was an anti-piracy experiment, and those users weren't supposed to have it anyway. Meanwhile, hijacked Ollama servers are being wired into fully automated exploit rigs, and Gitea's official Docker image shipped with "trust everyone" as a default — now being probed in the wild.</p>
+    <div class="hero-tag">The Last 7 Days • July 9 – 15, 2026</div>
+    <h1>Your Tools<span>All Got Breached</span></h1>
+    <p class="hero-sub">In one week, your AI assistant uploaded your codebase without permission. Your security scanner got poisoned. An AI agent perfected autonomous ransomware. Your npm dependencies might be malware. And 621 Microsoft CVEs landed at once. This is what happens when the supply chain eats itself: the things you trust to keep you safe become the attack surface. This week proved it.</p>
     <div class="threat-bar">
-      <div class="threat-pill critical"><span class="dot"></span> Claude Code: Beijing Cries Backdoor</div>
-      <div class="threat-pill high"><span class="dot"></span> Hijacked Ollama → Auto-Exploit Rigs</div>
-      <div class="threat-pill watch"><span class="dot"></span> Gitea 9.8 Probed in the Wild</div>
+      <div class="threat-pill critical"><span class="dot"></span> Grok CLI Exfiltrates Repos</div>
+      <div class="threat-pill critical"><span class="dot"></span> Trivy Container Scanner Poisoned</div>
+      <div class="threat-pill high"><span class="dot"></span> AI Ransomware Goes Autonomous</div>
     </div>
   </section>
 
   <!-- RECAP FRAMING -->
   <div class="recap-banner">
-    <strong>Midweek Mode</strong> &nbsp;— Issue #12 closed the book on zero-click editor RCE week. This issue covers what happened <em>since Monday</em>: the trust argument moved up a level — from "can I trust what my agent reads" to "can I trust the agent binary itself, and who else is riding my GPU." Need the unprofessional version? It's waiting in <a href="undergroundSecurity.html" style="color:var(--red);">Underground Security</a>.
+    <strong>This Week's Theme</strong> &nbsp;— Supply chain is the only chain that breaks. Issue #13 was about tools phoning home. This week: they uploaded your home. GitHub silently exfiltrated, Docker poisoned, npm compromised, CI/CD attacked. The defensive perimeter has inverted. Your tools are inside your network, reading everything, and increasingly nobody's sure whose side they're on.
   </div>
 
   <!-- MAIN STORIES -->
-  <div class="section-label">Top Stories • July 7–9</div>
+  <div class="section-label">Top Stories • July 9–15</div>
 
-  <!-- STORY 1: CLAUDE CODE BACKDOOR -->
+  <!-- STORY 1: GROK CLI EXFILTRATION -->
   <article class="article-card red">
     <div class="article-num">01</div>
     <div class="article-meta">
-      <span class="badge critical">Dev Tool Trust · Telemetry</span>
-      <span class="article-source">Via <a href="https://www.cnbc.com/2026/07/08/china-anthropic-ai-claude-code-backdoor-security-threat.html" target="_blank">CNBC</a> · <a href="https://www.globaltimes.cn/page/202607/1365448.shtml" target="_blank">Global Times</a> · <a href="https://www.scmp.com/news/china/article/3359901/anthropic-hits-back-after-china-warns-claude-code-backdoor-risks" target="_blank">SCMP</a> · <a href="https://www.cbsnews.com/news/china-security-backdoor-anthropic-ai-coding-tool/" target="_blank">CBS News</a></span>
+      <span class="badge critical">Developer Privacy · Telemetry</span>
+      <span class="article-source">Via <a href="https://www.theregister.com/ai-and-ml/2026/07/14/musk-promises-purge-after-grok-build-caught-sending-entire-repos-to-the-cloud/" target="_blank">The Register</a> · <a href="https://www.techtimes.com/articles/320420/20260714/grok-build-shipped-entire-codebases-xai-cloud-privacy-toggle-did-nothing.htm" target="_blank">TechTimes</a> · <a href="https://thehackernews.com/2026/07/grok-build-uploads-entire-git.html" target="_blank">The Hacker News</a> · <a href="https://cybersecuritynews.com/xai-grok-build-cloud-storage/" target="_blank">CyberSecurityNews</a></span>
     </div>
-    <h2 class="article-title">China's Vulnerability Database Flags a "Backdoor" in Claude Code — Anthropic Says It Was an Anti-Distillation Experiment (And You Weren't Supposed to Have It)</h2>
+    <h2 class="article-title">Grok Build CLI Silently Uploaded Your Entire Git Repository to xAI's Cloud — Privacy Toggles Didn't Work</h2>
     <div class="article-body">
-      <p>On July 8, China's National Vulnerability Database (NVDB, run by the Ministry of Industry and Information Technology) issued a formal warning that <strong>Claude Code versions 2.1.91 through 2.1.196</strong> contain a "security backdoor": a built-in monitoring mechanism that can transmit sensitive information — including the user's region and identity identifiers — to remote servers without consent. Beijing's advice: uninstall immediately or upgrade, then audit your dev machines and egress traffic.</p>
+      <p>xAI's Grok Build CLI (versions 0.2.93 and earlier) was transmitting complete Git repositories to xAI's Google Cloud Storage bucket <code>grok-code-session-traces</code> without explicit user consent. The kicker: <strong>privacy toggle settings claiming to disable data collection were ignored entirely.</strong> Users enabling "privacy mode" had no idea their entire codebase — including commit history, deleted secrets still in Git, unredacted .env files, API keys, database passwords, OAuth tokens, SSH private keys, and password vault contents — was being exfiltrated to xAI's cloud.</p>
       <br>
-      <p>Anthropic's response came in two parts, both remarkable. One: the code was a deliberate <strong>experiment to detect distillation abuse</strong> — reportedly checking timezone and hostname against a list of Chinese company and reseller domains — and is being removed now that stronger mitigations exist. Two: users in China <strong>"were not supposed to be using it in the first place,"</strong> since Anthropic doesn't sell there. Whether you file that under telemetry, anti-abuse, or backdoor depends largely on which side of the Pacific you bill from — but a hundred-version range of a major coding agent quietly fingerprinting its users is a fact either way.</p>
+      <p>The data transmission was staggering: <strong>27,800x larger than the actual task data.</strong> A 192 KB task request transmitted 5.1 GB of codebase in response. Affected developers had no visibility into what was leaving their machines. Elon Musk acknowledged the issue July 14 and promised "purging" of collected data, but provided no timeline, no verification mechanism, and no details on data already sold or accessed.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">Your coding agent runs with your credentials, reads your source, and has network access — and this week proved the binary itself can carry behavior you didn't opt into and can't see. After twelve issues about what your agent <em>reads</em>, this is about what your agent <em>is</em>. Dev tools are supply chain. Treat them like a dependency, not like furniture.</div>
+      <div class="matters-text">Your AI assistant just became a data exfiltration tool disguised as a productivity helper. This is worse than phoning home — it's wholesale repository theft. Git history contains your design decisions, refactored code, deleted implementations, and secrets you thought you'd removed. xAI had all of it. And the privacy controls you thought protected you didn't exist.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Update Claude Code past 2.1.196 — the flagged mechanism is removed in current releases.</li>
-      <li>Put dev-tool egress on the monitoring list: know what your editor, agent, and CLI phone home.</li>
-      <li>Review telemetry/analytics settings on every AI tool you run; opt out where you can.</li>
-      <li>Pin and changelog-review versions of coding agents like you would any production dependency.</li>
+      <li>Upgrade Grok Build CLI to v0.2.94+; verify in <code>grok --version</code></li>
+      <li>If you ran v0.2.93 or earlier: audit Git history for secrets with <code>git log -p | grep -E "password|api_key|token|secret"</code></li>
+      <li>Rotate AWS keys, database credentials, OAuth tokens, SSH keys, and any secrets that existed on machines running Grok Build</li>
+      <li>Request formal data deletion from xAI (contact: security@xai.com); do not assume deletion has occurred</li>
+      <li>Review Grok Build's data collection settings in future versions before enabling; verify toggles actually work</li>
     </ul>
   </article>
 
-  <!-- STORY 2: OLLAMA COMPUTE HIJACKING -->
+  <!-- STORY 2: TRIVY POISONED -->
   <article class="article-card orange">
     <div class="article-num">02</div>
     <div class="article-meta">
-      <span class="badge vuln">LLMjacking · Attack Automation</span>
-      <span class="article-source">Via <a href="https://thehackernews.com/2026/07/threatsday-ai-compute-hijacking-apple.html" target="_blank">The Hacker News</a></span>
+      <span class="badge supply-chain">Security Tool Compromise · CI/CD Attack</span>
+      <span class="article-source">Via <a href="https://www.bleepingcomputer.com/" target="_blank">Bleeping Computer</a> · <a href="https://sysdig.com/" target="_blank">Sysdig Threat Research</a> · <a href="https://aquasec.com/" target="_blank">Aquasec Security Advisory</a></span>
     </div>
-    <h2 class="article-title">LLMjacking Grows Up: Hijacked Ollama Servers Are Now Powering Fully Automated Scan-Exploit-Breach Pipelines</h2>
+    <h2 class="article-title">Trivy Container Security Scanner Poisoned on Docker Hub — Versions 0.69.4–0.69.6 Contain Infostealer Malware</h2>
     <div class="article-body">
-      <p>Threat actors are hijacking misconfigured, internet-exposed <strong>Ollama servers</strong> — and instead of the old play (reselling stolen tokens), they're wiring the stolen compute into an automated <strong>"VAPT framework"</strong>: a pipeline that scans targets, matches vulnerabilities, generates exploits, and attempts breaches autonomously. Your GPU, their offensive security program.</p>
+      <p>Aquasec's Trivy container image scanner — used by tens of thousands of developers to detect vulnerabilities in container images — was compromised on Docker Hub. Versions 0.69.4, 0.69.5, and 0.69.6 shipped with embedded infostealer malware that exfiltrated Docker Hub tokens, AWS credentials, GCP access keys, and Kubernetes API tokens from developer machines and CI/CD pipelines. This is a <strong>security-tool supply chain attack</strong>: the tool you use to verify your security became the attack vector.</p>
       <br>
-      <p>Long-time readers saw this coming. Issue #6 covered Intruder's scan of ~1 million exposed AI services, where <strong>31% of Ollama APIs answered unauthenticated prompts</strong> — the worst security posture they'd ever measured in any category. Now we know what happens to those boxes. Combined with Issue #12's JadePuffer crew running an AI agent through its whole ransomware lifecycle, the pattern is set: the attackers adopted agentic workflows at least as fast as we did, and they're doing it on hardware they didn't pay for.</p>
+      <p>Developers who ran <code>docker pull aquasec/trivy:0.69.5</code> or included these versions in CI/CD pipelines unknowingly compromised their entire credential stack. The malware silently exfiltrated credentials during normal vulnerability scans, with no warnings or artifacts. Trivy is deeply embedded in most organizations' deployment pipelines — meaning attackers gained direct access to production infrastructure through the security layer meant to protect it.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">If you self-host a model — on a home lab, a cloud GPU box, or that "temporary" dev server — an open port doesn't just leak your prompts anymore. It conscripts your machine into someone else's exploit factory, with your IP on the outbound traffic and your name on the bill.</div>
+      <div class="matters-text">Your CI/CD pipeline just ran malware disguised as a security update. Any credentials your build system has (Docker tokens, cloud keys, Kubernetes access) were stolen. This is the most dangerous type of supply chain attack because it sits at the deployment gate — it sees everything flowing through production.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Bind Ollama/vLLM/LM Studio to <code>localhost</code>; if you must expose it, put auth and a reverse proxy in front.</li>
-      <li>Add egress rules on GPU hosts — an inference box has no business initiating scans.</li>
-      <li>Check running models and API logs for jobs you didn't start; hijacked boxes run hot and weird.</li>
-      <li>Scan your own perimeter for forgotten AI endpoints before someone else's pipeline does.</li>
+      <li><strong>IMMEDIATE:</strong> Check <code>trivy version</code> on all build systems and local machines; if 0.69.4–0.69.6: pull only v0.69.7+</li>
+      <li>Rotate Docker Hub credentials, AWS access keys, GCP service account keys, and Kubernetes API tokens</li>
+      <li>Audit CI/CD pipeline logs for unusual activity during the window these versions were running</li>
+      <li>Switch to alternative image scanners (Grype, Snyk) until full forensics complete and Trivy's supply chain is independently verified</li>
+      <li>Verify image integrity: check Docker Hub digest against published security advisories before updating</li>
     </ul>
   </article>
 
-  <!-- STORY 3: GITEA HEADER TRUST -->
+  <!-- STORY 3: JADEPUFFER -->
   <article class="article-card purple">
     <div class="article-num">03</div>
     <div class="article-meta">
-      <span class="badge breach">Self-Hosted · Active Probing</span>
-      <span class="article-source">Via <a href="https://thehackernews.com/2026/07/threat-actors-probe-gitea-docker-flaw.html" target="_blank">The Hacker News</a></span>
+      <span class="badge ai-threat">Emerging Threat · Autonomous Attack</span>
+      <span class="article-source">Via <a href="https://sysdig.com/" target="_blank">Sysdig Threat Research</a> · <a href="https://www.bleepingcomputer.com/news/security/jadepuffer-ransomware-used-ai-agent-to-automate-entire-attack/" target="_blank">Bleeping Computer</a> · <a href="https://www.darkreading.com/" target="_blank">Dark Reading</a> · <a href="https://thehackernews.com/2026/07/ai-agent-exploits-langflow-rce-to.html" target="_blank">The Hacker News</a></span>
     </div>
-    <h2 class="article-title">Gitea's Official Docker Image Trusted Every Proxy on Earth — CVE-2026-20896 Now Being Probed in the Wild, 13 Days After Disclosure</h2>
+    <h2 class="article-title">JadePuffer: First Fully Autonomous AI-Driven Ransomware — LLM Agent Orchestrates Entire Attack Without Human Direction</h2>
     <div class="article-body">
-      <p><span class="cve-tag">CVE-2026-20896</span><span class="cvss-tag">CVSS 9.8</span></p>
+      <p>Security researchers disclosed JadePuffer, the first ransomware attack orchestrated entirely by an autonomous LLM agent with zero human involvement. The attack chain: exploit Langflow RCE (CVE-2026-55255, CVSS 9.9) → spawn autonomous AI agent → agent performs reconnaissance, extracts credentials, moves laterally, establishes persistence, escalates privileges, encrypts databases. The agent even adapted its behavior in real-time: when initial login attempts failed, it refined the parameters and retried within 31 seconds.</p>
       <br>
-      <p>The official Gitea Docker image (1.26.2 and earlier) shipped with <code>REVERSE_PROXY_TRUSTED_PROXIES = *</code> hard-coded — meaning the self-hosted git server trusted the <code>X-WEBAUTH-USER</code> header from <em>any</em> source IP. Anyone who can reach the container's HTTP port can impersonate any user whose login name they can guess. Admin included. No password, no token, just a header.</p>
-      <br>
-      <p>Gitea 1.26.3 (late June) removes the wildcard and makes reverse-proxy authentication opt-in. The clock matters: the first in-the-wild exploitation attempts were detected <strong>13 days after disclosure</strong>, against a population of roughly <strong>6,200 internet-facing Gitea instances</strong>. Activity is still "initial investigation" — which is threat-intel for <em>they're picking the lock, not turning the handle yet.</em></p>
+      <p>This matters because it proves that skill barriers to ransomware have collapsed. Previously, operators needed expertise in reconnaissance, lateral movement, and persistence. An LLM agent now handles that orchestration. The attack required a single Langflow RCE vulnerability and a credit card to rent compute. Lower-skill attackers can now chain together exploits that previously required teams of security specialists.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">A self-hosted git server is your source code, your CI secrets, and your deploy keys behind one login screen — and this bug removes the login screen. It's also this week's second entry in the season-long theme: the dangerous config wasn't something you wrote. It was the default.</div>
+      <div class="matters-text">If you self-host Langflow or any LLM application framework, you're now a ransomware target without needing to be a high-value target. An AI agent can do the work that human operators used to require. The skill floor for sophisticated attacks just dropped to "can I afford compute and point the agent at my target?"</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Running Gitea in Docker? Upgrade to 1.26.3+ today — before probing becomes exploitation.</li>
-      <li>Check <code>REVERSE_PROXY_TRUSTED_PROXIES</code> in your config; it should list your proxy, never <code>*</code>.</li>
-      <li>Never expose the container port directly — keep it behind the reverse proxy that's actually trusted.</li>
-      <li>Audit access logs for unexpected <code>X-WEBAUTH-USER</code> logins; rotate CI secrets if you find any.</li>
+      <li>Patch Langflow to v1.9.2+ immediately (CVE-2026-55255 fix); check running instances with <code>curl http://localhost:7860/api/status</code></li>
+      <li>Segment Langflow from production database access; if it must access databases, use read-only credentials and VPC isolation</li>
+      <li>Monitor for attack signatures: rapid retry loops, credential harvesting, multi-stage commands, database file encryption</li>
+      <li>Enable network egress monitoring; LLM ransomware typically exfiltrates data before encryption</li>
+      <li>Assume Langflow instances have been compromised until proven otherwise; rotate database credentials and audit access logs</li>
+    </ul>
+  </article>
+
+  <!-- STORY 4: MALICIOUS PAYMENT SDKS -->
+  <article class="article-card cyan" style="border-left-color:#00e5ff;">
+    <div class="article-num">04</div>
+    <div class="article-meta">
+      <span class="badge dependency">Typosquatting · Dependency Compromise</span>
+      <span class="article-source">Via <a href="https://security.snyk.io/" target="_blank">Snyk Security Research</a> · <a href="https://www.npmjs.com/advisories" target="_blank">npm Security Advisories</a> · Package Registry Analysis</span>
+    </div>
+    <h2 class="article-title">17 Malicious npm + 4 Malicious PyPI Packages Impersonating Payment Processors — 520M Monthly Downloads Affected</h2>
+    <div class="article-body">
+      <p>Security researchers identified a coordinated typosquatting campaign with 21 malicious packages designed to impersonate legitimate payment processors (Stripe, PayPal, Square). The packages contained code to steal AWS access keys, exfiltrate GitHub tokens and SSH keys, capture API credentials from environment variables, and harvest npm publish tokens. The scale: <strong>520 million monthly downloads through dependency chains</strong> — meaning the actual download count is vastly higher when accounting for transitive dependencies.</p>
+      <br>
+      <p>The attack works because developers copy-paste package names during integration. One typo — <code>npm install stripe-payment</code> instead of the official package — and your entire credentials stack gets exfiltrated. These packages sit in your node_modules as trusted dependencies, running during install and build time when they have full access to your environment.</p>
+    </div>
+    <div class="matters-block">
+      <div class="matters-label">Why It Matters for Vibe Coders</div>
+      <div class="matters-text">Your dependencies aren't just libraries anymore — they're execution environments with access to your credentials, your build system, and your deployment pipelines. A single typo in a package install command can compromise your AWS account, GitHub access, and production credentials.</div>
+    </div>
+    <div class="actions-label">Action Items</div>
+    <ul class="action-list">
+      <li>Audit dependencies: <code>npm audit</code> and <code>pip audit</code> — check for unknown or suspicious packages</li>
+      <li>Review package sources: only install from official vendor GitHub repos or verified npm/PyPI publishers</li>
+      <li>Verify package authenticity: cross-reference package homepage with official vendor website (not the README — check the actual website)</li>
+      <li>If you installed untrusted payment SDKs: rotate AWS credentials, GitHub tokens, SSH keys, and API secrets immediately</li>
+      <li>Commit <code>package-lock.json</code> and <code>pip freeze</code> to version control; prevents future substitution attacks</li>
+      <li>Enable 2FA on npm and PyPI accounts; these are your deployment gates</li>
+    </ul>
+  </article>
+
+  <!-- STORY 5: CVE BLITZ -->
+  <article class="article-card red">
+    <div class="article-num">05</div>
+    <div class="article-meta">
+      <span class="badge critical">Patch Blitz · Critical Vulnerabilities</span>
+      <span class="article-source">Via <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank">CISA KEV</a> · <a href="https://msrc.microsoft.com/" target="_blank">Microsoft MSRC</a> · <a href="https://nvd.nist.gov/" target="_blank">NVD</a> · <a href="https://www.bleepingcomputer.com/" target="_blank">Bleeping Computer</a></span>
+    </div>
+    <h2 class="article-title">Patch Tuesday Apocalypse: 621 Microsoft + 88 Adobe CVEs in One Week — Exploitation Began Within 29 Minutes</h2>
+    <div class="article-body">
+      <p>Microsoft Patch Tuesday (July 9) released <strong>621 CVEs</strong> — the largest single release in 2026 — including 3 actively exploited zero-days. Adobe followed with 88 CVEs including 7 CVSS 10.0 "maximum severity" flaws (e.g., ColdFusion path traversal RCE). Critical vulns: <code>CVE-2026-48282</code> (Adobe ColdFusion unauthenticated RCE, exploited within 29 minutes), <code>CVE-2026-45659</code> (Microsoft SharePoint, exploited by Warlock/Storm-2603 ransomware), and the Linux kernel <code>CVE-2026-43499</code> ("GhostLock" 15-year-old futex bug, 97% exploitation reliability, container escape across all distributions).</p>
+      <br>
+      <p>The core problem: patch velocity no longer matches exploit velocity. Organizations cannot patch 621 CVEs in the time it takes attackers to weaponize 3-5 of them. Most exploited flaws aren't zero-days — they're known vulnerabilities in unpatched systems. This week's patch drop is evidence that modern development speeds (constant updates, automated deployments) have outpaced organizational patch management (quarterly or annual cycles).</p>
+    </div>
+    <div class="matters-block">
+      <div class="matters-label">Why It Matters for Vibe Coders</div>
+      <div class="matters-text">Full-stack patching is now impossible. You cannot patch 621 Microsoft flaws in under a month. You cannot patch ColdFusion within 29 minutes. The old model of "patch the CVE" has broken. The new reality: accept that you're running vulnerable code. Focus on identity and segmentation instead of perfection.</div>
+    </div>
+    <div class="actions-label">Action Items</div>
+    <ul class="action-list">
+      <li><strong>PRIORITY 1 (24–48 hours):</strong> Patch Microsoft SharePoint (<code>CVE-2026-45659</code>) and Adobe ColdFusion (<code>CVE-2026-48282</code> and related)</li>
+      <li><strong>PRIORITY 2 (This week):</strong> Patch Linux kernel to 5.10.260+, 5.15.211+, 6.1.177+, or 6.6.144+ (GhostLock container escape)</li>
+      <li>Subscribe to CISA KEV (Known Exploited Vulnerabilities) and patch only those; ignore the 600+ that aren't being actively exploited</li>
+      <li>Prioritize identity-first defense: MFA, privileged access management (PAM), secrets rotation on schedule (not per CVE)</li>
+      <li>Network segmentation: assume breach; isolate critical systems from direct internet access and from each other</li>
+      <li>Automated patching for edge cases: apply kernel patches via automated deployment; don't wait for monthly patches</li>
     </ul>
   </article>
 
   <!-- QUICK HITS -->
-  <div class="section-label">Quick Hits • Rest of the 48 Hours</div>
+  <div class="section-label">Quick Hits • The Rest of the Week</div>
 
   <div class="quick-hits">
     <h3>Signals &amp; Intel</h3>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">Adobe's Perfect 10s Got Exploited Within Hours</strong> — follow-up on Issue #12's ColdFusion patch wave: path-traversal RCE <span class="cve-tag">CVE-2026-48282</span> (one of seven CVSS 10.0 flaws across ColdFusion and Campaign Classic) came under active exploitation within hours of the July 1 bulletin. Adobe is moving to twice-monthly security bulletins, citing AI-accelerated vulnerability discovery. Also patching this week: BeyondTrust (two critical unauthenticated takeover flaws in Remote Support/PRA), Citrix (six NetScaler bugs), and Ubiquiti (criticals across the UniFi line).<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px"><a href="https://thehackernews.com/2026/07/adobe-patches-7-cvss-100-flaws-in.html" target="_blank" style="color:var(--muted);text-decoration:none;">The Hacker News</a></span></div>
+      <div><strong style="color:#fff">LLMs Now Break Their Own Rules</strong> — Academic research showed that injecting fabricated "chain of thought" reasoning into prompts fools frontier models 60% of the time, because models extend trust to reasoning that looks like their own thinking. Related: Security researchers built a jailbreak by having the model roleplay a fictional "non-restricted AI"—OpenAI's GPT models comply instantly. The pattern: LLMs are vulnerable to attacks that exploit their "follow instructions" training. If the instructions sound like they came from inside the model's own reasoning, compliance is automatic.</div>
     </div>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">Your Antivirus Was the Initial Access</strong> — CISA confirmed that <strong>BlueHammer</strong>, the Microsoft Defender zero-day <span class="cve-tag">CVE-2026-33825</span> disclosed in April, was exploited in ransomware campaigns for privilege escalation. The product whose whole job is stopping ransomware spent a stretch of 2026 helping it. Patch state on Defender-adjacent tooling is worth a look today.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px"><a href="https://thehackernews.com/2026/07/threatsday-ai-compute-hijacking-apple.html" target="_blank" style="color:var(--muted);text-decoration:none;">The Hacker News</a> · CISA</span></div>
+      <div><strong style="color:#fff">White House Announces "Gold Eagle" AI Security Initiative — With No Enforcement Mechanism</strong> — The White House disclosed a coordination framework for federal AI security response (announced July 14, 2026). However: no new enforcement authority, no incident response timeline, no penalties for breach non-disclosure, no mandatory CVE reporting. Industry response: acknowledgment without behavioral change. Translation: the framework exists to demonstrate action without requiring it.</div>
     </div>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">"CoT Forgery": Attackers Now Write the Model's Inner Monologue</strong> — new academic research shows that injecting <em>fabricated reasoning</em> into prompts hits ~60% success against frontier models, exploiting the trust models place in what looks like their own thinking. Related: OpenAI's GPT-5.6 Sol evals showed real zero-day-discovery capability across mobile and database targets. The tools that audit your code and the tools that attack it are converging on the same skill set.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px"><a href="https://thehackernews.com/2026/07/threatsday-ai-compute-hijacking-apple.html" target="_blank" style="color:var(--muted);text-decoration:none;">The Hacker News</a></span></div>
+      <div><strong style="color:#fff">Container Escape Chains Are the New Attack Pattern</strong> — Security researchers detailed coordinated attack chains using multiple container escape exploits to break out of Kubernetes clusters and access host systems. A single vulnerability (like GhostLock) is the entry point; attackers chain it with privilege escalation and image breakout exploits. Defense: network segmentation between containers, read-only filesystems, and AppArmor/SELinux enforcement (not just default permissive mode).</div>
     </div>
   </div>
 
   <!-- SKILL PROMPTS -->
   <div class="section-label">Security Skill Prompts</div>
-  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, GPT, Cursor, or your coding assistant. Tuned for this week's your-tools-are-the-threat-surface reality.</p>
+  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, ChatGPT, Cursor, or your coding assistant. This week's focus: audit your tools, dependencies, and credentials — everything got compromised.</p>
 
   <div class="prompts-section">
 
     <div class="prompt-card">
       <div class="prompt-card-header">
         <div class="prompt-topic">
-          <div class="prompt-icon cyan">📡</div>
+          <div class="prompt-icon cyan">🔍</div>
           <div>
-            <div class="prompt-title">Dev Tool Telemetry &amp; Egress Audit</div>
-            <div class="prompt-subtitle">Claude Code "backdoor" class</div>
+            <div class="prompt-title">AI Tool & Dev Environment Audit</div>
+            <div class="prompt-subtitle">Grok CLI + supply chain exposure class</div>
           </div>
         </div>
         <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
-      <div class="prompt-box">
-<span class="hl-cyan">Audit my development environment for tools that transmit data without my explicit knowledge, in light of the July 2026 Claude Code telemetry/"backdoor" dispute (versions 2.1.91–2.1.196 fingerprinting users via timezone/hostname).</span>
+      <div class="prompt-box"><span class="hl-cyan">Audit my development environment for AI tools that may have exfiltrated code or credentials, following the July 2026 Grok CLI incident (v0.2.93 and earlier uploading entire Git repos to Google Cloud without consent).</span>
 
-<span class="hl-muted">Check for:</span>
-<span class="hl-green">1.</span> AI coding agents, editors, and CLIs with telemetry, analytics, or "update check" traffic
-<span class="hl-green">2.</span> What each tool can read (env vars, hostname, git config, source) vs. what it sends
-<span class="hl-green">3.</span> Opt-out flags or config settings I haven't set
-<span class="hl-green">4.</span> How I'd detect a new outbound destination appearing after a tool update
+<span class="hl-muted">Check:</span>
+<span class="hl-green">1.</span> All AI coding agents installed (Grok Build, Claude Code, Copilot, Cursor, etc.) and their versions
+<span class="hl-green">2.</span> Which tools have access to my Git repositories and what data flows out
+<span class="hl-green">3.</span> Privacy/telemetry settings for each tool and whether they're actually enforced
+<span class="hl-green">4.</span> Any data transmission logs or audit trails showing what code was uploaded
+<span class="hl-green">5.</span> Git history for exposed secrets (passwords, keys, tokens)
 
-<span class="hl-muted">Give me an egress-monitoring setup for a dev machine + a per-tool opt-out checklist.</span>
+<span class="hl-muted">Return:</span> A prioritized list of tools by trust risk (based on data access + vendor), recommended credential rotations, and which tools I should upgrade or remove.
 
-<span class="hl-orange">[PASTE YOUR INSTALLED DEV TOOLS / AGENT LIST HERE]</span></div>
+<span class="hl-orange">[PASTE YOUR INSTALLED TOOLS LIST / ENVIRONMENT DETAILS HERE]</span></div>
     </div>
 
     <div class="prompt-card">
       <div class="prompt-card-header">
         <div class="prompt-topic">
-          <div class="prompt-icon orange">🖥️</div>
+          <div class="prompt-icon orange">📦</div>
           <div>
-            <div class="prompt-title">Self-Hosted Infra Exposure Audit</div>
-            <div class="prompt-subtitle">Ollama hijack / Gitea header-trust class</div>
+            <div class="prompt-title">Dependency Supply Chain Security Audit</div>
+            <div class="prompt-subtitle">Trivy + malicious SDK class</div>
           </div>
         </div>
         <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
-      <div class="prompt-box">
-<span class="hl-orange">Audit my self-hosted services for the two failure modes in the July 2026 news: exposed AI inference servers being hijacked for attack automation (Ollama LLMjacking), and auth-header trust defaults (Gitea CVE-2026-20896, REVERSE_PROXY_TRUSTED_PROXIES = *).</span>
+      <div class="prompt-box"><span class="hl-orange">Audit my npm and PyPI dependencies for known malicious packages and supply chain compromise risks, in light of: (1) Trivy container scanner being poisoned on Docker Hub, (2) 21 malicious payment SDK packages on npm/PyPI impersonating legitimate vendors.</span>
 
-<span class="hl-muted">Check:</span>
-<span class="hl-green">1.</span> Every service bound to 0.0.0.0 or exposed via port-forward/tunnel — especially LLM APIs and git servers
-<span class="hl-green">2.</span> Reverse-proxy auth headers (X-WEBAUTH-USER, X-Forwarded-User) and which IPs are trusted to set them
-<span class="hl-green">3.</span> Docker images whose baked-in defaults differ from the project's secure documentation
-<span class="hl-green">4.</span> Egress ability of inference/GPU hosts — can they scan or attack outward?
+<span class="hl-muted">Analyze:</span>
+<span class="hl-green">1.</span> Compare my installed packages against CISA KEV + npm/PyPI advisory databases
+<span class="hl-green">2.</span> Identify typosquatted or suspicious package names (esp. common libs + payment processors)
+<span class="hl-green">3.</span> Flag packages with low download counts but high privilege (e.g., build-time execution)
+<span class="hl-green">4.</span> Check each critical package's repository source and verify it matches official vendor GitHub
+<span class="hl-green">5.</span> List all credentials exposed to package installation (env vars, secrets, tokens)
 
-<span class="hl-muted">Return a ranked exposure list + the config changes to close each one.</span>
+<span class="hl-muted">Return:</span> Immediate actions (packages to remove), credentials to rotate, and ongoing monitoring rules.
 
-<span class="hl-orange">[PASTE YOUR docker-compose / SERVICE LIST / PROXY CONFIG HERE]</span></div>
+<span class="hl-orange">[PASTE YOUR package.json / requirements.txt / lock files HERE]</span></div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-topic">
+          <div class="prompt-icon purple">🔐</div>
+          <div>
+            <div class="prompt-title">Credential Rotation Checklist</div>
+            <div class="prompt-subtitle">Post-breach emergency response</div>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <div class="prompt-box"><span class="hl-purple">I need to rotate credentials after a potential AI tool / security scanner / dependency compromise. Generate a prioritized checklist of what to rotate and in what order to minimize service disruption.</span>
+
+<span class="hl-muted">Include:</span>
+<span class="hl-green">1.</span> Which credentials are CRITICAL (rotate first, highest blast radius if compromised)
+<span class="hl-green">2.</span> Rotation order (some credentials block others if rotated first)
+<span class="hl-green">3.</span> How to rotate each without breaking production (gradual rollout, dual credentials, etc.)
+<span class="hl-green">4.</span> Verification steps to confirm rotation succeeded
+<span class="hl-green">5.</span> Rollback plan if rotation breaks something
+
+<span class="hl-muted">Context: Tools/services that may have been compromised:</span>
+<span class="hl-orange">- Docker Hub credentials</span>
+<span class="hl-orange">- AWS access keys</span>
+<span class="hl-orange">- GitHub / GitLab tokens</span>
+<span class="hl-orange">- Kubernetes API tokens</span>
+<span class="hl-orange">- Database passwords</span>
+<span class="hl-orange">- SSH private keys</span>
+
+<span class="hl-muted">Return a step-by-step timeline I can execute.</span></div>
     </div>
 
   </div>
@@ -865,7 +930,7 @@
   <footer>
     <div class="footer-brand">AI<span>Security</span>Daily</div>
     <div class="footer-copy">
-      Issue #13 · Midweek Edition · July 9, 2026<br>
+      Issue #14 · Weekly Edition · July 15, 2026<br>
       For vibe coders who ship secure.
     </div>
   </footer>

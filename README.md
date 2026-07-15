@@ -13,7 +13,7 @@ The most recent report is always live at:
 
 `index.html` in the root of this repo is always the newest issue. GitHub Pages serves it automatically — bookmark the link above and check back.
 
-**Current: Issue #13 · July 9, 2026** — China's vulnerability database vs. the Claude Code "backdoor" · hijacked Ollama servers powering automated exploit rigs · Gitea's trust-everyone Docker default under active probing.
+**Current: Issue #14 · July 15, 2026** — Grok Build CLI exfiltrates entire Git repos · Trivy container scanner poisoned on Docker Hub · JadePuffer autonomous AI ransomware · malicious payment SDK packages · CVE patch apocalypse (621 Microsoft + 88 Adobe).
 
 ---
 
@@ -29,6 +29,7 @@ Past issues are stored in the [`/Recents`](./Recents/) folder as fully self-cont
 
 | Date | Issue | Topics Covered |
 |------|-------|----------------|
+| [Jul 9, 2026](./Recents/Jul9/index.html) | #13 | Midweek Edition: Claude Code "backdoor" telemetry dispute · Ollama servers hijacked for automated exploit rigs · Gitea Docker image CVE-2026-20896 |
 | [Jul 7, 2026](./Recents/Jul7/index.html) | #12 | Weekly recap: Cursor "DuneSlide" zero-click RCE · JetBrains critical cluster · DPRK "PolinRider" multi-registry campaign |
 | [Jul 1, 2026](./Recents/Jul1/index.html) | #11 | Weekly recap: AI editors auto-running repo MCP configs (Amazon Q, Claude Code, Windsurf) |
 | [May 12, 2026](./Recents/may12/index.html) | #10 | Mini Shai-Hulud npm worm hits AI tooling (TanStack, Mistral, Guardrails et al.) |
@@ -41,7 +42,7 @@ Past issues are stored in the [`/Recents`](./Recents/) folder as fully self-cont
 | [May 3, 2026](./Recents/May3/index.html) | #2 | Linux root-access flaw hits KEV · ALPHV sentencing · NSA tests Mythos AI |
 | [May 2, 2026](./Recents/May2-2026/May2ndMorningBreif.html) | #1 | Trellix repo breach · SAP npm supply-chain attack · ConsentFix v3 OAuth exploit |
 
-Archived Underground Security editions: [May 10](./Recents/underground-may10.html) · [Jul 7](./Recents/Jul7/undergroundSecurity.html)
+Archived Underground Security editions: [May 10](./Recents/underground-may10.html) · [Jul 7](./Recents/Jul7/undergroundSecurity.html) · [Jul 9](./Recents/Jul9/undergroundSecurity.html)
 
 ---
 

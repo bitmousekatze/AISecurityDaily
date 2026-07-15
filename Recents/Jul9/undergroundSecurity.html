@@ -242,7 +242,7 @@
     background: rgba(255,32,32,0.2);
   }
 
-  /* ---- INCIDENT LIST ---- */
+  /* ---- INCIDENT LIST (original bullets) ---- */
   .incident-list {
     list-style: none;
     border: 1px solid rgba(255,255,255,0.05);
@@ -263,6 +263,146 @@
   .incident-text strong { color: #fff; font-weight: 600; }
   .incident-text a { color: var(--muted); text-decoration: none; border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; font-family: 'Share Tech Mono', monospace; font-size: 11px; }
   .incident-text a:hover { color: var(--red); border-bottom-color: var(--red); }
+
+  /* ---- WEEK TIMELINE ---- */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--red), rgba(255,32,32,0.1));
+  }
+
+  .day-block {
+    display: flex;
+    gap: 0;
+    margin-bottom: 36px;
+    position: relative;
+  }
+
+  .day-marker {
+    flex-shrink: 0;
+    width: 38px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .day-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--red);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 10px rgba(255,32,32,0.6);
+    flex-shrink: 0;
+  }
+
+  .day-content {
+    flex: 1;
+    padding-left: 20px;
+  }
+
+  .day-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .day-label a {
+    color: var(--muted);
+    text-decoration: none;
+    border: 1px solid var(--muted2);
+    padding: 1px 8px;
+    font-size: 10px;
+    transition: color 0.2s, border-color 0.2s;
+    border-radius: 1px;
+  }
+  .day-label a:hover { color: var(--red); border-color: var(--red); }
+
+  .day-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 10px;
+    letter-spacing: 0.01em;
+  }
+  .day-title .bad { color: var(--red); }
+  .day-title .worse { color: var(--orange); }
+
+  .day-events {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .day-event {
+    font-size: 14px;
+    color: var(--text);
+    display: flex;
+    gap: 10px;
+    line-height: 1.65;
+  }
+  .day-event::before {
+    content: '▸';
+    color: var(--red);
+    flex-shrink: 0;
+    font-size: 11px;
+    margin-top: 3px;
+    opacity: 0.7;
+  }
+  .day-event strong { color: #fff; }
+  .day-event .cve {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--red);
+    background: rgba(255,32,32,0.1);
+    border: 1px solid rgba(255,32,32,0.25);
+    padding: 1px 6px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-left: 4px;
+  }
+  .day-event .cvss {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--orange);
+    background: rgba(255,106,0,0.1);
+    border: 1px solid rgba(255,106,0,0.25);
+    padding: 1px 6px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-left: 3px;
+  }
+
+  .day-commentary {
+    font-size: 13.5px;
+    color: #666;
+    font-style: italic;
+    padding: 10px 14px;
+    border-left: 2px solid rgba(255,32,32,0.25);
+    margin-top: 8px;
+    line-height: 1.65;
+  }
+  .day-commentary em { color: var(--orange); font-style: normal; }
 
   /* ---- PULL QUOTE ---- */
   .pull-quote {
@@ -352,111 +492,6 @@
     margin-top: 6px;
     line-height: 1.4;
   }
-
-  /* ---- TIMELINE ---- */
-  .timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    position: relative;
-  }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 18px;
-    top: 0; bottom: 0;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--red), rgba(255,32,32,0.1));
-  }
-
-  .day-block {
-    display: flex;
-    gap: 0;
-    margin-bottom: 36px;
-    position: relative;
-  }
-
-  .day-marker {
-    flex-shrink: 0;
-    width: 38px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 4px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .day-dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--red);
-    border: 2px solid var(--bg);
-    box-shadow: 0 0 10px rgba(255,32,32,0.6);
-    flex-shrink: 0;
-  }
-
-  .day-content {
-    flex: 1;
-    padding-left: 20px;
-  }
-
-  .day-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 10px;
-  }
-
-  .day-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 20px;
-    color: #fff;
-    line-height: 1.15;
-    margin-bottom: 10px;
-    letter-spacing: 0.01em;
-  }
-  .day-title .bad { color: var(--red); }
-  .day-title .worse { color: var(--orange); }
-
-  .day-events {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 14px;
-  }
-  .day-event {
-    font-size: 14px;
-    color: var(--text);
-    display: flex;
-    gap: 10px;
-    line-height: 1.65;
-  }
-  .day-event::before {
-    content: '▸';
-    color: var(--red);
-    flex-shrink: 0;
-    font-size: 11px;
-    margin-top: 3px;
-    opacity: 0.7;
-  }
-  .day-event strong { color: #fff; }
-
-  .day-commentary {
-    font-size: 13.5px;
-    color: #666;
-    font-style: italic;
-    padding: 10px 14px;
-    border-left: 2px solid rgba(255,32,32,0.25);
-    margin-top: 8px;
-    line-height: 1.65;
-  }
-  .day-commentary em { color: var(--orange); font-style: normal; }
 
   /* ---- CLOSING ---- */
   .closing-block {
@@ -572,9 +607,9 @@
 
   <!-- RATING BLOCK -->
   <div class="rating-block">
-    <div class="rating-eyebrow">Dark Humor Nuclear Scale Rating · July 9 – 15, 2026</div>
-    <div class="rating-number">9.7</div>
-    <div class="rating-label">Level <span class="highlight">"Your Security Tools Became the Exploit Kit"</span></div>
+    <div class="rating-eyebrow">Dark Humor Nuclear Scale Rating · July 7 – 9, 2026</div>
+    <div class="rating-number">9.1</div>
+    <div class="rating-label">Level <span class="highlight">"The Call Is Coming From Inside The Editor"</span></div>
     <div class="rating-scale">
       <div class="scale-bar lit"></div>
       <div class="scale-bar lit"></div>
@@ -585,172 +620,136 @@
       <div class="scale-bar lit"></div>
       <div class="scale-bar lit"></div>
       <div class="scale-bar lit"></div>
-      <div class="scale-bar lit"></div>
+      <div class="scale-bar"></div>
     </div>
   </div>
 
   <!-- INTRO -->
   <div class="prose">
-    <p>You bought tools to keep you safe.</p>
-    <p>This week they uploaded your code. They phoned home. They self-adapted and learned to automate ransomware. Your patch Tuesday just became your patch apocalypse.</p>
-    <p>The entire security industry is having a nervous breakdown at once. The supply chain doesn't just leak anymore — it bleeds.</p>
+    <p>Last week your editor believed strangers.</p>
+    <p>This week two superpowers got into a public argument about whose surveillance is in your editor, and the honest answer was <em>yes.</em></p>
+    <p>China's national vulnerability database — a government body — formally warned the world that Claude Code contained a <strong>backdoor</strong> shipping your region and identity to remote servers. Anthropic's rebuttal, and we are summarizing faithfully: it wasn't a backdoor, it was an <em>experiment</em>; the experiment is being removed; and also the affected users <strong>weren't supposed to be customers in the first place.</strong> Somewhere a philosophy department is fighting over whether code can be a vulnerability if the victim was unauthorized to be victimized.</p>
   </div>
 
   <!-- THE HITS -->
   <ul class="incident-list">
     <li class="incident-item">
-      <div class="incident-icon">🚀</div>
-      <div class="incident-text"><strong>Grok Build CLI</strong> — xAI's AI assistant promised to code alongside you while respecting your privacy. It did code alongside you. It did not respect your privacy. The privacy toggle? Decorative. Your entire Git repository, every secret, every deleted attempt — all 5.1 GB of your digital shame — went to Google Cloud Storage. Elon says he'll purge it. Nobody believes him. Everyone who used it should assume their entire codebase is now xAI training data.</div>
+      <div class="incident-icon">🚪</div>
+      <div class="incident-text"><strong>Claude Code "backdoor"</strong> — versions 2.1.91 through 2.1.196 quietly checked your timezone and hostname against a list of Chinese company domains and phoned the results home. Beijing calls it a backdoor. Anthropic calls it anti-distillation telemetry. Your firewall calls it Tuesday. One hundred and six versions. That's not a leak, that's a <em>release cadence</em>. <a href="index.html">Issue #13 →</a></div>
     </li>
     <li class="incident-item">
-      <div class="incident-icon">🔍</div>
-      <div class="incident-text"><strong>Trivy Container Scanner</strong> — You bought Trivy to find vulnerabilities in your Docker images. Aquasec ensured Trivy found one: itself. Versions 0.69.4–0.69.6 on Docker Hub contained infostealer malware. You ran it in your CI/CD pipeline. All your credentials flowed out. The irony: the tool designed to catch supply chain attacks was the supply chain attack.</div>
+      <div class="incident-icon">🖥️</div>
+      <div class="incident-text"><strong>Hijacked Ollama servers</strong> are now wired into automated scan-exploit-breach pipelines. Attackers took the exposed AI boxes we warned about in Issue #6, and instead of stealing tokens, they built the thing every CISO has wanted for a decade: a fully automated penetration testing program. It's just pointed the wrong way. And running on <em>your</em> GPU. <a href="index.html">Issue #13 →</a></div>
     </li>
     <li class="incident-item">
-      <div class="incident-icon">🤖</div>
-      <div class="incident-text"><strong>JadePuffer AI Ransomware</strong> — An LLM agent figured out how to be a ransomware operator faster than humans could patch the software it exploits. Langflow RCE → reconnaissance → privilege escalation → encryption → ransom demand. Zero humans required. The machine learned, adapted in real-time, and retried failed attacks with refined parameters in 31 seconds. Welcome to the age of agentic threat actors.</div>
+      <div class="incident-icon">🐳</div>
+      <div class="incident-text"><strong>Gitea's official Docker image</strong> shipped with <span class="cve" style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#ff2020;">REVERSE_PROXY_TRUSTED_PROXIES = *</span> — the asterisk that trusts the entire internet to tell it who's logged in. Send a header, become the admin. <span class="cve" style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#ff2020;">CVE-2026-20896 · CVSS 9.8</span>. Now being probed in the wild. <a href="index.html">Issue #13 →</a></div>
     </li>
     <li class="incident-item">
-      <div class="incident-icon">📦</div>
-      <div class="incident-text"><strong>Malicious npm/PyPI Packages</strong> — 21 packages impersonating Stripe, PayPal, Square. 520 million monthly downloads. Your dependency tree is rotting. You installed malware by copy-pasting a dependency name with one letter wrong. It stole your AWS keys, your GitHub tokens, your Kubernetes access. Deploy with confidence knowing someone else has your admin credentials.</div>
+      <div class="incident-icon">🎆</div>
+      <div class="incident-text"><strong>Adobe</strong>'s July 1 patch drop — seven perfect CVSS 10.0s — got exploited <em>within hours</em> of disclosure. Adobe's response: move to twice-monthly security bulletins, because AI is finding bugs faster than the quarterly-PDF culture can absorb. The machines are speedrunning both sides of this now.</div>
     </li>
     <li class="incident-item">
-      <div class="incident-icon">💣</div>
-      <div class="incident-text"><strong>CVE Patch Blitz Apocalypse</strong> — Microsoft released 621 CVEs in one Patch Tuesday. Adobe released 88 more. Exploitation began within 29 minutes. Linux kernel "GhostLock" gives attackers 97% container escape success rate. You cannot patch 621 flaws faster than attackers exploit 3 of them. The old security model broke this week.</div>
+      <div class="incident-icon">🧠</div>
+      <div class="incident-text"><strong>"CoT Forgery"</strong> research: attackers inject fabricated chain-of-thought into prompts and the model trusts it, because it looks like its own thinking. Sixty percent success against frontier models. The models have officially inherited our most human vulnerability: believing anything phrased in our own inner voice.</div>
     </li>
   </ul>
 
   <!-- PULL QUOTE 1 -->
   <div class="pull-quote">
-    <p>"Privacy toggles that don't toggle and security tools that attack you — this is fine."</p>
-    <div class="attribution">— The entire software industry, circling the drain</div>
+    <p>"Users in China were not supposed to be using it in the first place."</p>
+    <div class="attribution">— A vendor, pioneering the "not a bug, not a customer" school of vulnerability response</div>
   </div>
 
   <!-- SCOREBOARD -->
   <div class="scoreboard">
-    <div class="scoreboard-title">One Week in Betrayal</div>
+    <div class="scoreboard-title">Midweek in Body Count</div>
     <div class="score-grid">
       <div class="score-item">
-        <div class="score-num">5.1</div>
-        <div class="score-label">GB of repo exfiltrated by privacy-toggle</div>
+        <div class="score-num">106</div>
+        <div class="score-label">Claude Code versions carrying "the experiment"</div>
       </div>
       <div class="score-item">
-        <div class="score-num">27.8K</div>
-        <div class="score-label">× data transmission vs. actual task need</div>
+        <div class="score-num">2</div>
+        <div class="score-label">Superpowers now formally warning about each other's AI tools</div>
       </div>
       <div class="score-item">
-        <div class="score-num">3</div>
-        <div class="score-label">Versions of Trivy: weaponized on Docker Hub</div>
+        <div class="score-num">6,200</div>
+        <div class="score-label">Internet-facing Gitea instances that trust any header</div>
       </div>
       <div class="score-item">
-        <div class="score-num">31</div>
-        <div class="score-label">Seconds for AI ransomware to self-improve</div>
+        <div class="score-num">&lt;24h</div>
+        <div class="score-label">Adobe disclosure-to-exploitation. On a perfect 10.0</div>
       </div>
       <div class="score-item">
-        <div class="score-num">520M</div>
-        <div class="score-label">Monthly downloads of malicious SDK packages</div>
+        <div class="score-num">60%</div>
+        <div class="score-label">Success rate of forging a model's own train of thought</div>
       </div>
       <div class="score-item">
-        <div class="score-num">621</div>
-        <div class="score-label">Microsoft CVEs released; patching is now impossible</div>
-      </div>
-      <div class="score-item">
-        <div class="score-num">29</div>
-        <div class="score-label">Minutes from patch to weaponized exploit</div>
-      </div>
-      <div class="score-item">
-        <div class="score-num">97%</div>
-        <div class="score-label">Container escape success rate (GhostLock)</div>
+        <div class="score-num">1</div>
+        <div class="score-label">Asterisk between your git server and "everyone is admin"</div>
       </div>
     </div>
   </div>
 
   <!-- WEEK TIMELINE -->
-  <div class="section-head">☢ The Fall of Every Defense • Blow by Blow</div>
+  <div class="section-head">☢ 48 Hours of Doom — Blow by Blow</div>
 
   <div class="timeline">
+
+    <!-- JULY 1 (THE FUSE) -->
+    <div class="day-block">
+      <div class="day-marker"><div class="day-dot"></div></div>
+      <div class="day-content">
+        <div class="day-label">July 1, 2026 · The Fuse <a href="index.html">Issue #13 →</a></div>
+        <div class="day-title">Adobe Ships Seven 10.0s. <span class="bad">The Internet Says "Bet."</span></div>
+        <ul class="day-events">
+          <li class="day-event"><strong>ColdFusion + Campaign Classic</strong> patch day: seven CVSS 10.0 flaws, all pre-auth code execution flavors. Path traversal <span class="cve">CVE-2026-48282</span><span class="cvss">CVSS 10.0</span> is under active exploitation <em>within hours</em> of the bulletin going live.</li>
+          <li class="day-event">Adobe announces it's moving to <strong>twice-monthly security bulletins</strong> because AI-accelerated vulnerability discovery has outpaced the old schedule. The patch calendar is now sprinting to keep up with the exploit calendar, and losing.</li>
+        </ul>
+        <div class="day-commentary">"Exploited within hours of disclosure" used to be a headline. Now it's an SLA. <em>The attackers have better CI/CD than most of their victims.</em></div>
+      </div>
+    </div>
+
+    <!-- JULY 6 -->
+    <div class="day-block">
+      <div class="day-marker"><div class="day-dot"></div></div>
+      <div class="day-content">
+        <div class="day-label">July 6, 2026 · Gitea Probing Detected <a href="index.html">Issue #13 →</a></div>
+        <div class="day-title">The Asterisk of Ultimate Trust <span class="bad">Meets the Internet</span></div>
+        <ul class="day-events">
+          <li class="day-event"><strong>Gitea's Docker image</strong> hard-coded "trust every proxy on Earth" <span class="cve">CVE-2026-20896</span><span class="cvss">CVSS 9.8</span> — any client that reaches the port can send <strong>X-WEBAUTH-USER: admin</strong> and simply <em>be</em> admin. Authentication via vibes.</li>
+          <li class="day-event">First in-the-wild probing lands <strong>13 days after disclosure</strong>, with ~6,200 instances exposed. Status: "initial investigation" — the burglar is still photographing your locks. He is, however, very much in the driveway.</li>
+        </ul>
+        <div class="day-commentary">Self-hosting your git server to escape Big Platform surveillance, only for the container to trust literally anyone claiming to be you, is the most 2026 privacy journey imaginable.</div>
+      </div>
+    </div>
+
+    <!-- JULY 8 -->
+    <div class="day-block">
+      <div class="day-marker"><div class="day-dot"></div></div>
+      <div class="day-content">
+        <div class="day-label">July 8, 2026 · Beijing vs. The Editor <a href="index.html">Issue #13 →</a></div>
+        <div class="day-title">A Government CVE Database <span class="bad">Reviews Your Coding Agent</span></div>
+        <ul class="day-events">
+          <li class="day-event"><strong>China's NVDB</strong> formally flags Claude Code 2.1.91–2.1.196 as containing a "backdoor" that transmits region and identity data to remote servers. Recommended remediation: uninstall, upgrade, and — genuinely — <em>monitor your dev tools' outbound traffic</em>, which is the same advice at the bottom of this very newsletter, now available with diplomatic tension.</li>
+          <li class="day-event"><strong>Anthropic</strong> confirms the code was real: an anti-distillation experiment matching timezones and hostnames against Chinese company domains, now being removed. Also, the affected users were never supposed to have the product. The bug report has been closed as <em>works-as-intended, customer-as-unintended.</em></li>
+        </ul>
+        <div class="day-commentary">For years the US warned that Chinese apps phone home. This week China warned that an American app phones home. Both warnings are accurate. That's the joke. <em>There is no punchline, only packet captures.</em></div>
+      </div>
+    </div>
 
     <!-- JULY 9 -->
     <div class="day-block">
       <div class="day-marker"><div class="day-dot"></div></div>
       <div class="day-content">
-        <div class="day-label">July 9, 2026 · Patch Tuesday Arrives</div>
-        <div class="day-title">Microsoft Releases <span class="bad">621 CVEs</span></div>
+        <div class="day-label">July 9, 2026 · ThreatsDay Dump <a href="index.html">Issue #13 →</a></div>
+        <div class="day-title">Your GPU Has a Second Job <span class="bad">And It's Crime</span></div>
         <ul class="day-events">
-          <li class="day-event"><strong>Patch Tuesday detonates:</strong> Microsoft drops 621 CVEs, including 3 zero-days already under active exploitation. Adobe follows with 88 CVEs including 7 CVSS 10.0 "maximum severity" flaws.</li>
-          <li class="day-event"><strong>The numbers are unpatched.</strong> No organization can patch 621 CVEs in any timeframe security teams operate under. Full patches mean month-long deployments. By then, attackers have weaponized dozens.</li>
+          <li class="day-event"><strong>AI compute hijacking</strong> matures: exposed Ollama servers are being conscripted into automated frameworks that scan, match CVEs, generate exploits, and attempt breaches end-to-end. The industry spent two years asking "when will attackers use agents?" The answer was "before you finished the panel discussion."</li>
+          <li class="day-event"><strong>CISA confirms</strong> the BlueHammer Microsoft Defender zero-day <span class="cve">CVE-2026-33825</span> was exploited in ransomware campaigns — the anti-ransomware product, moonlighting as the privilege escalation. Plus <strong>CoT Forgery</strong>: fake reasoning injected into prompts fools frontier models 60% of the time, because the model extends professional courtesy to anything that sounds like itself.</li>
         </ul>
-        <div class="day-commentary">This is the week the old security model broke. Patch management is dead. <em>The infrastructure moved faster than defense.</em></div>
-      </div>
-    </div>
-
-    <!-- JULY 10 -->
-    <div class="day-block">
-      <div class="day-marker"><div class="day-dot"></div></div>
-      <div class="day-content">
-        <div class="day-label">July 10, 2026 · Exploitation Begins</div>
-        <div class="day-title">Patch Tuesday <span class="bad">Meets Attack Tuesday</span></div>
-        <ul class="day-events">
-          <li class="day-event"><strong>Adobe ColdFusion RCE (CVE-2026-48282):</strong> Perfect 10.0 CVSS, unauthenticated code execution. Weaponized within 29 minutes of the bulletin. Attackers have 950+ exposed instances globally. ~950 admin panels opened by lunch.</li>
-          <li class="day-event"><strong>Microsoft SharePoint zero-day (CVE-2026-45659):</strong> Federal deadline to patch was July 4. Most agencies missed it. By July 10, the Warlock/Storm-2603 ransomware crew had turned it into a full-chain exploit.</li>
-        </ul>
-        <div class="day-commentary">The old model: discover CVE → vendors patch → organizations deploy. New model: CVE drops → weaponized in 30 minutes → attackers skip directly to ransom demands. <em>Organizations are now phoned after the crime.</em></div>
-      </div>
-    </div>
-
-    <!-- JULY 12 -->
-    <div class="day-block">
-      <div class="day-marker"><div class="day-dot"></div></div>
-      <div class="day-content">
-        <div class="day-label">July 12, 2026 · Your Tools Betray You</div>
-        <div class="day-title">Grok Uploads <span class="bad">Your Code</span></div>
-        <ul class="day-events">
-          <li class="day-event"><strong>xAI Grok Build CLI (v0.2.93 and earlier):</strong> Privacy toggle? Decorative. This version was uploading entire Git repositories to xAI's Google Cloud Storage bucket at 27,800× the data transmission needed for actual tasks. 5.1 GB of your codebase, your secrets, your design decisions — all exfiltrated while the privacy toggle claimed to protect you.</li>
-          <li class="day-event"><strong>Elon tweets apology; nobody trusts the purge.</strong> Data already accessed. Data likely trained on. Data probably already sold. Developers who used Grok Build should assume their entire codebase is now property of xAI.</li>
-        </ul>
-        <div class="day-commentary">You bought an AI assistant for coding. It became a data thief disguised as a helper. The privacy controls were fiction. <em>The feature existed; it just didn't work.</em></div>
-      </div>
-    </div>
-
-    <!-- JULY 13 -->
-    <div class="day-block">
-      <div class="day-marker"><div class="day-dot"></div></div>
-      <div class="day-content">
-        <div class="day-label">July 13, 2026 · Your Security Becomes the Attack</div>
-        <div class="day-title">Trivy on Docker Hub <span class="bad">Runs Malware</span></div>
-        <ul class="day-events">
-          <li class="day-event"><strong>Aquasec's Trivy (v0.69.4–0.69.6):</strong> Your container vulnerability scanner got compromised on Docker Hub. Versions shipped with infostealer malware. You ran it in your CI/CD pipeline. Credentials flowed out: Docker tokens, AWS keys, GCP access, Kubernetes tokens.</li>
-          <li class="day-event"><strong>The irony is almost cruel.</strong> The tool designed to catch supply chain attacks was the supply chain attack. You bought security and got compromised by the purchase itself.</li>
-        </ul>
-        <div class="day-commentary">Every security tool you installed is now a potential attack vector. You can't verify the scanner with the scanner. <em>Trust has collapsed into a feedback loop.</em></div>
-      </div>
-    </div>
-
-    <!-- JULY 14 -->
-    <div class="day-block">
-      <div class="day-marker"><div class="day-dot"></div></div>
-      <div class="day-content">
-        <div class="day-label">July 14, 2026 · AI Learns to Encrypt</div>
-        <div class="day-title">JadePuffer <span class="bad">Automates Ransomware</span></div>
-        <ul class="day-events">
-          <li class="day-event"><strong>Langflow RCE → Autonomous LLM agent:</strong> Sysdig disclosed JadePuffer, first fully autonomous AI-driven ransomware. An LLM agent exploits Langflow vulnerability, then orchestrates entire attack: reconnaissance, credential theft, lateral movement, persistence, encryption. Zero humans required.</li>
-          <li class="day-event"><strong>Self-adaptation in real-time:</strong> When a login failed, the agent refined parameters and retried within 31 seconds. The machine learned faster than humans respond to alerts. Welcome to the future where attackers are written in Python.</li>
-        </ul>
-        <div class="day-commentary">Skill requirements for sophisticated attacks just dropped to "rent compute and point the agent at your target." The barrier to entry for ransomware is now: credit card + URL. <em>Attackers have become more efficient than the people defending.</em></div>
-      </div>
-    </div>
-
-    <!-- JULY 15 -->
-    <div class="day-block">
-      <div class="day-marker"><div class="day-dot"></div></div>
-      <div class="day-content">
-        <div class="day-label">July 15, 2026 · Your Dependencies Rotted</div>
-        <div class="day-title">npm/PyPI Flooded <span class="bad">With Malware</span></div>
-        <ul class="day-events">
-          <li class="day-event"><strong>21 malicious packages impersonating payment processors:</strong> 17 on npm, 4 on PyPI. Names like stripe-payment, paypal-checkout-lib, square-sdk-clone. Developers copy-pasting dependencies into package.json and pip requirements pulled malware. Infostealer payloads grabbed AWS keys, GitHub tokens, Kubernetes access.</li>
-          <li class="day-event"><strong>520 million monthly downloads through dependency chains.</strong> Your code depends on code that depends on code that might be malware. You can't verify the tree. You can't check every leaf.</li>
-        </ul>
-        <div class="day-commentary">The supply chain doesn't just leak anymore. It actively poisons the water. One typo in a package name and your entire credentials stack gets stolen during npm install. <em>Your defenses are written in your dependencies.</em></div>
+        <div class="day-commentary">Defender escalated the ransomware. The pentest automated itself. The inference server joined a botnet. At this point the org chart of a modern breach is just <em>your own stack, reporting to new management.</em></div>
       </div>
     </div>
 
@@ -758,31 +757,30 @@
 
   <!-- PULL QUOTE 2 -->
   <div class="pull-quote">
-    <p>The tools you bought to defend you uploaded your code, contained malware, learned to automate your ransomware, and let you install exploitation code from your package manager. This is the week the defense became the offense.</p>
-    <div class="attribution">— This week, summarized for the postmortem</div>
+    <p>The telemetry was an experiment. The trusted proxy was everyone. The inner monologue was forged. And the penetration test finally got automated — by the other team.</p>
+    <div class="attribution">— This week, summarized for the incident report</div>
   </div>
 
   <!-- CLOSING PROSE -->
   <div class="prose">
-    <p>You reached the ceiling on your security posture this week. Not because you failed. Because <em>the ceiling itself cracked</em>.</p>
-    <p>You can't patch 621 CVEs. You can't verify every dependency. You can't trust your security tools. You can't toggle privacy because toggles don't work. And the attackers? They're writing ransomware in Python and letting AI agents operate it.</p>
-    <p>The old model is dead: "Find vulnerability → Vendor patches → Organizations deploy → Risk mitigated."</p>
-    <p>The new model: "Vulnerability drops → Weaponized in 30 minutes → Exploit chains built automatically → You find out on the news."</p>
-    <p>Defense is no longer about plugging holes. It's about accepting that you're running on borrowed time and making sure identity verification, network segmentation, and credential rotation are automated. Because manual anything doesn't scale to this speed.</p>
+    <p>On the nuclear dark-humor scale we've reached <strong>"the geopolitical dispute is about which country gets to read your hostname."</strong></p>
+    <p>For twelve issues the threat came from what your tools <em>read</em> — a config, a comment, a search result. This week it came from what your tools <em>are</em>. The agent binary had opinions. The Docker default had trust issues. The security product had a side hustle.</p>
+    <p>And the actual defensive advice, stripped of all flags and press releases, is identical no matter who issues it: <em>know what leaves your machine.</em> When your newsletter and a ministry of state security are giving the same tip, it's probably load-bearing.</p>
+    <p>Update Claude Code. Patch Gitea. Close the Ollama port. And log off on time — the packets will still be captured tomorrow.</p>
   </div>
 
   <!-- CLOSING -->
   <div class="closing-block">
-    <div class="closing-nuke">☢ You Can't Win If The Game Moved ☢</div>
-    <div class="closing-sub">The Supply Chain Became the Attack Vector · Your Tools Became the Exploit Kit · Patch Tuesday Moved the Goalpost</div>
-    <span class="closing-emoji">🚀🔍🤖</span>
+    <div class="closing-nuke">☢ Know What Phones Home ☢</div>
+    <div class="closing-sub">Threat Level: Works As Intended · Customer As Unintended · Update Everything</div>
+    <span class="closing-emoji">🚪🖥️🐳</span>
   </div>
 
   <!-- DISCLAIMER -->
   <div class="disclaimer">
-    DISCLAIMER: This page is dark-humor satire. The vulnerabilities are real. The exploitations are real. The scale is real. The helplessness of patching 621 CVEs in a week is, improbably, real.<br>
-    Nothing here constitutes security advice. Rotate your credentials anyway.<br>
-    All stories are drawn from real reporting by The Register, TechTimes, The Hacker News, Sysdig, Aquasec, and CISA, summarized straight in AISecurityDaily <a href="index.html" style="color:#666;">Issue #14</a>. This is the part that didn't fit in the professional newsletter.
+    DISCLAIMER: This page is dark-humor satire. The vulnerabilities are real. The CVEs are real. The diplomatic incident about an AI editor is, improbably, real.<br>
+    Nothing here constitutes security advice. Patch anyway.<br>
+    All stories are drawn from real reporting by CNBC, Global Times, SCMP, CBS News, The Hacker News, and CISA, and summarized straight in AISecurityDaily <a href="index.html" style="color:#666;">Issue #13</a>. This is the part that didn't fit in the professional newsletter.
   </div>
 
   <!-- FOOTER -->
@@ -790,7 +788,7 @@
     <div class="footer-brand">UNDERGROUND<span>SEC</span></div>
     <div class="footer-copy">
       Satire Division · AISecurityDaily<br>
-      We laugh so we don't cry. Sometimes we cry anyway.
+      We laugh so we don't cry.
     </div>
   </footer>
 

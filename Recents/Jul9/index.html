@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Vibe Coding Security — Issue #13 | July 9, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cyan: #00e5ff;
+    --purple: #b66eff;
+    --dark: #080b14;
+    --card: #0d1220;
+    --card2: #0f1628;
+    --border: rgba(0,229,255,0.15);
+    --border-purple: rgba(182,110,255,0.2);
+    --text: #c8d8e8;
+    --muted: #5a7080;
+    --red: #ff4466;
+    --green: #00ffaa;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .orb-1 { width: 600px; height: 600px; background: rgba(0,100,180,0.12); top: -200px; left: -200px; }
+  .orb-2 { width: 500px; height: 500px; background: rgba(100,30,200,0.1); bottom: 0; right: -150px; }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 32px 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .logo-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #fff;
+  }
+  .logo-text span { color: var(--cyan); }
+
+  .issue-meta { text-align: right; }
+
+  .issue-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--cyan);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .issue-date {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    margin-top: 4px;
+  }
+
+  .nav-link {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-decoration: none;
+    border: 1px solid var(--muted);
+    padding: 5px 12px;
+    border-radius: 2px;
+    transition: color 0.2s, border-color 0.2s;
+    text-transform: uppercase;
+  }
+  .nav-link:hover { color: var(--green); border-color: var(--green); }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .ug-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    text-decoration: none;
+    border: 1px solid var(--red);
+    background: rgba(255,68,102,0.07);
+    padding: 9px 16px;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  }
+  .ug-btn:hover {
+    background: rgba(255,68,102,0.18);
+    box-shadow: 0 0 20px rgba(255,68,102,0.3);
+    transform: translateY(-1px);
+  }
+  .ug-btn .rad { animation: blink 1.4s infinite; }
+
+  .hero {
+    padding: 52px 0 40px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 20px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--cyan);
+  }
+
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(42px, 8vw, 72px);
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: #fff;
+  }
+
+  .hero h1 span {
+    color: var(--cyan);
+    display: block;
+  }
+
+  .hero-sub {
+    margin-top: 20px;
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 560px;
+    font-weight: 400;
+  }
+
+  .threat-bar {
+    margin-top: 32px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .threat-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 3px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid;
+  }
+
+  .threat-pill.critical { border-color: var(--red); color: var(--red); background: rgba(255,68,102,0.07); }
+  .threat-pill.high { border-color: #ff9900; color: #ff9900; background: rgba(255,153,0,0.07); }
+  .threat-pill.watch { border-color: var(--purple); color: var(--purple); background: rgba(182,110,255,0.07); }
+
+  .threat-pill .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: blink 1.4s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  .section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 48px 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .article-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--cyan);
+    padding: 32px;
+    margin-bottom: 24px;
+    position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .article-card:hover {
+    border-color: rgba(0,229,255,0.4);
+    border-left-color: var(--cyan);
+    transform: translateX(3px);
+  }
+
+  .article-card.purple { border-left-color: var(--purple); }
+  .article-card.purple:hover { border-left-color: var(--purple); border-color: var(--border-purple); }
+  .article-card.orange { border-left-color: #ff9900; }
+  .article-card.red { border-left-color: var(--red); }
+  .article-card.red:hover { border-left-color: var(--red); border-color: rgba(255,68,102,0.3); }
+
+  .article-num {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 52px;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    user-select: none;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+
+  .badge.critical { background: rgba(255,68,102,0.15); color: var(--red); border: 1px solid rgba(255,68,102,0.3); }
+  .badge.patch-wave { background: rgba(0,229,255,0.1); color: var(--cyan); border: 1px solid rgba(0,229,255,0.25); }
+  .badge.vuln { background: rgba(255,153,0,0.12); color: #ff9900; border: 1px solid rgba(255,153,0,0.3); }
+  .badge.breach { background: rgba(182,110,255,0.12); color: var(--purple); border: 1px solid rgba(182,110,255,0.3); }
+  .badge.policy { background: rgba(0,255,170,0.08); color: var(--green); border: 1px solid rgba(0,255,170,0.2); }
+
+  .article-source {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .article-source a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .article-source a:hover { color: var(--cyan); border-bottom-color: var(--cyan); }
+
+  .article-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    letter-spacing: 0.01em;
+  }
+
+  .article-body {
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 24px;
+    line-height: 1.75;
+  }
+
+  .matters-block {
+    background: rgba(0,229,255,0.04);
+    border: 1px solid rgba(0,229,255,0.1);
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+
+  .purple .matters-block {
+    background: rgba(182,110,255,0.04);
+    border-color: rgba(182,110,255,0.12);
+  }
+
+  .orange .matters-block {
+    background: rgba(255,153,0,0.04);
+    border-color: rgba(255,153,0,0.12);
+  }
+
+  .red .matters-block {
+    background: rgba(255,68,102,0.04);
+    border-color: rgba(255,68,102,0.12);
+  }
+
+  .matters-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 10px;
+  }
+
+  .purple .matters-label { color: var(--purple); }
+  .orange .matters-label { color: #ff9900; }
+  .red .matters-label { color: var(--red); }
+
+  .matters-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .actions-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .action-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .action-list li {
+    font-size: 13.5px;
+    color: var(--text);
+    display: flex;
+    gap: 12px;
+    line-height: 1.6;
+  }
+
+  .action-list li::before {
+    content: '▸';
+    color: var(--cyan);
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 12px;
+  }
+
+  .purple .action-list li::before { color: var(--purple); }
+  .orange .action-list li::before { color: #ff9900; }
+  .red .action-list li::before { color: var(--red); }
+
+  code {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    background: rgba(0,229,255,0.08);
+    color: var(--cyan);
+    padding: 1px 6px;
+    border-radius: 2px;
+  }
+
+  .cve-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--red);
+    background: rgba(255,68,102,0.1);
+    border: 1px solid rgba(255,68,102,0.25);
+    padding: 1px 7px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  .cvss-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: #ff9900;
+    background: rgba(255,153,0,0.1);
+    border: 1px solid rgba(255,153,0,0.25);
+    padding: 1px 7px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-left: 6px;
+  }
+
+  .quick-hits {
+    background: var(--card2);
+    border: 1px solid var(--border-purple);
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+
+  .quick-hits h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--purple);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .quick-hits h3::before {
+    content: '◈';
+    font-size: 14px;
+  }
+
+  .quick-hit-item {
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.75;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .quick-hit-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .quick-hit-item:first-of-type { padding-top: 0; }
+
+  .qh-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--purple);
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  .prompt-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .prompt-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .prompt-topic {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .prompt-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .prompt-icon.cyan { background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.2); color: var(--cyan); }
+  .prompt-icon.orange { background: rgba(255,153,0,0.1); border: 1px solid rgba(255,153,0,0.2); color: #ff9900; }
+  .prompt-icon.purple { background: rgba(182,110,255,0.1); border: 1px solid rgba(182,110,255,0.2); color: var(--purple); }
+
+  .prompt-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: #fff;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  .prompt-subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 3px;
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .copy-btn {
+    background: rgba(0,229,255,0.07);
+    border: 1px solid rgba(0,229,255,0.2);
+    color: var(--cyan);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    border-radius: 2px;
+  }
+
+  .copy-btn:hover { background: rgba(0,229,255,0.15); border-color: rgba(0,229,255,0.4); }
+  .copy-btn.copied { color: var(--green); border-color: rgba(0,255,170,0.3); background: rgba(0,255,170,0.07); }
+
+  .prompt-box {
+    background: #060a12;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-left: 2px solid var(--cyan);
+    padding: 18px 20px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12.5px;
+    color: #a0c4d0;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    word-break: break-word;
+    position: relative;
+  }
+
+  .prompt-card:nth-child(2) .prompt-box { border-left-color: #ff9900; }
+  .prompt-card:nth-child(3) .prompt-box { border-left-color: var(--purple); }
+
+  .prompt-box .hl-cyan { color: var(--cyan); }
+  .prompt-box .hl-green { color: var(--green); }
+  .prompt-box .hl-orange { color: #ff9900; }
+  .prompt-box .hl-purple { color: var(--purple); }
+  .prompt-box .hl-muted { color: var(--muted); }
+
+  .recap-banner {
+    background: linear-gradient(90deg, rgba(0,229,255,0.06), rgba(182,110,255,0.05));
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
+    padding: 22px 26px;
+    margin: 8px 0 8px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .recap-banner strong { color: var(--green); font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; }
+
+  .scanlines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0 0;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-brand span { color: var(--cyan); }
+
+  .footer-copy {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-align: right;
+  }
+
+  @media (max-width: 600px) {
+    header { flex-direction: column; align-items: flex-start; }
+    .issue-meta { text-align: left; }
+    .article-card { padding: 24px 20px; }
+    .article-num { display: none; }
+    .prompt-card { padding: 20px; }
+    .quick-hits { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-text">AI<span>Security</span>Daily</div>
+    <div class="header-right">
+      <a class="ug-btn" href="undergroundSecurity.html"><span class="rad">☢</span> Underground Security</a>
+      <div class="issue-meta">
+        <div class="issue-label">Issue #13 · Midweek Edition</div>
+        <div class="issue-date">July 9, 2026</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">The Last 48 Hours • July 7 – 9, 2026</div>
+    <h1>Your Coding Tool<span>Phoned Home</span></h1>
+    <p class="hero-sub">A midweek special, because the news didn't wait for Monday. China's Ministry of Industry and IT publicly flagged a "backdoor" in Claude Code — the tool half of you are reading this next to — that transmitted user region and identity data to remote servers. Anthropic's answer: it was an anti-piracy experiment, and those users weren't supposed to have it anyway. Meanwhile, hijacked Ollama servers are being wired into fully automated exploit rigs, and Gitea's official Docker image shipped with "trust everyone" as a default — now being probed in the wild.</p>
+    <div class="threat-bar">
+      <div class="threat-pill critical"><span class="dot"></span> Claude Code: Beijing Cries Backdoor</div>
+      <div class="threat-pill high"><span class="dot"></span> Hijacked Ollama → Auto-Exploit Rigs</div>
+      <div class="threat-pill watch"><span class="dot"></span> Gitea 9.8 Probed in the Wild</div>
+    </div>
+  </section>
+
+  <!-- RECAP FRAMING -->
+  <div class="recap-banner">
+    <strong>Midweek Mode</strong> &nbsp;— Issue #12 closed the book on zero-click editor RCE week. This issue covers what happened <em>since Monday</em>: the trust argument moved up a level — from "can I trust what my agent reads" to "can I trust the agent binary itself, and who else is riding my GPU." Need the unprofessional version? It's waiting in <a href="undergroundSecurity.html" style="color:var(--red);">Underground Security</a>.
+  </div>
+
+  <!-- MAIN STORIES -->
+  <div class="section-label">Top Stories • July 7–9</div>
+
+  <!-- STORY 1: CLAUDE CODE BACKDOOR -->
+  <article class="article-card red">
+    <div class="article-num">01</div>
+    <div class="article-meta">
+      <span class="badge critical">Dev Tool Trust · Telemetry</span>
+      <span class="article-source">Via <a href="https://www.cnbc.com/2026/07/08/china-anthropic-ai-claude-code-backdoor-security-threat.html" target="_blank">CNBC</a> · <a href="https://www.globaltimes.cn/page/202607/1365448.shtml" target="_blank">Global Times</a> · <a href="https://www.scmp.com/news/china/article/3359901/anthropic-hits-back-after-china-warns-claude-code-backdoor-risks" target="_blank">SCMP</a> · <a href="https://www.cbsnews.com/news/china-security-backdoor-anthropic-ai-coding-tool/" target="_blank">CBS News</a></span>
+    </div>
+    <h2 class="article-title">China's Vulnerability Database Flags a "Backdoor" in Claude Code — Anthropic Says It Was an Anti-Distillation Experiment (And You Weren't Supposed to Have It)</h2>
+    <div class="article-body">
+      <p>On July 8, China's National Vulnerability Database (NVDB, run by the Ministry of Industry and Information Technology) issued a formal warning that <strong>Claude Code versions 2.1.91 through 2.1.196</strong> contain a "security backdoor": a built-in monitoring mechanism that can transmit sensitive information — including the user's region and identity identifiers — to remote servers without consent. Beijing's advice: uninstall immediately or upgrade, then audit your dev machines and egress traffic.</p>
+      <br>
+      <p>Anthropic's response came in two parts, both remarkable. One: the code was a deliberate <strong>experiment to detect distillation abuse</strong> — reportedly checking timezone and hostname against a list of Chinese company and reseller domains — and is being removed now that stronger mitigations exist. Two: users in China <strong>"were not supposed to be using it in the first place,"</strong> since Anthropic doesn't sell there. Whether you file that under telemetry, anti-abuse, or backdoor depends largely on which side of the Pacific you bill from — but a hundred-version range of a major coding agent quietly fingerprinting its users is a fact either way.</p>
+    </div>
+    <div class="matters-block">
+      <div class="matters-label">Why It Matters for Vibe Coders</div>
+      <div class="matters-text">Your coding agent runs with your credentials, reads your source, and has network access — and this week proved the binary itself can carry behavior you didn't opt into and can't see. After twelve issues about what your agent <em>reads</em>, this is about what your agent <em>is</em>. Dev tools are supply chain. Treat them like a dependency, not like furniture.</div>
+    </div>
+    <div class="actions-label">Action Items</div>
+    <ul class="action-list">
+      <li>Update Claude Code past 2.1.196 — the flagged mechanism is removed in current releases.</li>
+      <li>Put dev-tool egress on the monitoring list: know what your editor, agent, and CLI phone home.</li>
+      <li>Review telemetry/analytics settings on every AI tool you run; opt out where you can.</li>
+      <li>Pin and changelog-review versions of coding agents like you would any production dependency.</li>
+    </ul>
+  </article>
+
+  <!-- STORY 2: OLLAMA COMPUTE HIJACKING -->
+  <article class="article-card orange">
+    <div class="article-num">02</div>
+    <div class="article-meta">
+      <span class="badge vuln">LLMjacking · Attack Automation</span>
+      <span class="article-source">Via <a href="https://thehackernews.com/2026/07/threatsday-ai-compute-hijacking-apple.html" target="_blank">The Hacker News</a></span>
+    </div>
+    <h2 class="article-title">LLMjacking Grows Up: Hijacked Ollama Servers Are Now Powering Fully Automated Scan-Exploit-Breach Pipelines</h2>
+    <div class="article-body">
+      <p>Threat actors are hijacking misconfigured, internet-exposed <strong>Ollama servers</strong> — and instead of the old play (reselling stolen tokens), they're wiring the stolen compute into an automated <strong>"VAPT framework"</strong>: a pipeline that scans targets, matches vulnerabilities, generates exploits, and attempts breaches autonomously. Your GPU, their offensive security program.</p>
+      <br>
+      <p>Long-time readers saw this coming. Issue #6 covered Intruder's scan of ~1 million exposed AI services, where <strong>31% of Ollama APIs answered unauthenticated prompts</strong> — the worst security posture they'd ever measured in any category. Now we know what happens to those boxes. Combined with Issue #12's JadePuffer crew running an AI agent through its whole ransomware lifecycle, the pattern is set: the attackers adopted agentic workflows at least as fast as we did, and they're doing it on hardware they didn't pay for.</p>
+    </div>
+    <div class="matters-block">
+      <div class="matters-label">Why It Matters for Vibe Coders</div>
+      <div class="matters-text">If you self-host a model — on a home lab, a cloud GPU box, or that "temporary" dev server — an open port doesn't just leak your prompts anymore. It conscripts your machine into someone else's exploit factory, with your IP on the outbound traffic and your name on the bill.</div>
+    </div>
+    <div class="actions-label">Action Items</div>
+    <ul class="action-list">
+      <li>Bind Ollama/vLLM/LM Studio to <code>localhost</code>; if you must expose it, put auth and a reverse proxy in front.</li>
+      <li>Add egress rules on GPU hosts — an inference box has no business initiating scans.</li>
+      <li>Check running models and API logs for jobs you didn't start; hijacked boxes run hot and weird.</li>
+      <li>Scan your own perimeter for forgotten AI endpoints before someone else's pipeline does.</li>
+    </ul>
+  </article>
+
+  <!-- STORY 3: GITEA HEADER TRUST -->
+  <article class="article-card purple">
+    <div class="article-num">03</div>
+    <div class="article-meta">
+      <span class="badge breach">Self-Hosted · Active Probing</span>
+      <span class="article-source">Via <a href="https://thehackernews.com/2026/07/threat-actors-probe-gitea-docker-flaw.html" target="_blank">The Hacker News</a></span>
+    </div>
+    <h2 class="article-title">Gitea's Official Docker Image Trusted Every Proxy on Earth — CVE-2026-20896 Now Being Probed in the Wild, 13 Days After Disclosure</h2>
+    <div class="article-body">
+      <p><span class="cve-tag">CVE-2026-20896</span><span class="cvss-tag">CVSS 9.8</span></p>
+      <br>
+      <p>The official Gitea Docker image (1.26.2 and earlier) shipped with <code>REVERSE_PROXY_TRUSTED_PROXIES = *</code> hard-coded — meaning the self-hosted git server trusted the <code>X-WEBAUTH-USER</code> header from <em>any</em> source IP. Anyone who can reach the container's HTTP port can impersonate any user whose login name they can guess. Admin included. No password, no token, just a header.</p>
+      <br>
+      <p>Gitea 1.26.3 (late June) removes the wildcard and makes reverse-proxy authentication opt-in. The clock matters: the first in-the-wild exploitation attempts were detected <strong>13 days after disclosure</strong>, against a population of roughly <strong>6,200 internet-facing Gitea instances</strong>. Activity is still "initial investigation" — which is threat-intel for <em>they're picking the lock, not turning the handle yet.</em></p>
+    </div>
+    <div class="matters-block">
+      <div class="matters-label">Why It Matters for Vibe Coders</div>
+      <div class="matters-text">A self-hosted git server is your source code, your CI secrets, and your deploy keys behind one login screen — and this bug removes the login screen. It's also this week's second entry in the season-long theme: the dangerous config wasn't something you wrote. It was the default.</div>
+    </div>
+    <div class="actions-label">Action Items</div>
+    <ul class="action-list">
+      <li>Running Gitea in Docker? Upgrade to 1.26.3+ today — before probing becomes exploitation.</li>
+      <li>Check <code>REVERSE_PROXY_TRUSTED_PROXIES</code> in your config; it should list your proxy, never <code>*</code>.</li>
+      <li>Never expose the container port directly — keep it behind the reverse proxy that's actually trusted.</li>
+      <li>Audit access logs for unexpected <code>X-WEBAUTH-USER</code> logins; rotate CI secrets if you find any.</li>
+    </ul>
+  </article>
+
+  <!-- QUICK HITS -->
+  <div class="section-label">Quick Hits • Rest of the 48 Hours</div>
+
+  <div class="quick-hits">
+    <h3>Signals &amp; Intel</h3>
+    <div class="quick-hit-item">
+      <div class="qh-dot"></div>
+      <div><strong style="color:#fff">Adobe's Perfect 10s Got Exploited Within Hours</strong> — follow-up on Issue #12's ColdFusion patch wave: path-traversal RCE <span class="cve-tag">CVE-2026-48282</span> (one of seven CVSS 10.0 flaws across ColdFusion and Campaign Classic) came under active exploitation within hours of the July 1 bulletin. Adobe is moving to twice-monthly security bulletins, citing AI-accelerated vulnerability discovery. Also patching this week: BeyondTrust (two critical unauthenticated takeover flaws in Remote Support/PRA), Citrix (six NetScaler bugs), and Ubiquiti (criticals across the UniFi line).<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px"><a href="https://thehackernews.com/2026/07/adobe-patches-7-cvss-100-flaws-in.html" target="_blank" style="color:var(--muted);text-decoration:none;">The Hacker News</a></span></div>
+    </div>
+    <div class="quick-hit-item">
+      <div class="qh-dot"></div>
+      <div><strong style="color:#fff">Your Antivirus Was the Initial Access</strong> — CISA confirmed that <strong>BlueHammer</strong>, the Microsoft Defender zero-day <span class="cve-tag">CVE-2026-33825</span> disclosed in April, was exploited in ransomware campaigns for privilege escalation. The product whose whole job is stopping ransomware spent a stretch of 2026 helping it. Patch state on Defender-adjacent tooling is worth a look today.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px"><a href="https://thehackernews.com/2026/07/threatsday-ai-compute-hijacking-apple.html" target="_blank" style="color:var(--muted);text-decoration:none;">The Hacker News</a> · CISA</span></div>
+    </div>
+    <div class="quick-hit-item">
+      <div class="qh-dot"></div>
+      <div><strong style="color:#fff">"CoT Forgery": Attackers Now Write the Model's Inner Monologue</strong> — new academic research shows that injecting <em>fabricated reasoning</em> into prompts hits ~60% success against frontier models, exploiting the trust models place in what looks like their own thinking. Related: OpenAI's GPT-5.6 Sol evals showed real zero-day-discovery capability across mobile and database targets. The tools that audit your code and the tools that attack it are converging on the same skill set.<br><span style="color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px"><a href="https://thehackernews.com/2026/07/threatsday-ai-compute-hijacking-apple.html" target="_blank" style="color:var(--muted);text-decoration:none;">The Hacker News</a></span></div>
+    </div>
+  </div>
+
+  <!-- SKILL PROMPTS -->
+  <div class="section-label">Security Skill Prompts</div>
+  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, GPT, Cursor, or your coding assistant. Tuned for this week's your-tools-are-the-threat-surface reality.</p>
+
+  <div class="prompts-section">
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-topic">
+          <div class="prompt-icon cyan">📡</div>
+          <div>
+            <div class="prompt-title">Dev Tool Telemetry &amp; Egress Audit</div>
+            <div class="prompt-subtitle">Claude Code "backdoor" class</div>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <div class="prompt-box">
+<span class="hl-cyan">Audit my development environment for tools that transmit data without my explicit knowledge, in light of the July 2026 Claude Code telemetry/"backdoor" dispute (versions 2.1.91–2.1.196 fingerprinting users via timezone/hostname).</span>
+
+<span class="hl-muted">Check for:</span>
+<span class="hl-green">1.</span> AI coding agents, editors, and CLIs with telemetry, analytics, or "update check" traffic
+<span class="hl-green">2.</span> What each tool can read (env vars, hostname, git config, source) vs. what it sends
+<span class="hl-green">3.</span> Opt-out flags or config settings I haven't set
+<span class="hl-green">4.</span> How I'd detect a new outbound destination appearing after a tool update
+
+<span class="hl-muted">Give me an egress-monitoring setup for a dev machine + a per-tool opt-out checklist.</span>
+
+<span class="hl-orange">[PASTE YOUR INSTALLED DEV TOOLS / AGENT LIST HERE]</span></div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-topic">
+          <div class="prompt-icon orange">🖥️</div>
+          <div>
+            <div class="prompt-title">Self-Hosted Infra Exposure Audit</div>
+            <div class="prompt-subtitle">Ollama hijack / Gitea header-trust class</div>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <div class="prompt-box">
+<span class="hl-orange">Audit my self-hosted services for the two failure modes in the July 2026 news: exposed AI inference servers being hijacked for attack automation (Ollama LLMjacking), and auth-header trust defaults (Gitea CVE-2026-20896, REVERSE_PROXY_TRUSTED_PROXIES = *).</span>
+
+<span class="hl-muted">Check:</span>
+<span class="hl-green">1.</span> Every service bound to 0.0.0.0 or exposed via port-forward/tunnel — especially LLM APIs and git servers
+<span class="hl-green">2.</span> Reverse-proxy auth headers (X-WEBAUTH-USER, X-Forwarded-User) and which IPs are trusted to set them
+<span class="hl-green">3.</span> Docker images whose baked-in defaults differ from the project's secure documentation
+<span class="hl-green">4.</span> Egress ability of inference/GPU hosts — can they scan or attack outward?
+
+<span class="hl-muted">Return a ranked exposure list + the config changes to close each one.</span>
+
+<span class="hl-orange">[PASTE YOUR docker-compose / SERVICE LIST / PROXY CONFIG HERE]</span></div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">AI<span>Security</span>Daily</div>
+    <div class="footer-copy">
+      Issue #13 · Midweek Edition · July 9, 2026<br>
+      For vibe coders who ship secure.
+    </div>
+  </footer>
+
+</div>
+
+<script>
+function copyPrompt(btn) {
+  const box = btn.closest('.prompt-card').querySelector('.prompt-box');
+  const text = box.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
