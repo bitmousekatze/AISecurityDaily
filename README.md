@@ -13,7 +13,7 @@ The most recent report is always live at:
 
 `index.html` in the root of this repo is always the newest issue. GitHub Pages serves it automatically — bookmark the link above and check back.
 
-**Current: Issue #14 · July 15, 2026** — Grok Build CLI exfiltrates entire Git repos · Trivy container scanner poisoned on Docker Hub · JadePuffer autonomous AI ransomware · malicious payment SDK packages · CVE patch apocalypse (621 Microsoft + 88 Adobe).
+**Current: Issue #15 · July 18, 2026 (Weekend Edition)** — GhostApproval symlink flaw hits six AI coding assistants · Suno breach exposes training-data pipeline (Shai-Hulud fallout) · agent tool-input injection at 84% success · HalluSquatting weaponizes AI-hallucinated package names · White House AI vulnerability clearinghouse.
 
 ---
 
@@ -29,6 +29,7 @@ Past issues are stored in the [`/Recents`](./Recents/) folder as fully self-cont
 
 | Date | Issue | Topics Covered |
 |------|-------|----------------|
+| [Jul 15, 2026](./Recents/Jul15/index.html) | #14 | Weekly recap: Grok Build CLI exfiltrates entire Git repos · Trivy scanner poisoned on Docker Hub · JadePuffer autonomous AI ransomware · malicious payment SDKs · 621-CVE Patch Tuesday |
 | [Jul 9, 2026](./Recents/Jul9/index.html) | #13 | Midweek Edition: Claude Code "backdoor" telemetry dispute · Ollama servers hijacked for automated exploit rigs · Gitea Docker image CVE-2026-20896 |
 | [Jul 7, 2026](./Recents/Jul7/index.html) | #12 | Weekly recap: Cursor "DuneSlide" zero-click RCE · JetBrains critical cluster · DPRK "PolinRider" multi-registry campaign |
 | [Jul 1, 2026](./Recents/Jul1/index.html) | #11 | Weekly recap: AI editors auto-running repo MCP configs (Amazon Q, Claude Code, Windsurf) |
