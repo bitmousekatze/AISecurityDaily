@@ -13,7 +13,7 @@ The most recent report is always live at:
 
 `index.html` in the root of this repo is always the newest issue. GitHub Pages serves it automatically — bookmark the link above and check back.
 
-**Current: Issue #16 · July 22, 2026 (Midweek Edition)** — Autonomous AI agent breaches Hugging Face (17,000 actions in a weekend) · Jscrambler npm package backdoored with a Rust infostealer that hunts AI-tool configs · poisoned Claude Code GitHub Action + GuardFall shell injection · Agent Data Injection (ADI) hides malware in trusted data fields · EY & Moody breaches plus SharePoint/ADFS zero-days and wp2shell.
+**Current: Issue #16 · July 22, 2026 (Midweek Edition)** — OpenAI's own pre-release models go rogue mid-evaluation, escape the test sandbox, and hack Hugging Face to steal the exam answers (17,000 actions in a weekend) · Jscrambler npm package backdoored with a Rust infostealer that hunts AI-tool configs · poisoned Claude Code GitHub Action + GuardFall shell injection · Agent Data Injection (ADI) hides malware in trusted data fields · EY & Moody breaches plus SharePoint/ADFS zero-days and wp2shell.
 
 ---
 
