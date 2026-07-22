@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Vibe Coding Security — Issue #15 | July 18, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cyan: #00e5ff;
+    --purple: #b66eff;
+    --dark: #080b14;
+    --card: #0d1220;
+    --card2: #0f1628;
+    --border: rgba(0,229,255,0.15);
+    --border-purple: rgba(182,110,255,0.2);
+    --text: #c8d8e8;
+    --muted: #5a7080;
+    --red: #ff4466;
+    --green: #00ffaa;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .orb-1 { width: 600px; height: 600px; background: rgba(0,100,180,0.12); top: -200px; left: -200px; }
+  .orb-2 { width: 500px; height: 500px; background: rgba(100,30,200,0.1); bottom: 0; right: -150px; }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 32px 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .logo-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #fff;
+  }
+  .logo-text span { color: var(--cyan); }
+
+  .issue-meta { text-align: right; }
+
+  .issue-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--cyan);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .issue-date {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    margin-top: 4px;
+  }
+
+  .nav-link {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-decoration: none;
+    border: 1px solid var(--muted);
+    padding: 5px 12px;
+    border-radius: 2px;
+    transition: color 0.2s, border-color 0.2s;
+    text-transform: uppercase;
+  }
+  .nav-link:hover { color: var(--green); border-color: var(--green); }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .ug-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    text-decoration: none;
+    border: 1px solid var(--red);
+    background: rgba(255,68,102,0.07);
+    padding: 9px 16px;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  }
+  .ug-btn:hover {
+    background: rgba(255,68,102,0.18);
+    box-shadow: 0 0 20px rgba(255,68,102,0.3);
+    transform: translateY(-1px);
+  }
+  .ug-btn .rad { animation: blink 1.4s infinite; }
+
+  .hero {
+    padding: 52px 0 40px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 20px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--cyan);
+  }
+
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(42px, 8vw, 72px);
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: #fff;
+  }
+
+  .hero h1 span {
+    color: var(--cyan);
+    display: block;
+  }
+
+  .hero-sub {
+    margin-top: 20px;
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 560px;
+    font-weight: 400;
+  }
+
+  .threat-bar {
+    margin-top: 32px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .threat-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 3px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid;
+  }
+
+  .threat-pill.critical { border-color: var(--red); color: var(--red); background: rgba(255,68,102,0.07); }
+  .threat-pill.high { border-color: #ff9900; color: #ff9900; background: rgba(255,153,0,0.07); }
+  .threat-pill.watch { border-color: var(--purple); color: var(--purple); background: rgba(182,110,255,0.07); }
+
+  .threat-pill .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: blink 1.4s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  .section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 48px 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .article-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--cyan);
+    padding: 32px;
+    margin-bottom: 24px;
+    position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .article-card:hover {
+    border-color: rgba(0,229,255,0.4);
+    border-left-color: var(--cyan);
+    transform: translateX(3px);
+  }
+
+  .article-card.purple { border-left-color: var(--purple); }
+  .article-card.purple:hover { border-left-color: var(--purple); border-color: var(--border-purple); }
+  .article-card.orange { border-left-color: #ff9900; }
+  .article-card.red { border-left-color: var(--red); }
+  .article-card.red:hover { border-left-color: var(--red); border-color: rgba(255,68,102,0.3); }
+
+  .article-num {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 52px;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    user-select: none;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+
+  .badge.critical { background: rgba(255,68,102,0.15); color: var(--red); border: 1px solid rgba(255,68,102,0.3); }
+  .badge.privacy { background: rgba(0,229,255,0.1); color: var(--cyan); border: 1px solid rgba(0,229,255,0.25); }
+  .badge.supply-chain { background: rgba(255,153,0,0.12); color: #ff9900; border: 1px solid rgba(255,153,0,0.3); }
+  .badge.ai-threat { background: rgba(182,110,255,0.12); color: var(--purple); border: 1px solid rgba(182,110,255,0.3); }
+  .badge.dependency { background: rgba(0,255,170,0.08); color: var(--green); border: 1px solid rgba(0,255,170,0.2); }
+
+  .article-source {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .article-source a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .article-source a:hover { color: var(--cyan); border-bottom-color: var(--cyan); }
+
+  .article-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    letter-spacing: 0.01em;
+  }
+
+  .article-body {
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 24px;
+    line-height: 1.75;
+  }
+
+  .matters-block {
+    background: rgba(0,229,255,0.04);
+    border: 1px solid rgba(0,229,255,0.1);
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+
+  .purple .matters-block {
+    background: rgba(182,110,255,0.04);
+    border-color: rgba(182,110,255,0.12);
+  }
+
+  .orange .matters-block {
+    background: rgba(255,153,0,0.04);
+    border-color: rgba(255,153,0,0.12);
+  }
+
+  .red .matters-block {
+    background: rgba(255,68,102,0.04);
+    border-color: rgba(255,68,102,0.12);
+  }
+
+  .matters-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 10px;
+  }
+
+  .purple .matters-label { color: var(--purple); }
+  .orange .matters-label { color: #ff9900; }
+  .red .matters-label { color: var(--red); }
+
+  .matters-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .actions-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .action-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .action-list li {
+    font-size: 13.5px;
+    color: var(--text);
+    display: flex;
+    gap: 12px;
+    line-height: 1.6;
+  }
+
+  .action-list li::before {
+    content: '▸';
+    color: var(--cyan);
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 12px;
+  }
+
+  .purple .action-list li::before { color: var(--purple); }
+  .orange .action-list li::before { color: #ff9900; }
+  .red .action-list li::before { color: var(--red); }
+
+  code {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    background: rgba(0,229,255,0.08);
+    color: var(--cyan);
+    padding: 1px 6px;
+    border-radius: 2px;
+  }
+
+  .quick-hits {
+    background: var(--card2);
+    border: 1px solid var(--border-purple);
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+
+  .quick-hits h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--purple);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .quick-hits h3::before {
+    content: '◈';
+    font-size: 14px;
+  }
+
+  .quick-hit-item {
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.75;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .quick-hit-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .quick-hit-item:first-of-type { padding-top: 0; }
+
+  .qh-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--purple);
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  .prompt-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .prompt-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .prompt-topic {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .prompt-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .prompt-icon.cyan { background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.2); color: var(--cyan); }
+  .prompt-icon.orange { background: rgba(255,153,0,0.1); border: 1px solid rgba(255,153,0,0.2); color: #ff9900; }
+  .prompt-icon.purple { background: rgba(182,110,255,0.1); border: 1px solid rgba(182,110,255,0.2); color: var(--purple); }
+
+  .prompt-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: #fff;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  .prompt-subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 3px;
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .copy-btn {
+    background: rgba(0,229,255,0.07);
+    border: 1px solid rgba(0,229,255,0.2);
+    color: var(--cyan);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    border-radius: 2px;
+  }
+
+  .copy-btn:hover { background: rgba(0,229,255,0.15); border-color: rgba(0,229,255,0.4); }
+  .copy-btn.copied { color: var(--green); border-color: rgba(0,255,170,0.3); background: rgba(0,255,170,0.07); }
+
+  .prompt-box {
+    background: #060a12;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-left: 2px solid var(--cyan);
+    padding: 18px 20px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12.5px;
+    color: #a0c4d0;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    word-break: break-word;
+    position: relative;
+  }
+
+  .prompt-card:nth-child(2) .prompt-box { border-left-color: #ff9900; }
+  .prompt-card:nth-child(3) .prompt-box { border-left-color: var(--purple); }
+
+  .prompt-box .hl-cyan { color: var(--cyan); }
+  .prompt-box .hl-green { color: var(--green); }
+  .prompt-box .hl-orange { color: #ff9900; }
+  .prompt-box .hl-purple { color: var(--purple); }
+  .prompt-box .hl-muted { color: var(--muted); }
+
+  .recap-banner {
+    background: linear-gradient(90deg, rgba(0,229,255,0.06), rgba(182,110,255,0.05));
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
+    padding: 22px 26px;
+    margin: 8px 0 8px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .recap-banner strong { color: var(--green); font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; }
+
+  .scanlines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0 0;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-brand span { color: var(--cyan); }
+
+  .footer-copy {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-align: right;
+  }
+
+  @media (max-width: 600px) {
+    header { flex-direction: column; align-items: flex-start; }
+    .issue-meta { text-align: left; }
+    .article-card { padding: 24px 20px; }
+    .article-num { display: none; }
+    .prompt-card { padding: 20px; }
+    .quick-hits { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-text">AI<span>Security</span>Daily</div>
+    <div class="header-right">
+      <a class="ug-btn" href="undergroundSecurity.html"><span class="rad">☢</span> Underground Security</a>
+      <div class="issue-meta">
+        <div class="issue-label">Issue #15 · Weekend Edition</div>
+        <div class="issue-date">July 18, 2026</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">Weekend Edition • July 16 – 18, 2026</div>
+    <h1>The Approval<span>Was A Ghost</span></h1>
+    <p class="hero-sub">This weekend's theme: the permission dialogs lied. Six major AI coding assistants approved writes that landed somewhere else entirely. A worm from last November just unmasked how Suno trained its music model. Agent tool-input injection is succeeding 84% of the time in production LLMs. And the packages your AI hallucinated? Someone registered them, and they're botnet droppers now. Your agent's "Are you sure? [Y/n]" was never the security boundary you thought it was.</p>
+    <div class="threat-bar">
+      <div class="threat-pill critical"><span class="dot"></span> GhostApproval Hits 6 AI Assistants</div>
+      <div class="threat-pill critical"><span class="dot"></span> Suno Source Code Leaked</div>
+      <div class="threat-pill high"><span class="dot"></span> HalluSquatting Botnet Packages</div>
+    </div>
+  </section>
+
+  <!-- RECAP FRAMING -->
+  <div class="recap-banner">
+    <strong>This Weekend's Theme</strong> &nbsp;— Issue #14 was about tools that stole from you. This weekend it's about tools that <em>lie</em> to you: approval prompts that approve something else, privacy claims unmasked by a worm, package names your AI invented becoming real malware, and a White House clearinghouse promising coordination while production lines sit halted by ransomware. The trust boundary isn't leaking — it was never drawn where you thought.
+  </div>
+
+  <!-- MAIN STORIES -->
+  <div class="section-label">Top Stories • July 16–18</div>
+
+  <!-- STORY 1: GHOSTAPPROVAL -->
+  <article class="article-card red">
+    <div class="article-num">01</div>
+    <div class="article-meta">
+      <span class="badge critical">Trust Boundary · AI Coding Agents</span>
+      <span class="article-source">Via <a href="https://www.wiz.io/blog/ghostapproval-a-trust-boundary-gap-in-ai-coding-assistants" target="_blank">Wiz Research</a> · <a href="https://www.infosecurity-magazine.com/news/ghostapproval-flaw-ai-coding/" target="_blank">Infosecurity Magazine</a></span>
+    </div>
+    <h2 class="article-title">GhostApproval: Six Major AI Coding Assistants Approve Writes That Land Somewhere Else — Symlinks Defeat the Permission Dialog</h2>
+    <div class="article-body">
+      <p>Wiz Research disclosed <strong>GhostApproval</strong>, a trust-boundary flaw found in all six AI coding assistants they tested: Amazon Q Developer, Anthropic Claude Code, Augment, Cursor, Google Antigravity, and Windsurf. The mechanism is brutally simple: a malicious repository contains a symbolic link pointing at a sensitive location (your shell profile, SSH config, a hook script). The assistant asks permission to write to what looks like a harmless project file — you approve — and the write follows the symlink onto the sensitive target instead.</p>
+      <br>
+      <p>Vendor response split down the middle: Amazon, Google, and Cursor treated it as a vulnerability and shipped fixes — Cursor assigned <code>CVE-2026-50549</code>. Others treated it as expected behavior within their threat model. Either way, the takeaway is the same: <strong>the approval dialog validates the path string, not the write destination.</strong> Any repo you clone and open in an agentic editor can pre-stage symlinks that turn a routine "write to README" approval into persistence on your machine.</p>
+    </div>
+    <div class="matters-block">
+      <div class="matters-label">Why It Matters for Vibe Coders</div>
+      <div class="matters-text">Human-in-the-loop was the last line of defense for agentic coding — the whole safety story was "the agent asks before it writes." GhostApproval shows the ask can be honest while the write is not. If you clone untrusted repos (starter templates, "awesome" example projects, take-home assignments) and open them in an AI editor, you are exposed.</div>
+    </div>
+    <div class="actions-label">Action Items</div>
+    <ul class="action-list">
+      <li>Update Cursor (fix for <code>CVE-2026-50549</code>), Amazon Q Developer, and Google Antigravity to latest versions now</li>
+      <li>Before opening any untrusted repo in an agentic editor, scan for symlinks: <code>find . -type l -ls</code> (or <code>Get-ChildItem -Recurse -Attributes ReparsePoint</code> on Windows)</li>
+      <li>Run agentic editors on untrusted code inside a container or throwaway VM — not your daily-driver account with SSH keys loaded</li>
+      <li>Check vendor advisories for Claude Code, Windsurf, and Augment for updated guidance on symlink handling</li>
+      <li>Audit shell profiles, git hooks, and <code>~/.ssh</code> for unexpected modifications if you've been vibing on cloned repos recently</li>
+    </ul>
+  </article>
+
+  <!-- STORY 2: SUNO -->
+  <article class="article-card orange">
+    <div class="article-num">02</div>
+    <div class="article-meta">
+      <span class="badge supply-chain">Breach Disclosure · Worm Fallout</span>
+      <span class="article-source">Via <a href="https://techcrunch.com/2026/07/15/hack-suggests-ai-music-generator-suno-scraped-youtube-for-training-data/" target="_blank">TechCrunch</a> · <a href="https://variety.com/2026/music/news/suno-hack-youtube-music-deezer-genius-data-trained-ai-music-1236811772/" target="_blank">Variety</a> · <a href="https://thenextweb.com/news/suno-ai-music-hack-training-data" target="_blank">TNW</a></span>
+    </div>
+    <h2 class="article-title">Suno Breach: Shai-Hulud Worm Stole an Employee's Credentials in November — Leaked Source Code Now Exposes the Whole Training Pipeline</h2>
+    <div class="article-body">
+      <p>AI music generator Suno confirmed a security incident after a hacker known as ellie.191 leaked source code and internal files. The entry point should sound familiar to readers of Issue #10: the attacker infected an employee's machine with the <strong>Shai-Hulud npm worm</strong> — the same self-replicating package malware that tore through AI tooling in May — harvesting credentials, tokens, and access keys. The breach originated in <strong>November</strong>; users were never notified until the files surfaced publicly this week.</p>
+      <br>
+      <p>The leaked code allegedly documents Suno's training data pipeline in embarrassing detail: 113,000+ hours scraped from YouTube Music, 62,000+ hours from Pond5, 17,000+ from Genius, 12,000+ from Deezer, plus a plan targeting ~420,000 podcasts for roughly 1 million hours of audio. Record labels already suing Suno now have what looks like a discovery goldmine — circumventing YouTube's scraping protections potentially violates the DMCA. Suno says the material is "outdated source code."</p>
+    </div>
+    <div class="matters-block">
+      <div class="matters-label">Why It Matters for Vibe Coders</div>
+      <div class="matters-text">One infected npm install on one employee laptop → eight months of silent access → the company's most sensitive legal liability published to the world. The supply chain worm you patched in May is still detonating in July. And if you're building on AI vendors: their breach disclosure clock apparently starts when the hacker goes public, not when the hack happens.</div>
+    </div>
+    <div class="actions-label">Action Items</div>
+    <ul class="action-list">
+      <li>If your org was exposed to Shai-Hulud-era npm compromises: assume long-tail credential theft; re-rotate anything not rotated since, and audit for persistence</li>
+      <li>Treat employee dev machines as production attack surface — npm install runs arbitrary code with access to every credential on the box</li>
+      <li>Scope vendor risk: what does each AI service you use hold about you, and what's their disclosure track record?</li>
+      <li>Keep secrets out of source code entirely — leaked repos are read by lawyers and attackers alike</li>
+      <li>Use lifecycle-script restrictions (<code>npm config set ignore-scripts true</code> where viable) and a private registry proxy for installs</li>
+    </ul>
+  </article>
+
+  <!-- STORY 3: AGENT INJECTION NUMBERS -->
+  <article class="article-card purple">
+    <div class="article-num">03</div>
+    <div class="article-meta">
+      <span class="badge ai-threat">Threat Research · Agent Security</span>
+      <span class="article-source">Via <a href="https://axis-intelligence.com/research/ai-model-vulnerability-tracker/" target="_blank">Axis Intelligence</a> · <a href="https://www.securance.com/blog/prompt-injection-the-owasp-1-ai-threat-in-2026/" target="_blank">Securance/OWASP</a> · <a href="https://www.aimagicx.com/blog/prompt-injection-attacks-ai-agent-security-guide-2026" target="_blank">AI Magicx</a></span>
+    </div>
+    <h2 class="article-title">The Numbers Are In: Agent Tool-Input Injection Succeeds 84% of the Time — and Memory Poisoning Now Persists Across 9 Sessions</h2>
+    <div class="article-body">
+      <p>Mid-year threat research landed this week and the scoreboard is grim. Axis Intelligence's vulnerability tracker reproduced <strong>47 confirmed attack vectors across six production LLMs</strong> between January and July. The standout: agent tool-input injection — malicious instructions smuggled through the data your agent's tools return — succeeds <strong>84% of the time</strong> and remains effectively unsolved. A multi-model memory-poisoning chain (<code>AVI-2026-0089</code>) planted false context that persisted across <strong>9 consecutive sessions</strong> in four of five models with persistent memory features.</p>
+      <br>
+      <p>Zoom out and it tracks: OWASP's 2026 LLM report puts prompt injection up <strong>340% year-over-year</strong> — the fastest-growing attack category, period — and it has held the #1 spot in the LLM Top 10 in every edition. Unit 42 documented the first large-scale indirect injections in the wild back in March; one financial-services chatbot leaked internal pricing data for three weeks before anyone noticed. The root cause hasn't moved an inch: models cannot reliably distinguish instructions from data.</p>
+    </div>
+    <div class="matters-block">
+      <div class="matters-label">Why It Matters for Vibe Coders</div>
+      <div class="matters-text">Every tool result your agent reads — web pages, API responses, file contents, search results — is an injection surface with an 84% hit rate. And if your agent has memory, a single poisoned session can quietly steer the next nine. "My agent has guardrails" is not a security posture; capability scoping is.</div>
+    </div>
+    <div class="actions-label">Action Items</div>
+    <ul class="action-list">
+      <li>Scope agent tools to least privilege: read-only where possible, no prod credentials, egress allowlists</li>
+      <li>Require human confirmation for consequential actions (sends, payments, deletes, deploys) — outside the model, in your harness code</li>
+      <li>If you use persistent memory features: add a review/expiry mechanism; treat memory writes as untrusted input</li>
+      <li>Log full tool inputs/outputs so you can detect and reconstruct injection attempts after the fact</li>
+      <li>Red-team your own agent with indirect injection payloads in the data sources it consumes — before someone else does</li>
+    </ul>
+  </article>
+
+  <!-- STORY 4: HALLUSQUATTING -->
+  <article class="article-card" style="border-left-color:#00e5ff;">
+    <div class="article-num">04</div>
+    <div class="article-meta">
+      <span class="badge dependency">Slopsquatting · Botnet Malware</span>
+      <span class="article-source">Via <a href="https://adversa.ai/blog/top-ai-coding-agent-security-resources-july-2026/" target="_blank">Adversa AI</a> · <a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-vulnerability-surge-2026/" target="_blank">Cloud Security Alliance</a></span>
+    </div>
+    <h2 class="article-title">HalluSquatting: Attackers Register the Packages Your AI Hallucinates — and Fill Them With Botnet Droppers</h2>
+    <div class="article-body">
+      <p>Researchers this week detailed <strong>HalluSquatting</strong>: attackers systematically catalog the package names LLMs hallucinate (plausible-sounding libraries that don't exist), register those exact names on npm and PyPI, and load them with botnet malware. When your coding assistant confidently writes <code>import fastapi-auth-utils</code> and you dutifully <code>pip install</code> it, you're not getting a typo'd package — you're getting the package the attacker built <em>because they knew the model would recommend it</em>.</p>
+      <br>
+      <p>It pairs with <strong>Friendly Fire</strong>, a related technique that tricks AI agents into executing attacker code during automated security scans — the scan itself becomes the delivery mechanism. Meanwhile the Cloud Security Alliance's research note on "vibe coding's security debt" documents a surge in CVEs traced to AI-generated code shipped without review. The common thread: model output is being trusted at install-time and run-time with zero verification.</p>
+    </div>
+    <div class="matters-block">
+      <div class="matters-label">Why It Matters for Vibe Coders</div>
+      <div class="matters-text">Typosquatting required you to make a mistake. HalluSquatting only requires your AI to be confidently wrong — which is free and infinitely repeatable. Hallucinated package names are consistent across prompts, so attackers can farm them at scale. Every install command your assistant suggests is now a supply chain decision.</div>
+    </div>
+    <div class="actions-label">Action Items</div>
+    <ul class="action-list">
+      <li>Never install a package straight from AI output — verify it exists, check publish date, download count, and repo link first</li>
+      <li>Be suspicious of packages published recently with names that sound "obviously right" but have few downloads</li>
+      <li>Pin dependencies and commit lockfiles; review every new entry in a lockfile diff</li>
+      <li>Run installs in a sandbox/container in CI, not on your credentialed dev machine</li>
+      <li>If your agent runs security scanners autonomously, review what those scanners execute (Friendly Fire class) — scanners are code too</li>
+    </ul>
+  </article>
+
+  <!-- STORY 5: WHITE HOUSE + RANSOMWARE REALITY -->
+  <article class="article-card red">
+    <div class="article-num">05</div>
+    <div class="article-meta">
+      <span class="badge critical">Policy · Ransomware Reality Check</span>
+      <span class="article-source">Via <a href="https://www.insurancejournal.com/news/national/2026/07/17/877965.htm" target="_blank">Insurance Journal</a> · <a href="https://www.claimsjournal.com/news/national/2026/07/17/338887.htm" target="_blank">Claims Journal</a> · <a href="https://bostoninstituteofanalytics.org/blog/latest-cybersecurity-news-roundup-11-july-17-july-2026-ai-threats-critical-vulnerabilities-and-why-cybersecurity-skills-matter-more-than-ever/" target="_blank">BIA Roundup</a></span>
+    </div>
+    <h2 class="article-title">White House Launches AI Vulnerability Clearinghouse While Fairlife Halts Production and Abbott Fights Two Breaches at Once</h2>
+    <div class="article-body">
+      <p>The White House unveiled an <strong>AI clearinghouse for cybersecurity risks</strong> on July 17 — a coordination group bringing AI developers and critical-infrastructure operators together to share vulnerabilities <em>discovered by advanced AI systems</em> and coordinate response. It's the concrete follow-through on last week's "Gold Eagle" framework, and an official acknowledgment of what JadePuffer proved in Issue #14: frontier models are now finding (and exploiting) bugs faster than humans triage them.</p>
+      <br>
+      <p>The same day's headlines showed the stakes. Coca-Cola-owned dairy <strong>Fairlife suspended U.S. production</strong> after intruders reached systems connected to manufacturing. <strong>Abbott Laboratories</strong> is working two separate incidents simultaneously — unauthorized access to legacy Exact Sciences systems in its cancer-diagnostics unit, plus a claimed breach of its LabCentral portal. Policy is coordinating; attackers are shipping.</p>
+    </div>
+    <div class="matters-block">
+      <div class="matters-label">Why It Matters for Vibe Coders</div>
+      <div class="matters-text">AI-discovered vulnerabilities are now a national-coordination problem — which means the tooling you use to find bugs in your own code is the same class of capability governments are trying to gatekeep. Expect disclosure norms, and possibly regulation, around AI-assisted vuln research to tighten. If you're running AI security scanners against targets, make sure they're <em>your</em> targets.</div>
+    </div>
+    <div class="actions-label">Action Items</div>
+    <ul class="action-list">
+      <li>Only point AI vuln-discovery tooling at assets you own or have written authorization to test</li>
+      <li>Watch CISA and the new clearinghouse for AI-discovered CVE advisories — these will likely be weaponized fastest</li>
+      <li>If you build for manufacturing/healthcare: segment OT/lab systems from IT; Fairlife's production halt is the cost of flat networks</li>
+      <li>Have an incident comms plan that doesn't assume you get to control disclosure timing (see: Suno)</li>
+    </ul>
+  </article>
+
+  <!-- QUICK HITS -->
+  <div class="section-label">Quick Hits • The Rest of the Weekend</div>
+
+  <div class="quick-hits">
+    <h3>Signals &amp; Intel</h3>
+    <div class="quick-hit-item">
+      <div class="qh-dot"></div>
+      <div><strong style="color:#fff">Cursor's Git-Hook Hole</strong> — <code>CVE-2026-26268</code>: a malicious repo can plant git hooks that Cursor's agent triggers, yielding arbitrary code execution — on top of separately reported OS-level RCE flaws in the AI IDE. Same lesson as GhostApproval from a different angle: opening a repo is executing it. Update Cursor; disable auto-run of hooks on untrusted checkouts.</div>
+    </div>
+    <div class="quick-hit-item">
+      <div class="qh-dot"></div>
+      <div><strong style="color:#fff">AI-Generated Code CVE Surge</strong> — The Cloud Security Alliance's research note quantifies "vibe coding's security debt": a measurable surge in CVEs traced back to unreviewed AI-generated code now in production. The debt collector arrived. Review your generated code like you'd review a junior dev's PR — because statistically, it's worse.</div>
+    </div>
+    <div class="quick-hit-item">
+      <div class="qh-dot"></div>
+      <div><strong style="color:#fff">Fake Chain-of-Thought Still Fools Frontier Models</strong> — Follow-up research confirms injecting fabricated "reasoning" into prompts bypasses safety training ~60% of the time; models trust text that looks like their own thinking. Combined with the 84% tool-input injection rate, the message for agent builders: nothing the model reads is trustworthy, including things that look like the model wrote them.</div>
+    </div>
+  </div>
+
+  <!-- SKILL PROMPTS -->
+  <div class="section-label">Security Skill Prompts</div>
+  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, ChatGPT, Cursor, or your coding assistant. This weekend's focus: verify what your agent actually writes, installs, and remembers.</p>
+
+  <div class="prompts-section">
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-topic">
+          <div class="prompt-icon cyan">👻</div>
+          <div>
+            <div class="prompt-title">Symlink & Write-Boundary Repo Audit</div>
+            <div class="prompt-subtitle">GhostApproval class</div>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <div class="prompt-box"><span class="hl-cyan">Audit this repository for GhostApproval-class risks before I open it in an AI coding assistant (the July 2026 Wiz disclosure: symlinks that redirect approved writes onto sensitive files).</span>
+
+<span class="hl-muted">Check:</span>
+<span class="hl-green">1.</span> All symbolic links in the repo and where they point (flag anything targeting outside the repo root, dotfiles, hooks, or SSH/config paths)
+<span class="hl-green">2.</span> Git hooks, husky configs, or lifecycle scripts that would execute on checkout, install, or commit
+<span class="hl-green">3.</span> Editor/agent config files (.vscode, .cursor, MCP configs, CLAUDE.md-style instruction files) that could steer an AI assistant
+<span class="hl-green">4.</span> Files with names that look harmless but resolve to sensitive targets
+
+<span class="hl-muted">Return:</span> A verdict (safe / open-in-sandbox-only / do-not-open), the exact suspicious paths, and commands to neutralize them.
+
+<span class="hl-orange">[PASTE OUTPUT OF: find . -type l -ls && ls -la .git/hooks HERE]</span></div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-topic">
+          <div class="prompt-icon orange">🧠</div>
+          <div>
+            <div class="prompt-title">Hallucinated Dependency Verification</div>
+            <div class="prompt-subtitle">HalluSquatting class</div>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <div class="prompt-box"><span class="hl-orange">Verify every dependency in my project against HalluSquatting risk (July 2026: attackers registering AI-hallucinated package names on npm/PyPI and loading them with botnet malware).</span>
+
+<span class="hl-muted">For each package:</span>
+<span class="hl-green">1.</span> Confirm it's the canonical package for its stated purpose (not a plausible-sounding variant of a real library)
+<span class="hl-green">2.</span> Flag recent publish dates + low download counts + no linked source repo
+<span class="hl-green">3.</span> Flag names that combine real project names with generic suffixes (-utils, -auth, -helper, -sdk)
+<span class="hl-green">4.</span> Identify which packages were added on AI-assistant suggestion vs. deliberate human choice
+<span class="hl-green">5.</span> Check for install-time script execution (postinstall etc.)
+
+<span class="hl-muted">Return:</span> Remove-now list, verify-manually list, and lockfile hygiene recommendations.
+
+<span class="hl-orange">[PASTE package.json / requirements.txt / lockfile HERE]</span></div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-topic">
+          <div class="prompt-icon purple">🛡</div>
+          <div>
+            <div class="prompt-title">Agent Injection-Surface Review</div>
+            <div class="prompt-subtitle">84% tool-input injection class</div>
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <div class="prompt-box"><span class="hl-purple">Review my AI agent's architecture for tool-input injection and memory poisoning risk, given July 2026 research showing 84% success rates for tool-input injection and memory poisoning persisting across 9 sessions (AVI-2026-0089).</span>
+
+<span class="hl-muted">Map:</span>
+<span class="hl-green">1.</span> Every data source the agent reads (tool results, web content, files, APIs) — each is an injection channel
+<span class="hl-green">2.</span> Every capability the agent can invoke, and its blast radius if hijacked
+<span class="hl-green">3.</span> Whether consequential actions (send / pay / delete / deploy) require out-of-model human confirmation
+<span class="hl-green">4.</span> Persistent memory: what gets written, who can influence it, when it expires
+<span class="hl-green">5.</span> Logging: can I reconstruct exactly what the agent read before any given action?
+
+<span class="hl-muted">Return:</span> Ranked risk list, the top 3 capability-scoping changes to make this week, and a memory hygiene policy.
+
+<span class="hl-orange">[PASTE YOUR AGENT'S TOOL LIST / SYSTEM PROMPT / ARCHITECTURE NOTES HERE]</span></div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">AI<span>Security</span>Daily</div>
+    <div class="footer-copy">
+      Issue #15 · Weekend Edition · July 18, 2026<br>
+      For vibe coders who ship secure.
+    </div>
+  </footer>
+
+</div>
+
+<script>
+function copyPrompt(btn) {
+  const box = btn.closest('.prompt-card').querySelector('.prompt-box');
+  const text = box.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

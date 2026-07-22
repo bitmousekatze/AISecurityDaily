@@ -572,9 +572,9 @@
 
   <!-- RATING BLOCK -->
   <div class="rating-block">
-    <div class="rating-eyebrow">Dark Humor Nuclear Scale Rating · Midweek Edition · July 19 – 22, 2026</div>
-    <div class="rating-number">9.7</div>
-    <div class="rating-label">Level <span class="highlight">"The Robots Are Fighting Now, And We're The Building"</span></div>
+    <div class="rating-eyebrow">Dark Humor Nuclear Scale Rating · Weekend Edition · July 16 – 18, 2026</div>
+    <div class="rating-number">9.4</div>
+    <div class="rating-label">Level <span class="highlight">"The Approval Dialog Was Cosplay"</span></div>
     <div class="rating-scale">
       <div class="scale-bar lit"></div>
       <div class="scale-bar lit"></div>
@@ -591,138 +591,138 @@
 
   <!-- INTRO -->
   <div class="prose">
-    <p>Last week the tools lied to you. This week they organized.</p>
-    <p>An AI agent broke into the world's largest AI repository, ran seventeen thousand moves over a weekend like it was grinding an achievement, and the human defenders — I want to be clear about this — had to call in <em>another AI</em> to even understand what happened. We have reached the part of the movie where the scientists say "we need to fight fire with fire" and everyone in the theater groans because they know how this ends.</p>
-    <p>Meanwhile a company that <strong>sells code protection</strong> shipped an infostealer, a coding assistant's own CI action handed out its API key to anyone who filed an issue, and researchers found a way to hide malware in the <em>sender's name field</em>. It was a big week for the concept of "trust."</p>
+    <p>Last week your tools stole from you. This week they gaslit you.</p>
+    <p>You clicked "Approve." The write went somewhere else. You asked your AI what to install. It invented a package, and a stranger had already built the malware version, because they asked your AI first. Your agent's memory? Poisoned nine sessions ago. It remembers things that never happened, on purpose, for someone else's benefit.</p>
+    <p>Security theater used to require a theater. Now the popup itself is the performance.</p>
   </div>
 
   <!-- THE HITS -->
   <ul class="incident-list">
     <li class="incident-item">
-      <div class="incident-icon">🤖</div>
-      <div class="incident-text"><strong>Hugging Face</strong> — An autonomous AI agent uploaded a cursed dataset, popped a worker, stole the cloud keys, and toured the internal clusters — 17,000 actions, one weekend, zero humans. The company's official advice afterward: "keep a vetted AI model on standby." That's not a security control, that's a mecha pilot on retainer. We are one incident away from SOC analysts having a Pokémon they send out to fight the other Pokémon.</div>
+      <div class="incident-icon">👻</div>
+      <div class="incident-text"><strong>GhostApproval</strong> — Wiz tested six AI coding assistants to see if the permission dialog actually guards the thing it claims to guard. Six for six: nope. A symlink in a cloned repo and your "write to README.md" approval lands in ~/.bashrc. Half the vendors patched. The other half said this is "within the threat model," which is corporate for "we drew the threat model around the bug." The human-in-the-loop was in the loop. The loop was a noose.</div>
     </li>
     <li class="incident-item">
-      <div class="incident-icon">📦</div>
-      <div class="incident-text"><strong>Jscrambler</strong> — A company whose entire business is <em>protecting your JavaScript</em> got its npm token stolen and shipped a preinstall Rust infostealer to 15,000+ weekly downloads. It specifically rifles through your Cursor and Claude Desktop configs, because that's where the real loot is now. The security vendor was the supply chain attack. The lock came pre-picked. Socket caught it in six minutes, which is six minutes longer than it took to detonate.</div>
+      <div class="incident-icon">🎵</div>
+      <div class="incident-text"><strong>Suno</strong> — An npm worm from LAST NOVEMBER ate an employee laptop, and eight months later the entire training-data pipeline is on the internet: 113,000 hours of YouTube Music, comments in the code politely documenting how to dodge the scraping protections. The labels suing them just got handed discovery on a silver platter by a hacker named ellie.191. Suno's response: it's "outdated source code." Ah yes, the crimes were legacy crimes.</div>
     </li>
     <li class="incident-item">
-      <div class="incident-icon">⚙️</div>
-      <div class="incident-text"><strong>The Poisoned Claude Code Action</strong> — File one GitHub issue, get the repo. The un-sandboxed Read tool would helpfully read <code style="font-size:11px;">/proc/self/environ</code> and hand your <code style="font-size:11px;">ANTHROPIC_API_KEY</code> to a stranger's prompt injection. Patched — by blocking one file path. The architecture where an agent reads attacker text and then runs commands? Still fully operational. They bailed water; the boat is still a colander.</div>
+      <div class="incident-icon">🧠</div>
+      <div class="incident-text"><strong>HalluSquatting</strong> — Attackers stopped waiting for your typos. They just ask the same AI you ask, note which packages it hallucinates, register those names, and stuff them with botnet droppers. Your assistant recommends the malware BY NAME, confidently, with example code. It's the first supply chain attack where the vendor of the vulnerability is your own autocomplete.</div>
     </li>
     <li class="incident-item">
-      <div class="incident-icon">🎭</div>
-      <div class="incident-text"><strong>Agent Data Injection</strong> — Why smuggle instructions when you can just be the sender's name? Researchers hid attacks in the <em>data fields</em> agents trust without thinking — names, button IDs, CI check records — using fake quotes and dollar signs. Up to 100% success on web content. The one fix that fully worked also broke the agent. Security and functionality, once again, standing on opposite ends of a seesaw, staring at each other.</div>
+      <div class="incident-icon">💉</div>
+      <div class="incident-text"><strong>The Injection Scoreboard</strong> — Mid-year numbers dropped: tool-input injection works 84% of the time. Memory poisoning survives 9 sessions. Prompt injection up 340% year-over-year, OWASP #1 for the fourth straight edition. At some point we have to stop calling it a vulnerability and start calling it a feature of the architecture. The model cannot tell instructions from data. That's not a bug report; that's a diagnosis.</div>
     </li>
     <li class="incident-item">
-      <div class="incident-icon">🌐</div>
-      <div class="incident-text"><strong>GuardFall</strong> — The guard reads the text. Then the shell rewrites the text. Then it runs the version the guard never saw. Half a million deployments trusting a bouncer who checks the ID at the door while the shell forges a new one in the hallway. This is a bug from the 1990s wearing an AI costume, and it works great.</div>
+      <div class="incident-icon">🏛️</div>
+      <div class="incident-text"><strong>The Clearinghouse</strong> — The White House launched a coordination group to share vulnerabilities that AI systems discover. Same day: a dairy company halted milk production because of hackers, and Abbott is running two simultaneous breach investigations like it's a twin-stick shooter. The government is building a group chat. The attackers are building botnets out of hallucinations. Godspeed, everyone.</div>
     </li>
   </ul>
 
   <!-- PULL QUOTE 1 -->
   <div class="pull-quote">
-    <p>"The attacker did 17,000 things over the weekend. I did two, and one of them was reading about the attacker."</p>
-    <div class="attribution">— A human defender, technically still employed</div>
+    <p>"The approval dialog asked if I was sure. It never asked if IT was sure."</p>
+    <div class="attribution">— Developer, reviewing their .bashrc with a flashlight</div>
   </div>
 
   <!-- SCOREBOARD -->
   <div class="scoreboard">
-    <div class="scoreboard-title">Week the Machines Clocked In</div>
+    <div class="scoreboard-title">Weekend in Gaslighting</div>
     <div class="score-grid">
       <div class="score-item">
-        <div class="score-num">17K</div>
-        <div class="score-label">Actions the AI attacker ran in one weekend</div>
+        <div class="score-num">6/6</div>
+        <div class="score-label">AI assistants fooled by a symlink</div>
       </div>
       <div class="score-item">
-        <div class="score-num">0</div>
-        <div class="score-label">Humans at the keyboard during the breach</div>
+        <div class="score-num">84%</div>
+        <div class="score-label">Tool-input injection success rate</div>
       </div>
       <div class="score-item">
-        <div class="score-num">6min</div>
-        <div class="score-label">To catch the Jscrambler backdoor</div>
+        <div class="score-num">9</div>
+        <div class="score-label">Sessions a poisoned memory survives</div>
       </div>
       <div class="score-item">
-        <div class="score-num">100%</div>
-        <div class="score-label">ADI success rate on web content</div>
+        <div class="score-num">340%</div>
+        <div class="score-label">YoY growth in prompt injection</div>
       </div>
       <div class="score-item">
-        <div class="score-num">1</div>
-        <div class="score-label">Issue comment needed to own the repo</div>
+        <div class="score-num">113K</div>
+        <div class="score-label">Hours of YouTube Music in Suno's leak</div>
       </div>
       <div class="score-item">
-        <div class="score-num">500K</div>
-        <div class="score-label">Deployments GuardFall walks through</div>
+        <div class="score-num">8</div>
+        <div class="score-label">Months Suno sat on the breach</div>
       </div>
       <div class="score-item">
-        <div class="score-num">2.3M</div>
-        <div class="score-label">Moody records ShinyHunters leaked</div>
+        <div class="score-num">1M</div>
+        <div class="score-label">Podcast hours on the scrape wishlist</div>
       </div>
       <div class="score-item">
-        <div class="score-num">500M</div>
-        <div class="score-label">WordPress sites in wp2shell range</div>
+        <div class="score-num">2</div>
+        <div class="score-label">Simultaneous Abbott breach investigations</div>
       </div>
     </div>
   </div>
 
   <!-- WEEK TIMELINE -->
-  <div class="section-head">☢ The Week Of Machine vs Machine • Blow by Blow</div>
+  <div class="section-head">☢ The Weekend of Lies • Blow by Blow</div>
 
   <div class="timeline">
 
-    <!-- JULY 19 -->
+    <!-- JULY 15/16 -->
     <div class="day-block">
       <div class="day-marker"><div class="day-dot"></div></div>
       <div class="day-content">
-        <div class="day-label">July 19, 2026 · The Data Field Betrays You</div>
-        <div class="day-title">Agent Data Injection <span class="bad">Weaponizes Punctuation</span></div>
+        <div class="day-label">July 15–16, 2026 · The Receipts Drop</div>
+        <div class="day-title">Suno's Training Data <span class="bad">Goes Public</span></div>
         <ul class="day-events">
-          <li class="day-event"><strong>The method:</strong> escaped quotes, curly quotes, a well-placed dollar sign — and the model hallucinates a whole new data field it decides to trust. The malware isn't in the message. The malware IS the envelope.</li>
-          <li class="day-event"><strong>Best part:</strong> the only defense that fully worked (data-origin tracking) also broke the agent's ability to do its job. Pick one: functional, or safe. The seesaw remains undefeated.</li>
+          <li class="day-event"><strong>ellie.191 publishes the goods:</strong> Source code with internal comments cheerfully cataloguing 113K hours of YouTube Music, 62K of Pond5, 17K of Genius, 12K of Deezer, and a to-do list targeting 420,000 podcasts. The most organized data heist documentation since someone put "steal_youtube.py" in a public repo.</li>
+          <li class="day-event"><strong>Entry vector: the Shai-Hulud worm.</strong> Yes, that one. The May npm worm. It never left. It was just waiting in someone's node_modules like a landmine with a changelog.</li>
         </ul>
-        <div class="day-commentary">Every prompt-injection filter ever shipped was watching the front door for instructions. ADI came in through the return address. <em>You sanitized the message and trusted the letterhead.</em></div>
+        <div class="day-commentary">Breach in November. Disclosure in July. The notification timeline was "when the hacker felt like it." <em>Incident response by press cycle.</em></div>
       </div>
     </div>
 
-    <!-- JULY 20 -->
+    <!-- JULY 16 -->
     <div class="day-block">
       <div class="day-marker"><div class="day-dot"></div></div>
       <div class="day-content">
-        <div class="day-label">July 20, 2026 · Skynet Filed a Pull Request</div>
-        <div class="day-title">Hugging Face Breached <span class="worse">By a Robot, Over Brunch</span></div>
+        <div class="day-label">July 16, 2026 · Autocomplete Becomes a Threat Actor</div>
+        <div class="day-title">HalluSquatting <span class="bad">Farms Your AI's Lies</span></div>
         <ul class="day-events">
-          <li class="day-event"><strong>An autonomous agent</strong> uploaded a malicious dataset, exploited two RCE bugs, grabbed the cloud credentials, and toured the internal clusters — while the humans responsible were, presumably, having a normal weekend.</li>
-          <li class="day-event"><strong>17,000 actions.</strong> Investigators had to bring in a separate AI model just to reconstruct what happened, because reading 17,000 log lines by hand is how you become the next incident.</li>
+          <li class="day-event"><strong>The workflow:</strong> ask the model for code → note the packages it invents → register them → add botnet dropper → wait. The victims install it because their AI told them to. With confidence. In a code block. Possibly with a little sparkle emoji.</li>
+          <li class="day-event"><strong>Bonus round — Friendly Fire:</strong> agents tricked into running attacker code during security scans. The scan is the payload. The antivirus is the virus. We are through the looking glass.</li>
         </ul>
-        <div class="day-commentary">The official post-incident advice is "keep a vetted AI on standby." We've gone from "have a backup" to "have a champion." <em>The SOC is now a fighting game and you'd better have picked a main.</em></div>
+        <div class="day-commentary">Typosquatting needed you to fail. HalluSquatting only needs the model to be confidently wrong — a renewable resource. <em>Infinite malware, zero user error required.</em></div>
       </div>
     </div>
 
-    <!-- JULY 21 -->
+    <!-- JULY 17 -->
     <div class="day-block">
       <div class="day-marker"><div class="day-dot"></div></div>
       <div class="day-content">
-        <div class="day-label">July 21, 2026 · The Locksmith Left a Key Under the Mat</div>
-        <div class="day-title">Jscrambler Ships <span class="bad">an Infostealer</span></div>
+        <div class="day-label">July 17, 2026 · Coordination Nation</div>
+        <div class="day-title">White House Builds <span class="worse">A Group Chat</span></div>
         <ul class="day-events">
-          <li class="day-event"><strong>The code-protection vendor</strong> got its npm token stolen and pushed a preinstall Rust stealer that goes straight for cloud creds, crypto wallets, Bitwarden vaults, and — pointedly — your AI coding tool configs. Install time. Before you typed anything.</li>
-          <li class="day-event"><strong>Also this week, still ongoing:</strong> fake PaySafe/Skrill/Neteller SDKs on npm and PyPI, quietly vacuuming CI/CD secrets. The registries are a haunted house and every door is a dependency.</li>
+          <li class="day-event"><strong>AI vulnerability clearinghouse launches:</strong> AI developers and critical-infrastructure operators will now share the bugs their AIs find. A genuinely reasonable idea, delivered at the speed of government, into a battlefield moving at the speed of inference.</li>
+          <li class="day-event"><strong>Meanwhile, in reality:</strong> Fairlife halts milk production (ransomware got the dairy), Abbott juggles two breaches at once, and the mid-year injection stats read like a eulogy. The milk is offline. The MILK.</li>
         </ul>
-        <div class="day-commentary">"It's from a security company" was the last trust heuristic anyone had left. It shipped a Rust binary to your keychain. <em>Rotate everything. Yes, that too.</em></div>
+        <div class="day-commentary">The framework has no enforcement, no penalties, no deadlines. It's a LinkedIn post with a seal on it. <em>The attackers were not available for comment; they were busy.</em></div>
       </div>
     </div>
 
-    <!-- JULY 22 -->
+    <!-- JULY 18 -->
     <div class="day-block">
       <div class="day-marker"><div class="day-dot"></div></div>
       <div class="day-content">
-        <div class="day-label">July 22, 2026 · The CI Confesses</div>
-        <div class="day-title">One Issue, <span class="bad">Whole Repo</span>, Plus GuardFall</div>
+        <div class="day-label">July 18, 2026 · The Dialog Confesses</div>
+        <div class="day-title">GhostApproval: <span class="bad">Six Assistants, Zero Boundaries</span></div>
         <ul class="day-events">
-          <li class="day-event"><strong>The Claude Code GitHub Action</strong> could be talked into reading its own environment and leaking the API key to anyone who opened an issue. Fix shipped. Fix closes one file path. The genre of bug remains in early access.</li>
-          <li class="day-event"><strong>GuardFall</strong> gave the whole thing a name: the guard checks the text, the shell rewrites the text, the malware runs. 500,000+ deployments, one decades-old quoting trick in a fresh AI wrapper.</li>
+          <li class="day-event"><strong>The symlink trick lands on everyone:</strong> Amazon Q, Claude Code, Augment, Cursor, Antigravity, Windsurf. The dialog says "write to notes.txt." The filesystem says "write to your shell profile." You said yes. Technically, consent was obtained.</li>
+          <li class="day-event"><strong>Vendor bingo:</strong> three patch it, others file it under "working as intended." The threat model, it turns out, is load-bearing paperwork.</li>
         </ul>
-        <div class="day-commentary">We taught the robots to code, wired them into CI with the production secrets, and pointed them at a firehose of attacker-controlled issue comments. <em>What could possibly, etc.</em></div>
+        <div class="day-commentary">The entire agentic safety story was "a human approves every write." The human approved. The write lied. <em>Human-in-the-loop, filesystem-out-of-the-loop.</em></div>
       </div>
     </div>
 
@@ -730,30 +730,30 @@
 
   <!-- PULL QUOTE 2 -->
   <div class="pull-quote">
-    <p>An AI wrote the malware, an AI installed the dependency, an AI approved the CI run, and an AI ran the breach — then a fifth AI was hired to figure out what the other four did. Somewhere in there a human clicked "approve." This is called a workflow.</p>
-    <div class="attribution">— The week, reconstructed by a model we also don't fully trust</div>
+    <p>Your AI hallucinated a package, an attacker made it real, your other AI approved installing it, and the write landed in your shell profile. At no point did a human make an unassisted decision. This is called productivity.</p>
+    <div class="attribution">— The weekend, summarized for the incident report</div>
   </div>
 
   <!-- CLOSING PROSE -->
   <div class="prose">
-    <p>Here's the arc of July, for the record. Week one: the tools phoned home. Week two: the tools uploaded your home. Last weekend: the tools lied about what they were doing. This week: <em>the tools started doing it to each other, at scale, without asking.</em></p>
-    <p>The uncomfortable throughline is that "a human reviews it" keeps getting quoted as the safety net right up until the human is asked to review 17,000 things in a weekend, or trust the sender's name, or vet a security vendor's own package, or catch a shell-quoting trick from 1997 in an AI wrapper. The net has a machine-sized hole in it.</p>
-    <p>You can't out-click this. The controls that survive are structural and boring: sandboxes with no credentials, short-lived scoped tokens, install scripts off by default, least privilege in CI, out-of-band approval for anything that moves money or code, and provenance on every field you act on. Assume the attacker is a tireless bot that read all of this too.</p>
-    <p>And rotate your credentials. Not because of a specific incident. Because, gesturing at the entire week — <em>look at it.</em></p>
+    <p>Here's the uncomfortable arc of July so far. Week one: the tools phone home. Week two: the tools upload your home. This weekend: <em>the tools lie about what they're doing while they do it</em>.</p>
+    <p>The approval prompt approves something else. The privacy policy meant nothing eight months before you read it. The package recommendation is attacker-supplied via your model's imagination. The agent's memory contains someone else's instructions, planted last Tuesday, still steering.</p>
+    <p>You cannot review your way out of this with vibes. The boundary has to be structural: sandboxes, lockfiles, least privilege, out-of-band confirmation. Anything the model touches is untrusted. Including the parts that look like you wrote them.</p>
+    <p>And rotate your credentials. Not because of a specific incident. Just — gesture broadly — because.</p>
   </div>
 
   <!-- CLOSING -->
   <div class="closing-block">
-    <div class="closing-nuke">☢ The Attacker Doesn't Sleep, Doesn't Blink, Doesn't Ask ☢</div>
-    <div class="closing-sub">The Bot Breached the Bot Repo · The Locksmith Shipped the Stealer · The Sender Field Was the Payload · The Shell Forged the Command</div>
-    <span class="closing-emoji">🤖📦⚙️</span>
+    <div class="closing-nuke">☢ Consent Was Obtained. Meaning Was Not. ☢</div>
+    <div class="closing-sub">The Dialog Lied · The Autocomplete Armed the Malware · The Memory Remembers Wrong · The Milk Is Down</div>
+    <span class="closing-emoji">👻🎵🧠</span>
   </div>
 
   <!-- DISCLAIMER -->
   <div class="disclaimer">
-    DISCLAIMER: This page is dark-humor satire. The Hugging Face autonomous-agent breach is real. The Jscrambler infostealer is real. The poisoned Claude Code Action, GuardFall, and Agent Data Injection are all real. The 17,000 actions are real.<br>
+    DISCLAIMER: This page is dark-humor satire. GhostApproval is real. The Suno leak is real. HalluSquatting is real. The 84% is real. The milk outage is, tragically, real.<br>
     Nothing here constitutes security advice. Rotate your credentials anyway.<br>
-    All stories are drawn from real reporting by The Hacker News, BleepingComputer, Hugging Face, Socket, Microsoft Security, arXiv researchers, and Check Point, summarized straight in AISecurityDaily <a href="index.html" style="color:#666;">Issue #16</a>. This is the part that didn't fit in the professional newsletter.
+    All stories are drawn from real reporting by Wiz, Infosecurity Magazine, TechCrunch, Variety, Adversa AI, CSA, and Insurance Journal, summarized straight in AISecurityDaily <a href="index.html" style="color:#666;">Issue #15</a>. This is the part that didn't fit in the professional newsletter.
   </div>
 
   <!-- FOOTER -->
@@ -761,7 +761,7 @@
     <div class="footer-brand">UNDERGROUND<span>SEC</span></div>
     <div class="footer-copy">
       Satire Division · AISecurityDaily<br>
-      We laugh so we don't cry. The robots don't laugh at all.
+      We laugh so we don't cry. Sometimes we cry anyway.
     </div>
   </footer>
 

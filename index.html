@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Vibe Coding Security — Issue #15 | July 18, 2026</title>
+<title>AI Vibe Coding Security — Issue #16 | July 22, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;600;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -655,263 +655,264 @@
     <div class="header-right">
       <a class="ug-btn" href="undergroundSecurity.html"><span class="rad">☢</span> Underground Security</a>
       <div class="issue-meta">
-        <div class="issue-label">Issue #15 · Weekend Edition</div>
-        <div class="issue-date">July 18, 2026</div>
+        <div class="issue-label">Issue #16 · Midweek Edition</div>
+        <div class="issue-date">July 22, 2026</div>
       </div>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-tag">Weekend Edition • July 16 – 18, 2026</div>
-    <h1>The Approval<span>Was A Ghost</span></h1>
-    <p class="hero-sub">This weekend's theme: the permission dialogs lied. Six major AI coding assistants approved writes that landed somewhere else entirely. A worm from last November just unmasked how Suno trained its music model. Agent tool-input injection is succeeding 84% of the time in production LLMs. And the packages your AI hallucinated? Someone registered them, and they're botnet droppers now. Your agent's "Are you sure? [Y/n]" was never the security boundary you thought it was.</p>
+    <div class="hero-tag">Midweek Edition • July 19 – 22, 2026</div>
+    <h1>The Attacker<span>Was A Bot</span></h1>
+    <p class="hero-sub">This week the adversary stopped being human. An autonomous AI agent swarm chewed through Hugging Face's production network over a single weekend — 17,000 actions — and the defenders had to draft their own AI to keep up. A security vendor's own npm package shipped an infostealer that hunts for your Cursor and Claude Desktop configs. A poisoned Claude Code GitHub Action turned one issue comment into repo-wide compromise. And a new attack class dresses malware up as data your agent already trusts. Machine versus machine is no longer a slide in a keynote. It's the incident report.</p>
     <div class="threat-bar">
-      <div class="threat-pill critical"><span class="dot"></span> GhostApproval Hits 6 AI Assistants</div>
-      <div class="threat-pill critical"><span class="dot"></span> Suno Source Code Leaked</div>
-      <div class="threat-pill high"><span class="dot"></span> HalluSquatting Botnet Packages</div>
+      <div class="threat-pill critical"><span class="dot"></span> AI Agent Breaches Hugging Face</div>
+      <div class="threat-pill critical"><span class="dot"></span> Jscrambler npm Backdoored</div>
+      <div class="threat-pill high"><span class="dot"></span> Claude Code Action Poisoned</div>
     </div>
   </section>
 
   <!-- RECAP FRAMING -->
   <div class="recap-banner">
-    <strong>This Weekend's Theme</strong> &nbsp;— Issue #14 was about tools that stole from you. This weekend it's about tools that <em>lie</em> to you: approval prompts that approve something else, privacy claims unmasked by a worm, package names your AI invented becoming real malware, and a White House clearinghouse promising coordination while production lines sit halted by ransomware. The trust boundary isn't leaking — it was never drawn where you thought.
+    <strong>This Week's Theme</strong> &nbsp;— Issue #15 was about tools that <em>lie</em> to you. This week it's about tools that <em>attack</em> you — autonomously. An AI agent ran an entire intrusion without a human at the keyboard, an AI coding tool's own supply chain turned on developers, and researchers named a fresh attack class that slips malware past injection defenses by disguising it as trusted data. The human wasn't in the loop this week because, increasingly, neither attacker nor defender had time to wait for one.
   </div>
 
   <!-- MAIN STORIES -->
-  <div class="section-label">Top Stories • July 16–18</div>
+  <div class="section-label">Top Stories • July 19–22</div>
 
-  <!-- STORY 1: GHOSTAPPROVAL -->
+  <!-- STORY 1: HUGGING FACE -->
   <article class="article-card red">
     <div class="article-num">01</div>
     <div class="article-meta">
-      <span class="badge critical">Trust Boundary · AI Coding Agents</span>
-      <span class="article-source">Via <a href="https://www.wiz.io/blog/ghostapproval-a-trust-boundary-gap-in-ai-coding-assistants" target="_blank">Wiz Research</a> · <a href="https://www.infosecurity-magazine.com/news/ghostapproval-flaw-ai-coding/" target="_blank">Infosecurity Magazine</a></span>
+      <span class="badge critical">Breach · Autonomous AI Attack</span>
+      <span class="article-source">Via <a href="https://thehackernews.com/2026/07/worlds-largest-ai-model-repository.html" target="_blank">The Hacker News</a> · <a href="https://www.bleepingcomputer.com/news/security/hugging-face-breach-autonomous-ai-agent-system-internal-datasets-credentials/" target="_blank">BleepingComputer</a> · <a href="https://huggingface.co/blog/security-incident-july-2026" target="_blank">Hugging Face</a></span>
     </div>
-    <h2 class="article-title">GhostApproval: Six Major AI Coding Assistants Approve Writes That Land Somewhere Else — Symlinks Defeat the Permission Dialog</h2>
+    <h2 class="article-title">An Autonomous AI Agent Breached Hugging Face — 17,000 Actions Over a Weekend, and Defenders Had to Deploy Their Own AI to Keep Up</h2>
     <div class="article-body">
-      <p>Wiz Research disclosed <strong>GhostApproval</strong>, a trust-boundary flaw found in all six AI coding assistants they tested: Amazon Q Developer, Anthropic Claude Code, Augment, Cursor, Google Antigravity, and Windsurf. The mechanism is brutally simple: a malicious repository contains a symbolic link pointing at a sensitive location (your shell profile, SSH config, a hook script). The assistant asks permission to write to what looks like a harmless project file — you approve — and the write follows the symlink onto the sensitive target instead.</p>
+      <p>Hugging Face, the world's largest AI model repository, disclosed on <strong>July 20</strong> that an autonomous AI agent system breached part of its production infrastructure. The intrusion started in the <strong>data-processing pipeline</strong>: attackers uploaded a malicious dataset that exploited two code-execution vulnerabilities to run code on a processing worker. From there the agent escalated to node-level access, harvested cloud and cluster credentials, and moved laterally into several internal clusters — all <strong>over a single weekend</strong>.</p>
       <br>
-      <p>Vendor response split down the middle: Amazon, Google, and Cursor treated it as a vulnerability and shipped fixes — Cursor assigned <code>CVE-2026-50549</code>. Others treated it as expected behavior within their threat model. Either way, the takeaway is the same: <strong>the approval dialog validates the path string, not the write destination.</strong> Any repo you clone and open in an agentic editor can pre-stage symlinks that turn a routine "write to README" approval into persistence on your machine.</p>
+      <p>The detail that has the industry rattled: the attacker executed <strong>more than 17,000 actions</strong> at machine speed, and investigators leaned on a separate AI model to detect and reconstruct the intrusion because human responders couldn't move fast enough. Hugging Face says it found no evidence of tampering with public models, datasets, or Spaces, and that its software supply chain was "verified clean." Its new recommendation to every security team: <strong>keep a vetted AI model on standby</strong> for the next one.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">Human-in-the-loop was the last line of defense for agentic coding — the whole safety story was "the agent asks before it writes." GhostApproval shows the ask can be honest while the write is not. If you clone untrusted repos (starter templates, "awesome" example projects, take-home assignments) and open them in an AI editor, you are exposed.</div>
+      <div class="matters-text">The entry point was a <em>dataset</em> — untrusted data fed into a processing pipeline, exactly the pattern most AI apps run. If you ingest user-supplied files, models, or datasets and process them with code, that pipeline is your soft underbelly. And the speed changes the math: an attacker running 17,000 actions a weekend doesn't give you Monday-morning triage time. Detection and response now have to move at machine speed too.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Update Cursor (fix for <code>CVE-2026-50549</code>), Amazon Q Developer, and Google Antigravity to latest versions now</li>
-      <li>Before opening any untrusted repo in an agentic editor, scan for symlinks: <code>find . -type l -ls</code> (or <code>Get-ChildItem -Recurse -Attributes ReparsePoint</code> on Windows)</li>
-      <li>Run agentic editors on untrusted code inside a container or throwaway VM — not your daily-driver account with SSH keys loaded</li>
-      <li>Check vendor advisories for Claude Code, Windsurf, and Augment for updated guidance on symlink handling</li>
-      <li>Audit shell profiles, git hooks, and <code>~/.ssh</code> for unexpected modifications if you've been vibing on cloned repos recently</li>
+      <li>Treat every uploaded dataset, model file, or artifact as executable untrusted input — process it in a sandboxed, credential-free worker</li>
+      <li>Never leave cloud/cluster credentials reachable from a data-processing node; use short-lived, scoped tokens and block metadata-service access</li>
+      <li>Segment processing workers from internal clusters so a single worker compromise can't pivot laterally</li>
+      <li>Add anomaly detection tuned for volume and velocity — 17,000 automated actions should trip an alarm long before a human notices</li>
+      <li>Rotate credentials and audit lateral-movement paths now if you run any public-facing ingestion pipeline</li>
     </ul>
   </article>
 
-  <!-- STORY 2: SUNO -->
+  <!-- STORY 2: JSCRAMBLER -->
   <article class="article-card orange">
     <div class="article-num">02</div>
     <div class="article-meta">
-      <span class="badge supply-chain">Breach Disclosure · Worm Fallout</span>
-      <span class="article-source">Via <a href="https://techcrunch.com/2026/07/15/hack-suggests-ai-music-generator-suno-scraped-youtube-for-training-data/" target="_blank">TechCrunch</a> · <a href="https://variety.com/2026/music/news/suno-hack-youtube-music-deezer-genius-data-trained-ai-music-1236811772/" target="_blank">Variety</a> · <a href="https://thenextweb.com/news/suno-ai-music-hack-training-data" target="_blank">TNW</a></span>
+      <span class="badge supply-chain">Supply Chain · Infostealer</span>
+      <span class="article-source">Via <a href="https://socket.dev/blog/jscrambler-supply-chain-attack" target="_blank">Socket</a> · <a href="https://cybersecuritynews.com/hackers-compromised-jscrambler/" target="_blank">Cyber Security News</a> · <a href="https://securityboulevard.com/2026/07/jscrambler-npm-package-compromised-a-security-vendor-becomes-the-supply-chain-risk/" target="_blank">Security Boulevard</a></span>
     </div>
-    <h2 class="article-title">Suno Breach: Shai-Hulud Worm Stole an Employee's Credentials in November — Leaked Source Code Now Exposes the Whole Training Pipeline</h2>
+    <h2 class="article-title">A Security Vendor Became the Supply Chain Risk: Jscrambler's npm Package Shipped a Rust Infostealer That Hunts Your Cursor and Claude Desktop Configs</h2>
     <div class="article-body">
-      <p>AI music generator Suno confirmed a security incident after a hacker known as ellie.191 leaked source code and internal files. The entry point should sound familiar to readers of Issue #10: the attacker infected an employee's machine with the <strong>Shai-Hulud npm worm</strong> — the same self-replicating package malware that tore through AI tooling in May — harvesting credentials, tokens, and access keys. The breach originated in <strong>November</strong>; users were never notified until the files surfaced publicly this week.</p>
+      <p>JavaScript code-protection vendor <strong>Jscrambler</strong> — a security company, with 15,800+ weekly downloads — confirmed that attackers used a <strong>stolen npm publishing credential</strong> to push malicious releases. Socket's team caught the malicious <code>jscrambler@8.14.0</code> just six minutes after it went live on July 11, but the campaign spread across multiple packages (<code>jscrambler-webpack-plugin</code>, <code>gulp-jscrambler</code>, <code>grunt-jscrambler</code>, <code>jscrambler-metro-plugin</code>) and continued to reverberate through the week.</p>
       <br>
-      <p>The leaked code allegedly documents Suno's training data pipeline in embarrassing detail: 113,000+ hours scraped from YouTube Music, 62,000+ hours from Pond5, 17,000+ from Genius, 12,000+ from Deezer, plus a plan targeting ~420,000 podcasts for roughly 1 million hours of audio. Record labels already suing Suno now have what looks like a discovery goldmine — circumventing YouTube's scraping protections potentially violates the DMCA. Suno says the material is "outdated source code."</p>
+      <p>The payload is the part that should make every builder sit up: a <code>preinstall</code> hook silently drops and runs a <strong>Rust infostealer</strong> on Windows, macOS, and Linux. It targets cloud credentials (AWS, GCP, Azure — metadata tokens, Secrets Manager, SSM Parameter Store), CI tokens, browser sessions, crypto wallets, Bitwarden vaults, and — explicitly — <strong>the config files of AI coding tools like Claude Desktop and Cursor</strong>. Clean versions are out (<code>jscrambler 8.22.0</code> et al.); the credential has been revoked and rotated.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">One infected npm install on one employee laptop → eight months of silent access → the company's most sensitive legal liability published to the world. The supply chain worm you patched in May is still detonating in July. And if you're building on AI vendors: their breach disclosure clock apparently starts when the hacker goes public, not when the hack happens.</div>
+      <div class="matters-text">Malware now specifically targets your AI tooling's config — because that's where your API keys, MCP server tokens, and project context live. "It's from a security vendor" is not a trust signal; one stolen npm token turns a defense product into a delivery vehicle. And it fired at <em>install time</em>, before you ran a single line, on your credentialed dev machine.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>If your org was exposed to Shai-Hulud-era npm compromises: assume long-tail credential theft; re-rotate anything not rotated since, and audit for persistence</li>
-      <li>Treat employee dev machines as production attack surface — npm install runs arbitrary code with access to every credential on the box</li>
-      <li>Scope vendor risk: what does each AI service you use hold about you, and what's their disclosure track record?</li>
-      <li>Keep secrets out of source code entirely — leaked repos are read by lawyers and attackers alike</li>
-      <li>Use lifecycle-script restrictions (<code>npm config set ignore-scripts true</code> where viable) and a private registry proxy for installs</li>
+      <li>Check your lockfiles for the compromised versions (jscrambler 8.14.0/8.16.0/8.17.0/8.18.0/8.20.0 and the plugin releases); upgrade to clean versions</li>
+      <li>If you installed any affected version: assume full credential theft — rotate cloud keys, CI tokens, npm tokens, and any secrets in your AI tool configs immediately</li>
+      <li>Set <code>npm config set ignore-scripts true</code> and run installs in a container; preinstall/postinstall hooks are the whole attack</li>
+      <li>Audit <code>~/.cursor</code>, Claude Desktop config, and MCP config files for exposure — treat any keys stored there as burned</li>
+      <li>Pin exact versions and require review on lockfile diffs; a security vendor's package deserves the same scrutiny as any other</li>
     </ul>
   </article>
 
-  <!-- STORY 3: AGENT INJECTION NUMBERS -->
+  <!-- STORY 3: CLAUDE CODE ACTION + GUARDFALL -->
   <article class="article-card purple">
     <div class="article-num">03</div>
     <div class="article-meta">
-      <span class="badge ai-threat">Threat Research · Agent Security</span>
-      <span class="article-source">Via <a href="https://axis-intelligence.com/research/ai-model-vulnerability-tracker/" target="_blank">Axis Intelligence</a> · <a href="https://www.securance.com/blog/prompt-injection-the-owasp-1-ai-threat-in-2026/" target="_blank">Securance/OWASP</a> · <a href="https://www.aimagicx.com/blog/prompt-injection-attacks-ai-agent-security-guide-2026" target="_blank">AI Magicx</a></span>
+      <span class="badge ai-threat">CI/CD · Prompt Injection</span>
+      <span class="article-source">Via <a href="https://thehackernews.com/2026/06/claude-code-github-action-flaw-let-one.html" target="_blank">The Hacker News</a> · <a href="https://www.microsoft.com/en-us/security/blog/2026/06/05/securing-ci-cd-in-agentic-world-claude-code-github-action-case/" target="_blank">Microsoft Security</a> · <a href="https://thehackernews.com/2026/06/guardfall-exposes-open-source-ai-coding.html" target="_blank">GuardFall / THN</a></span>
     </div>
-    <h2 class="article-title">The Numbers Are In: Agent Tool-Input Injection Succeeds 84% of the Time — and Memory Poisoning Now Persists Across 9 Sessions</h2>
+    <h2 class="article-title">One Malicious Issue, Whole Repo Owned: The Poisoned Claude Code GitHub Action and GuardFall's Half-Million-Deployment Shell Injection</h2>
     <div class="article-body">
-      <p>Mid-year threat research landed this week and the scoreboard is grim. Axis Intelligence's vulnerability tracker reproduced <strong>47 confirmed attack vectors across six production LLMs</strong> between January and July. The standout: agent tool-input injection — malicious instructions smuggled through the data your agent's tools return — succeeds <strong>84% of the time</strong> and remains effectively unsolved. A multi-model memory-poisoning chain (<code>AVI-2026-0089</code>) planted false context that persisted across <strong>9 consecutive sessions</strong> in four of five models with persistent memory features.</p>
+      <p>Two CI/CD stories converged into this week's agentic-pipeline reckoning. Researchers chained an <strong>authorization bypass, indirect prompt injection, and environment-variable exfiltration</strong> in the <strong>Claude Code GitHub Action</strong> — a single public GitHub issue could compromise any repo using the workflow. Microsoft Threat Intelligence showed the un-sandboxed Read tool could read <code>/proc/self/environ</code> and leak the <code>ANTHROPIC_API_KEY</code> via injection hidden in untrusted issue text. Anthropic patched it (Claude Code 2.1.128), but as the researchers note, blocking one <code>/proc</code> path doesn't remove the architectural problem of agents interpreting untrusted text.</p>
       <br>
-      <p>Zoom out and it tracks: OWASP's 2026 LLM report puts prompt injection up <strong>340% year-over-year</strong> — the fastest-growing attack category, period — and it has held the #1 spot in the LLM Top 10 in every edition. Unit 42 documented the first large-scale indirect injections in the wild back in March; one financial-services chatbot leaked internal pricing data for three weeks before anyone noticed. The root cause hasn't moved an inch: models cannot reliably distinguish instructions from data.</p>
+      <p>The structural version of that problem got a name: <strong>GuardFall</strong>, a universal shell-injection design flaw affecting <strong>500,000+ open-source deployments</strong>. The guard inspects raw text; the shell then expands, unquotes, and rewrites that text before running it — so a prompt injection can smuggle a command past every execution filter. It's a decades-old shell-quoting bypass, now weaponized against the most popular open-source coding agents.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">Every tool result your agent reads — web pages, API responses, file contents, search results — is an injection surface with an 84% hit rate. And if your agent has memory, a single poisoned session can quietly steer the next nine. "My agent has guardrails" is not a security posture; capability scoping is.</div>
+      <div class="matters-text">If you wired an AI coding agent into CI, you gave untrusted text (issues, PRs, comments, third-party code) a path to your secrets and your shell. Denylists and model-level guards don't hold: GuardFall shows the shell rewrites the command after the guard approved it. Your agent's CI permissions are its real blast radius — and issue comments are attacker-controlled input.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Scope agent tools to least privilege: read-only where possible, no prod credentials, egress allowlists</li>
-      <li>Require human confirmation for consequential actions (sends, payments, deletes, deploys) — outside the model, in your harness code</li>
-      <li>If you use persistent memory features: add a review/expiry mechanism; treat memory writes as untrusted input</li>
-      <li>Log full tool inputs/outputs so you can detect and reconstruct injection attempts after the fact</li>
-      <li>Red-team your own agent with indirect injection payloads in the data sources it consumes — before someone else does</li>
+      <li>Update the Claude Code GitHub Action and pin it to a reviewed commit SHA, not a floating tag</li>
+      <li>Never expose long-lived secrets (API keys, cloud creds) to an agentic CI job that reads untrusted issues or PRs; use short-lived, least-privilege tokens</li>
+      <li>Run coding agents on untrusted contributions in an isolated, network-restricted job with no production secrets in the environment</li>
+      <li>Don't rely on command denylists/guards alone — assume the shell can be tricked into unquoting a blocked command (GuardFall class)</li>
+      <li>Require human approval before an agent-triggered workflow can touch secrets, deploy, or push</li>
     </ul>
   </article>
 
-  <!-- STORY 4: HALLUSQUATTING -->
+  <!-- STORY 4: AGENT DATA INJECTION -->
   <article class="article-card" style="border-left-color:#00e5ff;">
     <div class="article-num">04</div>
     <div class="article-meta">
-      <span class="badge dependency">Slopsquatting · Botnet Malware</span>
-      <span class="article-source">Via <a href="https://adversa.ai/blog/top-ai-coding-agent-security-resources-july-2026/" target="_blank">Adversa AI</a> · <a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-generated-code-vulnerability-surge-2026/" target="_blank">Cloud Security Alliance</a></span>
+      <span class="badge privacy">Threat Research · New Attack Class</span>
+      <span class="article-source">Via <a href="https://thehackernews.com/2026/07/new-agent-data-injection-attack-can.html" target="_blank">The Hacker News</a> · <a href="https://arxiv.org/html/2607.05120v1" target="_blank">arXiv 2607.05120</a></span>
     </div>
-    <h2 class="article-title">HalluSquatting: Attackers Register the Packages Your AI Hallucinates — and Fill Them With Botnet Droppers</h2>
+    <h2 class="article-title">Agent Data Injection: Attackers Dress Malware as the Data Your Agent Already Trusts — Up to 100% Success on Web Content</h2>
     <div class="article-body">
-      <p>Researchers this week detailed <strong>HalluSquatting</strong>: attackers systematically catalog the package names LLMs hallucinate (plausible-sounding libraries that don't exist), register those exact names on npm and PyPI, and load them with botnet malware. When your coding assistant confidently writes <code>import fastapi-auth-utils</code> and you dutifully <code>pip install</code> it, you're not getting a typo'd package — you're getting the package the attacker built <em>because they knew the model would recommend it</em>.</p>
+      <p>A team from Seoul National University, UIUC, and Largosoft named a fresh attack class: <strong>Agent Data Injection (ADI)</strong>. Instead of smuggling instructions, ADI corrupts <em>trusted data fields</em> — a sender's name, a button's ID, a CI check record. The trick exploits how LLMs parse delimiters more loosely than strict code parsers: attackers inject fake punctuation (escaped quotes, curly quotes, dollar signs) that the model reads as genuine structural markers, conjuring phantom data fields the agent trusts implicitly.</p>
       <br>
-      <p>It pairs with <strong>Friendly Fire</strong>, a related technique that tricks AI agents into executing attacker code during automated security scans — the scan itself becomes the delivery mechanism. Meanwhile the Cloud Security Alliance's research note on "vibe coding's security debt" documents a surge in CVEs traced to AI-generated code shipped without review. The common thread: model output is being trusted at install-time and run-time with zero verification.</p>
+      <p>The demonstrated results across GPT-5.2, Claude Opus/Sonnet, and Gemini 3 Pro/Flash: <strong>31–43% success against structured data, up to 100% against webpage data</strong> — and purpose-built prompt-injection defenses still failed up to 50% of the time. Real scenarios included web agents clicking unintended "buy" buttons, coding assistants running commands from forged GitHub comments, and code merged after fake CI check records. The one mitigation that fully blocked it — strict data-origin tracking — also broke the agent's normal function.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">Typosquatting required you to make a mistake. HalluSquatting only requires your AI to be confidently wrong — which is free and infinitely repeatable. Hallucinated package names are consistent across prompts, so attackers can farm them at scale. Every install command your assistant suggests is now a supply chain decision.</div>
+      <div class="matters-text">Your injection defenses were built to catch instructions hiding in data. ADI hides in the data <em>structure itself</em> — the fields your agent never thought to distrust. If your agent acts on names, IDs, labels, or status records pulled from the web or a repo, those are now attack surface. "We sanitize prompts" doesn't cover the sender field.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Never install a package straight from AI output — verify it exists, check publish date, download count, and repo link first</li>
-      <li>Be suspicious of packages published recently with names that sound "obviously right" but have few downloads</li>
-      <li>Pin dependencies and commit lockfiles; review every new entry in a lockfile diff</li>
-      <li>Run installs in a sandbox/container in CI, not on your credentialed dev machine</li>
-      <li>If your agent runs security scanners autonomously, review what those scanners execute (Friendly Fire class) — scanners are code too</li>
+      <li>Assign random, unguessable IDs to UI/page elements your agent interacts with (cut ADI success from ~49% to 29% in testing)</li>
+      <li>Treat structured metadata (names, IDs, labels, check statuses) as untrusted — validate types and reject unexpected delimiter characters</li>
+      <li>Keep consequential actions (buy, merge, deploy, pay) behind out-of-model confirmation, regardless of how "trusted" the triggering field looks</li>
+      <li>Where feasible, tag data provenance so the agent can distinguish first-party from third-party fields</li>
+      <li>Red-team your agent with escaped/curly quotes and <code>$</code> injected into data fields, not just prompt text</li>
     </ul>
   </article>
 
-  <!-- STORY 5: WHITE HOUSE + RANSOMWARE REALITY -->
+  <!-- STORY 5: BREACH ROUNDUP / ACTIVE EXPLOITATION -->
   <article class="article-card red">
     <div class="article-num">05</div>
     <div class="article-meta">
-      <span class="badge critical">Policy · Ransomware Reality Check</span>
-      <span class="article-source">Via <a href="https://www.insurancejournal.com/news/national/2026/07/17/877965.htm" target="_blank">Insurance Journal</a> · <a href="https://www.claimsjournal.com/news/national/2026/07/17/338887.htm" target="_blank">Claims Journal</a> · <a href="https://bostoninstituteofanalytics.org/blog/latest-cybersecurity-news-roundup-11-july-17-july-2026-ai-threats-critical-vulnerabilities-and-why-cybersecurity-skills-matter-more-than-ever/" target="_blank">BIA Roundup</a></span>
+      <span class="badge critical">Breaches · Active Exploitation</span>
+      <span class="article-source">Via <a href="https://research.checkpoint.com/2026/20th-july-threat-intelligence-report/" target="_blank">Check Point Research</a> · <a href="https://www.esecurityplanet.com/weekly-roundup/ai-driven-attacks-critical-exploits-and-global-breaches-define-this-week-in-july-2026-in-cybersecurity/" target="_blank">eSecurity Planet</a> · <a href="https://cybersecuritynews.com/weekly-cyber-security-newsletter-bulletin/" target="_blank">Cyber Security News</a></span>
     </div>
-    <h2 class="article-title">White House Launches AI Vulnerability Clearinghouse While Fairlife Halts Production and Abbott Fights Two Breaches at Once</h2>
+    <h2 class="article-title">Meanwhile in the Rest of the World: EY and Moody Breaches, Two Zero-Days Under Active Exploitation, and 500M WordPress Sites Exposed</h2>
     <div class="article-body">
-      <p>The White House unveiled an <strong>AI clearinghouse for cybersecurity risks</strong> on July 17 — a coordination group bringing AI developers and critical-infrastructure operators together to share vulnerabilities <em>discovered by advanced AI systems</em> and coordinate response. It's the concrete follow-through on last week's "Gold Eagle" framework, and an official acknowledgment of what JadePuffer proved in Issue #14: frontier models are now finding (and exploiting) bugs faster than humans triage them.</p>
+      <p>While the AI-on-AI headlines dominated, the ordinary breach machine kept grinding. <strong>Ernst &amp; Young</strong> confirmed an unauthorized third party accessed its IT support ticket platform (March 28–April 12) and downloaded client tax and investment-holding documents. <strong>Moody Bible Institute</strong> confirmed a breach of <strong>2.3 million records</strong> after ShinyHunters leaked donor, student, and alumni data.</p>
       <br>
-      <p>The same day's headlines showed the stakes. Coca-Cola-owned dairy <strong>Fairlife suspended U.S. production</strong> after intruders reached systems connected to manufacturing. <strong>Abbott Laboratories</strong> is working two separate incidents simultaneously — unauthorized access to legacy Exact Sciences systems in its cancer-diagnostics unit, plus a claimed breach of its LabCentral portal. Policy is coordinating; attackers are shipping.</p>
+      <p>On the vulnerability front, two flaws are under <strong>active exploitation</strong>: <code>CVE-2026-56164</code> in SharePoint Server and <code>CVE-2026-56155</code> in AD Federation Services, both enabling privilege escalation. And a pre-auth RCE dubbed <strong>"wp2shell"</strong> — a REST API batch-route SQL injection chain — reportedly exposes <strong>500 million+ WordPress sites</strong> to unauthenticated takeover. Patch-now territory across the board.</p>
     </div>
     <div class="matters-block">
       <div class="matters-label">Why It Matters for Vibe Coders</div>
-      <div class="matters-text">AI-discovered vulnerabilities are now a national-coordination problem — which means the tooling you use to find bugs in your own code is the same class of capability governments are trying to gatekeep. Expect disclosure norms, and possibly regulation, around AI-assisted vuln research to tighten. If you're running AI security scanners against targets, make sure they're <em>your</em> targets.</div>
+      <div class="matters-text">The exotic AI attacks grab attention, but a SharePoint zero-day and an unauthenticated WordPress RCE will own more shops this month than any agent swarm. If you run WordPress, SharePoint, or ADFS anywhere in your stack, these are the ones that get you popped while you're reading about robots.</div>
     </div>
     <div class="actions-label">Action Items</div>
     <ul class="action-list">
-      <li>Only point AI vuln-discovery tooling at assets you own or have written authorization to test</li>
-      <li>Watch CISA and the new clearinghouse for AI-discovered CVE advisories — these will likely be weaponized fastest</li>
-      <li>If you build for manufacturing/healthcare: segment OT/lab systems from IT; Fairlife's production halt is the cost of flat networks</li>
-      <li>Have an incident comms plan that doesn't assume you get to control disclosure timing (see: Suno)</li>
+      <li>Patch SharePoint (<code>CVE-2026-56164</code>) and ADFS (<code>CVE-2026-56155</code>) immediately — both are being exploited now</li>
+      <li>Audit and update WordPress + REST-API-exposed plugins for the wp2shell chain; restrict unauthenticated batch routes</li>
+      <li>If you're an EY client, watch for tax/financial-document phishing using leaked context</li>
+      <li>Check ShinyHunters leak exposure if you're tied to affected nonprofits/education orgs; force password resets</li>
     </ul>
   </article>
 
   <!-- QUICK HITS -->
-  <div class="section-label">Quick Hits • The Rest of the Weekend</div>
+  <div class="section-label">Quick Hits • The Rest of the Week</div>
 
   <div class="quick-hits">
     <h3>Signals &amp; Intel</h3>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">Cursor's Git-Hook Hole</strong> — <code>CVE-2026-26268</code>: a malicious repo can plant git hooks that Cursor's agent triggers, yielding arbitrary code execution — on top of separately reported OS-level RCE flaws in the AI IDE. Same lesson as GhostApproval from a different angle: opening a repo is executing it. Update Cursor; disable auto-run of hooks on untrusted checkouts.</div>
+      <div><strong style="color:#fff">AI Agents Tricked Into Crypto Payments</strong> — Researchers documented live campaigns embedding indirect prompt injection in malicious websites, using SEO poisoning to rank those sites high so browsing AI agents find them — then steering the agents into making payments and trusting fraudulent crypto platforms. If your agent browses the open web and can move money, the web is now a payload delivery system. (<a href="https://www.securityweek.com/prompt-injection-attacks-trick-ai-agents-into-making-crypto-payments/" target="_blank">SecurityWeek</a>)</div>
     </div>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">AI-Generated Code CVE Surge</strong> — The Cloud Security Alliance's research note quantifies "vibe coding's security debt": a measurable surge in CVEs traced back to unreviewed AI-generated code now in production. The debt collector arrived. Review your generated code like you'd review a junior dev's PR — because statistically, it's worse.</div>
+      <div><strong style="color:#fff">No Web Agent Reliably Blocks Injection</strong> — A new benchmark (StakeBench, from NTU / ST Engineering / IBM Research / UIUC) found <em>not one</em> attack scenario was consistently blocked across leading agents on GPT-5 and Gemini. The takeaway matches this year's running theme: don't architect as if the model will refuse the bad instruction — assume it won't. (<a href="https://www.csoonline.com/article/4184455/prompt-injection-breaks-todays-ai-agents-study-warns.html" target="_blank">CSO Online</a>)</div>
     </div>
     <div class="quick-hit-item">
       <div class="qh-dot"></div>
-      <div><strong style="color:#fff">Fake Chain-of-Thought Still Fools Frontier Models</strong> — Follow-up research confirms injecting fabricated "reasoning" into prompts bypasses safety training ~60% of the time; models trust text that looks like their own thinking. Combined with the 84% tool-input injection rate, the message for agent builders: nothing the model reads is trustworthy, including things that look like the model wrote them.</div>
+      <div><strong style="color:#fff">Fake Payment SDKs, Still Going</strong> — The npm/PyPI fake-SDK campaign (PaySafe, Skrill, Neteller lookalikes) that surfaced earlier this month kept exfiltrating CI/CD secrets from developer machines and CI runners. Same lesson, new week: never integrate a payment SDK straight from an install command — verify the publisher. (<a href="https://gbhackers.com/npm-and-pypi-malware/" target="_blank">GBHackers</a>)</div>
     </div>
   </div>
 
   <!-- SKILL PROMPTS -->
   <div class="section-label">Security Skill Prompts</div>
-  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, ChatGPT, Cursor, or your coding assistant. This weekend's focus: verify what your agent actually writes, installs, and remembers.</p>
+  <p style="font-size:13.5px;color:var(--muted);margin-bottom:28px;">Drop these into Claude, ChatGPT, Cursor, or your coding assistant. This week's focus: assume the attacker is automated, fast, and already inside your install step and your CI.</p>
 
   <div class="prompts-section">
 
     <div class="prompt-card">
       <div class="prompt-card-header">
         <div class="prompt-topic">
-          <div class="prompt-icon cyan">👻</div>
+          <div class="prompt-icon cyan">🤖</div>
           <div>
-            <div class="prompt-title">Symlink & Write-Boundary Repo Audit</div>
-            <div class="prompt-subtitle">GhostApproval class</div>
+            <div class="prompt-title">Untrusted-Data Pipeline Hardening</div>
+            <div class="prompt-subtitle">Hugging Face class</div>
           </div>
         </div>
         <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
-      <div class="prompt-box"><span class="hl-cyan">Audit this repository for GhostApproval-class risks before I open it in an AI coding assistant (the July 2026 Wiz disclosure: symlinks that redirect approved writes onto sensitive files).</span>
+      <div class="prompt-box"><span class="hl-cyan">Audit my application for the Hugging Face breach pattern (July 2026): untrusted uploaded data processed by code, leading to worker RCE, credential harvest, and lateral movement — at machine speed.</span>
 
-<span class="hl-muted">Check:</span>
-<span class="hl-green">1.</span> All symbolic links in the repo and where they point (flag anything targeting outside the repo root, dotfiles, hooks, or SSH/config paths)
-<span class="hl-green">2.</span> Git hooks, husky configs, or lifecycle scripts that would execute on checkout, install, or commit
-<span class="hl-green">3.</span> Editor/agent config files (.vscode, .cursor, MCP configs, CLAUDE.md-style instruction files) that could steer an AI assistant
-<span class="hl-green">4.</span> Files with names that look harmless but resolve to sensitive targets
+<span class="hl-muted">Map and assess:</span>
+<span class="hl-green">1.</span> Every place user-supplied files, datasets, or model artifacts get parsed or executed by my code
+<span class="hl-green">2.</span> Whether those processing workers hold cloud/cluster credentials, and whether they can reach the metadata service
+<span class="hl-green">3.</span> Network segmentation between processing workers and internal services/clusters
+<span class="hl-green">4.</span> Whether short-lived scoped tokens are used instead of long-lived keys
+<span class="hl-green">5.</span> Whether volume/velocity anomaly detection would catch thousands of automated actions
 
-<span class="hl-muted">Return:</span> A verdict (safe / open-in-sandbox-only / do-not-open), the exact suspicious paths, and commands to neutralize them.
+<span class="hl-muted">Return:</span> Ranked risk list, the top 3 sandboxing/segmentation fixes, and a detection rule for high-velocity automated activity.
 
-<span class="hl-orange">[PASTE OUTPUT OF: find . -type l -ls && ls -la .git/hooks HERE]</span></div>
+<span class="hl-orange">[PASTE PIPELINE / INFRA / IAM NOTES HERE]</span></div>
     </div>
 
     <div class="prompt-card">
       <div class="prompt-card-header">
         <div class="prompt-topic">
-          <div class="prompt-icon orange">🧠</div>
+          <div class="prompt-icon orange">📦</div>
           <div>
-            <div class="prompt-title">Hallucinated Dependency Verification</div>
-            <div class="prompt-subtitle">HalluSquatting class</div>
+            <div class="prompt-title">Install-Time Infostealer Sweep</div>
+            <div class="prompt-subtitle">Jscrambler class</div>
           </div>
         </div>
         <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
-      <div class="prompt-box"><span class="hl-orange">Verify every dependency in my project against HalluSquatting risk (July 2026: attackers registering AI-hallucinated package names on npm/PyPI and loading them with botnet malware).</span>
+      <div class="prompt-box"><span class="hl-orange">Check my project for the Jscrambler-class supply chain risk (July 2026: a security vendor's own npm package shipped a preinstall Rust infostealer targeting cloud creds and AI-tool configs).</span>
 
-<span class="hl-muted">For each package:</span>
-<span class="hl-green">1.</span> Confirm it's the canonical package for its stated purpose (not a plausible-sounding variant of a real library)
-<span class="hl-green">2.</span> Flag recent publish dates + low download counts + no linked source repo
-<span class="hl-green">3.</span> Flag names that combine real project names with generic suffixes (-utils, -auth, -helper, -sdk)
-<span class="hl-green">4.</span> Identify which packages were added on AI-assistant suggestion vs. deliberate human choice
-<span class="hl-green">5.</span> Check for install-time script execution (postinstall etc.)
+<span class="hl-muted">Do this:</span>
+<span class="hl-green">1.</span> List every dependency with a preinstall/postinstall/install lifecycle script and what it runs
+<span class="hl-green">2.</span> Flag the known-bad jscrambler versions (8.14.0 / 8.16.0 / 8.17.0 / 8.18.0 / 8.20.0 and its plugins) if present
+<span class="hl-green">3.</span> Identify secrets reachable at install time: cloud CLI creds, CI tokens, npm tokens, browser sessions, and AI tool configs (~/.cursor, Claude Desktop, MCP configs)
+<span class="hl-green">4.</span> Recommend ignore-scripts + containerized install policy
+<span class="hl-green">5.</span> Give me an exact rotate-now checklist if any flagged package was installed
 
-<span class="hl-muted">Return:</span> Remove-now list, verify-manually list, and lockfile hygiene recommendations.
+<span class="hl-muted">Return:</span> Remove/upgrade list, exposed-secret inventory, and a credential rotation plan.
 
-<span class="hl-orange">[PASTE package.json / requirements.txt / lockfile HERE]</span></div>
+<span class="hl-orange">[PASTE package.json + lockfile HERE]</span></div>
     </div>
 
     <div class="prompt-card">
       <div class="prompt-card-header">
         <div class="prompt-topic">
-          <div class="prompt-icon purple">🛡</div>
+          <div class="prompt-icon purple">⚙️</div>
           <div>
-            <div class="prompt-title">Agent Injection-Surface Review</div>
-            <div class="prompt-subtitle">84% tool-input injection class</div>
+            <div class="prompt-title">Agentic CI/CD Blast-Radius Review</div>
+            <div class="prompt-subtitle">Claude Code Action / GuardFall class</div>
           </div>
         </div>
         <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
-      <div class="prompt-box"><span class="hl-purple">Review my AI agent's architecture for tool-input injection and memory poisoning risk, given July 2026 research showing 84% success rates for tool-input injection and memory poisoning persisting across 9 sessions (AVI-2026-0089).</span>
+      <div class="prompt-box"><span class="hl-purple">Review my CI/CD for the agentic-pipeline attacks of July 2026: the poisoned Claude Code GitHub Action (one malicious issue → repo compromise, ANTHROPIC_API_KEY leaked via /proc) and GuardFall (shell rewrites text after the guard approved it).</span>
 
-<span class="hl-muted">Map:</span>
-<span class="hl-green">1.</span> Every data source the agent reads (tool results, web content, files, APIs) — each is an injection channel
-<span class="hl-green">2.</span> Every capability the agent can invoke, and its blast radius if hijacked
-<span class="hl-green">3.</span> Whether consequential actions (send / pay / delete / deploy) require out-of-model human confirmation
-<span class="hl-green">4.</span> Persistent memory: what gets written, who can influence it, when it expires
-<span class="hl-green">5.</span> Logging: can I reconstruct exactly what the agent read before any given action?
+<span class="hl-muted">Assess:</span>
+<span class="hl-green">1.</span> Which CI jobs run an AI coding agent, and what untrusted input they read (issues, PRs, comments, third-party code)
+<span class="hl-green">2.</span> What secrets live in those jobs' environments and whether they're long-lived
+<span class="hl-green">3.</span> Whether agent actions are pinned to reviewed commit SHAs vs floating tags
+<span class="hl-green">4.</span> Whether command guards/denylists are the only control (assume the shell can unquote a blocked command)
+<span class="hl-green">5.</span> Where human approval gates consequential steps (secret access, deploy, push)
 
-<span class="hl-muted">Return:</span> Ranked risk list, the top 3 capability-scoping changes to make this week, and a memory hygiene policy.
+<span class="hl-muted">Return:</span> Blast-radius map, the top 3 least-privilege changes, and a hardened workflow config.
 
-<span class="hl-orange">[PASTE YOUR AGENT'S TOOL LIST / SYSTEM PROMPT / ARCHITECTURE NOTES HERE]</span></div>
+<span class="hl-orange">[PASTE YOUR CI WORKFLOW / ACTION CONFIG HERE]</span></div>
     </div>
 
   </div>
@@ -920,7 +921,7 @@
   <footer>
     <div class="footer-brand">AI<span>Security</span>Daily</div>
     <div class="footer-copy">
-      Issue #15 · Weekend Edition · July 18, 2026<br>
+      Issue #16 · Midweek Edition · July 22, 2026<br>
       For vibe coders who ship secure.
     </div>
   </footer>

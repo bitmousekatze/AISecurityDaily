@@ -13,7 +13,7 @@ The most recent report is always live at:
 
 `index.html` in the root of this repo is always the newest issue. GitHub Pages serves it automatically — bookmark the link above and check back.
 
-**Current: Issue #15 · July 18, 2026 (Weekend Edition)** — GhostApproval symlink flaw hits six AI coding assistants · Suno breach exposes training-data pipeline (Shai-Hulud fallout) · agent tool-input injection at 84% success · HalluSquatting weaponizes AI-hallucinated package names · White House AI vulnerability clearinghouse.
+**Current: Issue #16 · July 22, 2026 (Midweek Edition)** — Autonomous AI agent breaches Hugging Face (17,000 actions in a weekend) · Jscrambler npm package backdoored with a Rust infostealer that hunts AI-tool configs · poisoned Claude Code GitHub Action + GuardFall shell injection · Agent Data Injection (ADI) hides malware in trusted data fields · EY & Moody breaches plus SharePoint/ADFS zero-days and wp2shell.
 
 ---
 
@@ -29,6 +29,7 @@ Past issues are stored in the [`/Recents`](./Recents/) folder as fully self-cont
 
 | Date | Issue | Topics Covered |
 |------|-------|----------------|
+| [Jul 18, 2026](./Recents/Jul18/index.html) | #15 | Weekend Edition: GhostApproval symlink flaw hits six AI coding assistants · Suno breach (Shai-Hulud fallout) exposes training-data pipeline · tool-input injection at 84% · HalluSquatting · White House AI vulnerability clearinghouse |
 | [Jul 15, 2026](./Recents/Jul15/index.html) | #14 | Weekly recap: Grok Build CLI exfiltrates entire Git repos · Trivy scanner poisoned on Docker Hub · JadePuffer autonomous AI ransomware · malicious payment SDKs · 621-CVE Patch Tuesday |
 | [Jul 9, 2026](./Recents/Jul9/index.html) | #13 | Midweek Edition: Claude Code "backdoor" telemetry dispute · Ollama servers hijacked for automated exploit rigs · Gitea Docker image CVE-2026-20896 |
 | [Jul 7, 2026](./Recents/Jul7/index.html) | #12 | Weekly recap: Cursor "DuneSlide" zero-click RCE · JetBrains critical cluster · DPRK "PolinRider" multi-registry campaign |
@@ -43,7 +44,7 @@ Past issues are stored in the [`/Recents`](./Recents/) folder as fully self-cont
 | [May 3, 2026](./Recents/May3/index.html) | #2 | Linux root-access flaw hits KEV · ALPHV sentencing · NSA tests Mythos AI |
 | [May 2, 2026](./Recents/May2-2026/May2ndMorningBreif.html) | #1 | Trellix repo breach · SAP npm supply-chain attack · ConsentFix v3 OAuth exploit |
 
-Archived Underground Security editions: [May 10](./Recents/underground-may10.html) · [Jul 7](./Recents/Jul7/undergroundSecurity.html) · [Jul 9](./Recents/Jul9/undergroundSecurity.html)
+Archived Underground Security editions: [May 10](./Recents/underground-may10.html) · [Jul 7](./Recents/Jul7/undergroundSecurity.html) · [Jul 9](./Recents/Jul9/undergroundSecurity.html) · [Jul 18](./Recents/Jul18/undergroundSecurity.html)
 
 ---
 
